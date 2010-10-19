@@ -21,20 +21,6 @@ class TestCrawler < Test::Unit::TestCase
         FakeWeb.allow_net_connect = false
     end
 
-    def test_options_removes_slash
-      options = CrawlerOptions.get_options(['-u', 'http://goo/', '-s', 'http://foo/solr'])
-      assert_equal "http://foo/solr", options[:solr].to_s
-      
-      options = CrawlerOptions.get_options(['-u', 'http://goo/', '-s', 'http://foo/solr/'])
-      assert_equal "http://foo/solr", options[:solr].to_s
-      
-      options = CrawlerOptions.get_options(['-u', 'http://goo/', '-s', 'http://foo/'])
-      assert_equal "http://foo", options[:solr].to_s
-      
-      options = CrawlerOptions.get_options(['-u', 'http://goo/', '-s', 'http://foo'])
-      assert_equal "http://foo", options[:solr].to_s
-    end
-
     def test_crawl_all
         check_crawler(graph_basic())
         check_crawler(graph_basic(), [], false)

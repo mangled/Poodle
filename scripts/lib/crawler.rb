@@ -248,10 +248,6 @@ class CrawlerOptions
             puts e
             exit(-1)
         end
-        
-        if options[:solr].path =~ /\/$/
-            options[:solr].path = options[:solr].path[0..-2]
-        end
     
         options
     end
