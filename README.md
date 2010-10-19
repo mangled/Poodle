@@ -7,6 +7,8 @@ Poodle is collection of ruby based "tools" which work collectively with Apache S
 
 The aim is to provide simple code which can be easily modified to your own needs. Its **not** an out of the box solution, although it should be fairly usable "as-is". The simplest modifications are cosmetic, if you want to go further then hack away - I produced this for my own needs and wished something like this had existed at the time. I do not pretend to be an expert on ruby/rails etc. I also assume that anyone looking at this has some experience of ruby/rails and general coding etc.
 
+*Note: If you are reading this via github, the documentation links will not function as they are intended to be read relative to the projects rdoc folder - I will fix this at some point*
+
 Help
 ----
 
