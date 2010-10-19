@@ -1,0 +1,7 @@
+# Generate a linear ramp for the graph tests
+<% for day in 1..7 %>
+    <% for event in 1..day %>
+searched_at_<%= day %>_<%= event %>:
+    created_at: <%= Date.parse("2010-10-#{day}").to_time(:utc).utc.to_s(:db) %>
+    <% end %>
+<% end %>

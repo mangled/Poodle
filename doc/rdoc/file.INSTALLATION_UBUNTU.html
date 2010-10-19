@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>File: INSTALLATION_UBUNTU</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: INSTALLATION_UBUNTU</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1><a href="index.html">Poodle</a> Ubuntu Installation</h1>
+
+<p>This was tested on Ubuntu 10.10 - the Maverick Meerkat. Using a completely clean install - I'm not providing instructions that cover upgrading any pre-installed components. If you are in this situation please review the information and tread carefully, for example upgrading ruby might cause other programs problems.</p>
+
+<p>I imagine other distributions would require similar instructions.</p>
+
+<h2><a href="http://www.ruby-lang.org/en/">Install Ruby</a></h2>
+
+<p>Note: You need ruby <code>1.8.7</code> or higher as the web-app uses rails 3.0 - This (at the time of writing) was the version provided for Ubuntu via a standard apt-get.</p>
+
+<pre class="code">    <span class='xstring val'>`&gt; sudo apt-get install ruby`</span>
+
+    <span class='matthew identifier id'>matthew</span><span class='@foo ivar id'>@foo</span><span class='symbol val'>:~</span>$ <span class='ruby identifier id'>ruby</span> <span class='minus op'>-</span><span class='v identifier id'>v</span>
+    <span class='ruby identifier id'>ruby</span> <span class='float val'>1.8</span><span class='integer val'>.7</span> <span class='lparen token'>(</span><span class='integer val'>2010</span><span class='minus op'>-</span><span class='integer val'>06</span><span class='minus op'>-</span><span class='integer val'>23</span> <span class='patchlevel identifier id'>patchlevel</span> <span class='integer val'>299</span><span class='rparen token'>)</span> <span class='lbrack token'>[</span><span class='i686 identifier id'>i686</span><span class='minus op'>-</span><span class='linux identifier id'>linux</span><span class='rbrack token'>]</span>
+</pre>
+
+<p>You will also need to install ruby gems</p>
+
+<pre class="code">    <span class='xstring val'>`&gt; sudo apt-get install rubygems`</span>
+
+    <span class='matthew identifier id'>matthew</span><span class='@foo ivar id'>@foo</span><span class='symbol val'>:~</span>$ <span class='gem identifier id'>gem</span> <span class='list identifier id'>list</span>
+
+    <span class='pow op'>**</span><span class='mult op'>*</span> <span class='LOCAL constant id'>LOCAL</span> <span class='GEMS constant id'>GEMS</span> <span class='pow op'>**</span><span class='mult op'>*</span>
+</pre>
+
+<p>Finally, you might need to add gems to your path to get them to run.</p>
+
+<p>Type: <code>gem environment</code> and look at the executable directory, the chances are it isn't on your path. You can (in the short term i.e. for the duration of your shell) type the following, <code>export PATH=$PATH:/var/lib/gems/1.8/bin</code> (for example), or place it into your <code>.bashrc</code> or <code>.profile</code> file.</p>
+
+<h2>Build Essentials</h2>
+
+<p>This might not be required, but I'm paranoid!</p>
+
+<pre class="code">    <span class='xstring val'>`&gt; sudo apt-get install build-essential`</span>
+</pre>
+
+<p>This is required to build native gems (note it ties to the ruby (major) version):</p>
+
+<pre class="code">    <span class='xstring val'>`sudo apt-get install ruby1.8-dev`</span>
+</pre>
+
+<h2><a href="http://curl.haxx.se/download.html">Curl</a></h2>
+
+<p>This is currently required for the indexer.</p>
+
+<pre class="code">    <span class='xstring val'>`&gt; sudo apt-get install curl'
+</span></pre>
+
+<h2><a href="http://www.sqlite.org/">SQlite3</a></h2>
+
+<p>This is currently the default database type used by the Poodle web-front end. You can use another database if you like, you will need to alter Poodle's database details though. This isn't hard, but I'm not describing it here.</p>
+
+<pre class="code">    <span class='xstring val'>`&gt; sudo apt-get install sqlite3 libsqlite3-dev`</span>
+</pre>
+
+<h2>Java JDK</h2>
+
+<p>Java (1.5 or greater) is required for <a href="http://lucene.apache.org/solr/">Solr</a>. I used the <em>ubuntu package manager</em> and download the default-jdk (which pointed to openjdk).</p>
+
+<pre class="code">    <span class='matthew identifier id'>matthew</span><span class='@foo ivar id'>@foo</span><span class='symbol val'>:~</span>$ <span class='java identifier id'>java</span> <span class='minus op'>-</span><span class='version identifier id'>version</span>
+    <span class='java identifier id'>java</span> <span class='version identifier id'>version</span> <span class='string val'>&quot;1.6.0_20&quot;</span>
+    <span class='OpenJDK constant id'>OpenJDK</span> <span class='Runtime constant id'>Runtime</span> <span class='Environment constant id'>Environment</span> <span class='lparen token'>(</span><span class='IcedTea6 constant id'>IcedTea6</span> <span class='float val'>1.9</span><span class='rparen token'>)</span> <span class='lparen token'>(</span><span class='integer val'>6</span><span class='b20 identifier id'>b20</span><span class='minus op'>-</span><span class='float val'>1.9</span><span class='minus op'>-</span><span class='integer val'>0</span><span class='ubuntu1 identifier id'>ubuntu1</span><span class='rparen token'>)</span>
+    <span class='OpenJDK constant id'>OpenJDK</span> <span class='Client constant id'>Client</span> <span class='VM constant id'>VM</span> <span class='lparen token'>(</span><span class='build identifier id'>build</span> <span class='float val'>17.0</span><span class='minus op'>-</span><span class='b16 identifier id'>b16</span><span class='comma token'>,</span> <span class='mixed identifier id'>mixed</span> <span class='mode identifier id'>mode</span><span class='comma token'>,</span> <span class='sharing identifier id'>sharing</span><span class='rparen token'>)</span>
+</pre>
+
+<h1>Almost done!</h1>
+
+<p>With the above installed you need to pull in the required gems and fetch/configure Apache Solr, return to <a href="file.INSTALLATION.html#Set-up_Environment">Common/Remaining Set-up</a> and follow the instructions.</p></div></div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:14 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

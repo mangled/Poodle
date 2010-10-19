@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Documentation by YARD 0.6.1</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: INSTALLATION</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1><a href="index.html">Poodle</a> Installation</h1>
+
+<p>Installing and setting Poodle up is fairly simple, really it is, don't be put off by the number of steps - They are mainly watching installers go by. That said there is an assumption that you have some basic skills and understanding of package management/installers and the command line.</p>
+
+<p>If asked I might provide a virtual machine image for an out of the box experience :-)</p>
+
+<h2>Overview</h2>
+
+<p>Poodle consists of two major components:</p>
+
+<ul>
+<li>Indexing tools: Tools designed to crawl through content and feed it to Solr</li>
+<li>A web application: A simple ruby on rails based web front end to Solr</li>
+</ul>
+
+<p>It is expected that a dedicated server will host Solr and the web-application, due to the nature of Solr this need not be the same machine i.e. Solr is a service which can be queried by many clients, one of which is the web-application.</p>
+
+<h2>Set-up Environment</h2>
+
+<p>Before using any of poodle you will need to get your development environment set-up/configured. I have tried to automate as much of this as possible and tested these instructions as best I can (on windows 32/64 bit and Ubuntu). I timed set-up from clean and I reckon its around 30-60 minutes.</p>
+
+<ul>
+<li><p><em>Operating System Specific (do first)</em></p>
+
+<ul>
+<li><a href="file.INSTALLATION_WINDOWS.html">Windows</a></li>
+<li><a href="file.INSTALLATION_UBUNTU.html">Ubuntu</a></li>
+</ul></li>
+<li><p>Remaining Set-up</p>
+
+<h4>Install gems</h4>
+
+<p>Windows:</p>
+
+<pre class="code"><span class='xstring val'>`&gt; gem install rake`</span>
+<span class='xstring val'>`&gt; gem install bundler`</span>
+</pre>
+
+<p>Ubuntu:</p>
+
+<pre class="code"><span class='xstring val'>`&gt; sudo gem install bundler`</span>
+<span class='xstring val'>`&gt; sudo gem install rake`</span>
+</pre>
+
+<p>Now "pull" in all the other required gems:</p>
+
+<pre class="code"><span class='xstring val'>`./Poodle&gt;bundle install`</span>
+<span class='xstring val'>`./Poodle&gt;rake install:all`</span>
+</pre>
+
+<h4>Create Database</h4>
+
+<pre class="code"><span class='xstring val'>`../Poodle/poodle&gt;rake db:migrate`</span>
+</pre>
+
+<p>Using the cmd line change into the directory "poodle", i.e. <code>./Poodle/poodle/</code> and type: <code>rake db:migrate</code> - This will set-up the web-app database. This should succeed!</p>
+
+<h4>Run unit tests</h4>
+
+<p>I have tried to add a reasonable level of unit tests (they could do with some re-factoring but they do have fairly good coverage). If <em>any</em> fail then <em>panic</em> and fix/ping-me.</p>
+
+<p>In the root folder (<code>./Poodle/</code>) type <code>rake test</code>. This will run <em>all</em> available tests, as said they should all pass.</p>
+
+<h4><a href="http://lucene.apache.org/solr/">Set-up Solr</a></h4>
+
+<p>The Apache Solr documentation is good, so I advise using it, follow the <a href="http://lucene.apache.org/solr/tutorial.html">tutorial</a>, <em>up to the point where you are ready to run <code>java -jar start.jar</code> in the example application</em>.</p>
+
+<p>You need to ensure java is installed (instructions provided earlier), then download (.tgz or .zip - depending on your platform) and unzip Solr, e.g. to <code>C:\apache-solr-1.4.1</code> (for windows), or the home folder of the user who will be running the Solr service.</p>
+
+<p>I tested this with <code>Solr 1.4.1</code> (the latest version at the time of writing)</p></li>
+</ul>
+
+<h2>What Next?</h2>
+
+<p>Once you have everything installed you are ready to configure Solr, index some content and search for it via the web "front-end". See the following documentation for more information.</p>
+
+<ol>
+<li><a href="./solr/index.html">Configure Solr</a></li>
+<li><a href="./scripts/index.html">Index content</a></li>
+<li><a href="./poodle/index.html">Search content</a></li>
+</ol></div></div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:14 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

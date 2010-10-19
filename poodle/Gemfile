@@ -1,0 +1,13 @@
+source 'http://rubygems.org'
+
+gem 'rails', '3.0.0'
+gem 'rsolr'
+gem 'settingslogic'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'hpricot'
+gem 'yard'
+gem 'BlueCloth'
+
+# These are required by the unit tests
+require 'test/unit' # Ensure mocha configures itself with test/unit loaded
+gem 'mocha'

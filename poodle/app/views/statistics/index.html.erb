@@ -1,0 +1,24 @@
+<script type="text/javascript">
+  window.onload = function() {
+      var g = new Bluff.Bar('plot', '700x500');
+      g.title = '<%= @graph.title %>';
+      g.theme_pastel();
+      g.tooltips = true;
+      <%unless @graph.labels.empty? %>
+        <% s = [] %>
+        g.labels = {
+        <%= @graph.labels.collect{|e| "#{e[0]}: \'#{e[1]}\'" }.join(", ") %>};
+      <%end%>
+      g.minimum_value = <%= @graph.minimum_value %>
+      <% for data in @graph.data %>
+        g.data('<%= data[0] %>', [<%= data[1].join(",") %>]);
+      <% end %>
+      g.draw();
+  };
+</script>
+<div id="searchinfo">
+<p style="text-align:center"><%= link_to("Back to Search", :controller=>:search, :action=>:index, :search_term => @search_term, :start_index => @start_index) %></p>
+</div>
+<div id="stats">
+  <canvas id="plot" width="700" height="500"></canvas>
+</div>

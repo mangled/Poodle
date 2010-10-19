@@ -1,0 +1,26 @@
+<div id="searchinfo">
+<p style="text-align:center"><%= link_to("Back to Search", :controller=>:search, :action=>:index, :search_term => @search_term, :start_index => @start_index) %></p>
+</div>
+
+<h2>Searching</h2>
+
+<p>If you type in one or more words separated by spaces you will search for documents which contain any of these words, e.g. if you type <code>hello world</code> all documents containing these words will be returned.</p>
+
+<p>If you place quotation marks around the words the exact phrase will be searched for, e.g. if you type <code>"lean thinking"</code> then only documents with these two words, in this order/placement will be returned. The same effect can be achieved using a plus sign e.g. this is the same <code>lean+thinking</code></p>
+
+<p>If you place an exclamation mark in front of a word it will return documents which contain only the other word(s). E.g. if you enter <code>lean !thinking</code> you will get documents which mention lean only, i.e. lean without mentioning thinking.</p>
+
+<p>The search tool is capable of a complex range of search expressions, if you routinely find yourself needing more advanced search knowledge then please provide some <%=mail_to Settings.feedback_email, "feedback", :subject => "#{Settings.title}: Feedback" %> and this documentation will be updated.</p>
+
+<h2>Contributing</h2>
+
+<p>
+This application is based on Poodle - A lightweight "Ruby on Rails" based web front end to Apache Solr.
+The code is GPL and is hosted on GitHub, all contributions are welcome.
+</p>
+<p>
+<%= image_tag "rails.jpg", :size=>'64x64' %>
+<%= image_tag "ruby.jpg", :size=>'64x64' %>
+<%= image_tag "solr.jpg" %>
+<%= image_tag "poodle.jpg", :size=>'64x64' %>
+</p>

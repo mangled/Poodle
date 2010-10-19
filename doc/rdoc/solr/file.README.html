@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Documentation by YARD 0.6.1</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1><a href="../index.html">Poodle</a> Customise <a href="http://lucene.apache.org/solr/">Solr</a></h1>
+
+<p>I'm assuming you have followed all the recommended <a href="../file.INSTALLATION.html">installation</a> instructions and are now in the final phase of configuring Solr.</p>
+
+<p>Currently Poodle uses a re-configured "version" of the Solr example project. To configure Solr for Poodle, copy the following files from <code>./Poodle/solr/1.4.1/conf/</code> into the Solr example project:</p>
+
+<ul>
+<li><code>schema.xml</code></li>
+<li><code>solrconfig.xml</code></li>
+</ul>
+
+<p>These need to be copied to: <code>/apache-solr-1.4.1/example/solr/conf</code>, <em>replacing</em> the existing files <strong>back them up first if paranoid!</strong></p>
+
+<p>Note: You may also need to adjust the multipartUploadLimitInKB attribute if you are submitting very large documents. See the Solr documentation related to Solr Cell. In general I recommend you read up on Solr because it's at the heart of Poodle and if you want to tweak this tool further you will need more knowledge on this subject.</p>
+
+<p>Once Solr is configured you need to move on to <a href="../scripts/index.html">indexing</a> or if you like return to <a href="../file.INSTALLATION.html#Set-up_Environment">Common/Remaining Set-up</a></p></div></div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:13 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: SolrPurge</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo; 
+    
+    
+    <span class="title">SolrPurge</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: SolrPurge
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SolrPurge</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_from_solr-class_method" title="delete_from_solr (class method)">+ (Object) <strong>delete_from_solr</strong>(solr, items, params) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_invalid_urls-class_method" title="find_invalid_urls (class method)">+ (Object) <strong>find_invalid_urls</strong>(items, params) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#purge-class_method" title="purge (class method)">+ (Object) <strong>purge</strong>(params) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query-class_method" title="query (class method)">+ (Object) <strong>query</strong>(solr, start) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="delete_from_solr-class_method">
+  
+    + (<tt>Object</tt>) <strong>delete_from_solr</strong>(solr, items, params) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 87</span>
+
+<span class='def def kw'>def</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='delete_from_solr identifier id'>delete_from_solr</span><span class='lparen token'>(</span><span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='items identifier id'>items</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='unless unless kw'>unless</span> <span class='items identifier id'>items</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Removing #{items.length} from Solr&quot;</span><span class='rparen token'>)</span>
+        <span class='items identifier id'>items</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='item identifier id'>item</span><span class='bitor op'>|</span>
+            <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Preparing to delete #{item[1]}&quot;</span><span class='rparen token'>)</span>
+            <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='delete_by_id identifier id'>delete_by_id</span> <span class='item identifier id'>item</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span>
+        <span class='end end kw'>end</span>
+        <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>&quot;Committing deletion request(s)&quot;</span><span class='rparen token'>)</span>    
+        <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='commit identifier id'>commit</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_invalid_urls-class_method">
+  
+    + (<tt>Object</tt>) <strong>find_invalid_urls</strong>(items, params) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='find_invalid_urls identifier id'>find_invalid_urls</span><span class='lparen token'>(</span><span class='items identifier id'>items</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='invalid_urls identifier id'>invalid_urls</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='items identifier id'>items</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='bitor op'>|</span>
+        <span class='begin begin kw'>begin</span>
+            <span class='sleep identifier id'>sleep</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:wait</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+            <span class='uri identifier id'>uri</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
+            <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Checking #{uri}&quot;</span><span class='rparen token'>)</span>
+            <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='HTTP constant id'>HTTP</span><span class='dot token'>.</span><span class='start identifier id'>start</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='host identifier id'>host</span><span class='comma token'>,</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='port identifier id'>port</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='http identifier id'>http</span><span class='bitor op'>|</span>
+                <span class='request identifier id'>request</span> <span class='assign token'>=</span> <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='HTTP constant id'>HTTP</span><span class='colon2 op'>::</span><span class='Head constant id'>Head</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='request_uri identifier id'>request_uri</span><span class='rparen token'>)</span>
+                <span class='request identifier id'>request</span><span class='dot token'>.</span><span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span>
+                <span class='request identifier id'>request</span><span class='dot token'>.</span><span class='initialize_http_header identifier id'>initialize_http_header</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='string val'>&quot;User-Agent&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:user_agent</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;From&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:from</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;Referer&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&quot;</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+                <span class='http identifier id'>http</span><span class='dot token'>.</span><span class='request identifier id'>request</span><span class='lparen token'>(</span><span class='request identifier id'>request</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='value identifier id'>value</span> <span class='comment val'># value triggers http exception unless 2xx</span>
+            <span class='end end kw'>end</span>
+        <span class='rescue rescue kw'>rescue</span> <span class='URI constant id'>URI</span><span class='colon2 op'>::</span><span class='InvalidURIError constant id'>InvalidURIError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+            <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;URI error for #{id} #{url} #{e}&quot;</span><span class='rparen token'>)</span>
+            <span class='invalid_urls identifier id'>invalid_urls</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rbrack token'>]</span>
+        <span class='rescue rescue kw'>rescue</span> <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='HTTPServerException constant id'>HTTPServerException</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+            <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;HTTP error for #{id} #{url} #{e}&quot;</span><span class='rparen token'>)</span>
+            <span class='case case kw'>case</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='message identifier id'>message</span>
+            <span class='when when kw'>when</span> <span class='string val'>'401 &quot;Unauthorized&quot;'</span>
+                <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='string val'>&quot;Not marking for deletion as unauthorized&quot;</span><span class='rparen token'>)</span>
+            <span class='else else kw'>else</span>
+                <span class='invalid_urls identifier id'>invalid_urls</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+        <span class='rescue rescue kw'>rescue</span> <span class='Net constant id'>Net</span><span class='colon2 op'>::</span><span class='HTTPFatalError constant id'>HTTPFatalError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+            <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='info identifier id'>info</span><span class='lparen token'>(</span><span class='dstring node'>&quot;HTTP FATAL error for #{id} #{url} #{e}&quot;</span><span class='rparen token'>)</span>
+            <span class='invalid_urls identifier id'>invalid_urls</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rbrack token'>]</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='invalid_urls identifier id'>invalid_urls</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="purge-class_method">
+  
+    + (<tt>Object</tt>) <strong>purge</strong>(params) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 30</span>
+
+<span class='def def kw'>def</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='purge identifier id'>purge</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='start_index identifier id'>start_index</span><span class='comma token'>,</span> <span class='end_index identifier id'>end_index</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='query identifier id'>query</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+    <span class='items identifier id'>items</span> <span class='assign token'>=</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='find_invalid_urls identifier id'>find_invalid_urls</span><span class='lparen token'>(</span><span class='results identifier id'>results</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='while while kw'>while</span> <span class='start_index identifier id'>start_index</span> <span class='plus op'>+</span> <span class='rows identifier id'>rows</span> <span class='lt op'>&lt;</span> <span class='end_index identifier id'>end_index</span>
+        <span class='start_index identifier id'>start_index</span><span class='comma token'>,</span> <span class='end_index identifier id'>end_index</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='query identifier id'>query</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='start_index identifier id'>start_index</span> <span class='plus op'>+</span> <span class='rows identifier id'>rows</span><span class='rparen token'>)</span>
+        <span class='items identifier id'>items</span> <span class='opasgn op'>+=</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='find_invalid_urls identifier id'>find_invalid_urls</span><span class='lparen token'>(</span><span class='results identifier id'>results</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='delete_from_solr identifier id'>delete_from_solr</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='items identifier id'>items</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:delete</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="query-class_method">
+  
+    + (<tt>Object</tt>) <strong>query</strong>(solr, start) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 40</span>
+
+<span class='def def kw'>def</span> <span class='SolrPurge constant id'>SolrPurge</span><span class='dot token'>.</span><span class='query identifier id'>query</span><span class='lparen token'>(</span><span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='start identifier id'>start</span><span class='rparen token'>)</span>
+    <span class='response identifier id'>response</span> <span class='assign token'>=</span> <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='select identifier id'>select</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'id:*'</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span><span class='integer val'>10</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>'id,url'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+    <span class='start_index identifier id'>start_index</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;start&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='end_index identifier id'>end_index</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;numFound&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;responseHeader&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;params&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;rows&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+
+    <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;docs&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='doc identifier id'>doc</span><span class='bitor op'>|</span>
+        <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='doc identifier id'>doc</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='doc identifier id'>doc</span><span class='lbrack token'>[</span><span class='string val'>&quot;url&quot;</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+
+    <span class='lbrack token'>[</span><span class='start_index identifier id'>start_index</span><span class='comma token'>,</span> <span class='end_index identifier id'>end_index</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:32 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

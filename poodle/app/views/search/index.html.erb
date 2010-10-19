@@ -1,0 +1,37 @@
+<!-- Search Field -->
+<div id="searchfield">
+</br>
+<%= form_tag('/search/index') %>
+<%= text_field_tag(:search_term, params[:search_term], {:class => "search", :size => 48}) %>
+<%= submit_tag "Search", :class => "search" %>
+</br>
+</div>
+
+<!-- Search information -->
+<div id="searchinfo">
+  <%=h("%.2f" % @time)%> seconds
+  <%=mail_to Settings.feedback_email, "Feedback", :subject => "#{Settings.title}: Feedback" %>
+  <%= link_to("Help", :controller=>:help, :action=>:index, :search_term => @search_term, :start_index => @start_index) %>
+  <%= link_to("Stats", :controller=>:statistics, :action=>:index, :search_term => @search_term, :start_index => @start_index) %>
+</div>
+
+<% if flash[:notice] %>
+  <!-- Error(s) -->
+  <div id="notice"><%= flash[:notice] %></div>
+<% else %>
+  <!-- Search results -->
+  <% if @results.nil? or @results.empty? %>
+    <div id="no_results"><p>No results found</p></div>
+  <% else %>
+  <div class="results">
+      <%= render(:partial => "result" , :collection => @results, :spacer_template => "spacer") %>
+  </div>
+  <% end %>
+<% end %>
+<!-- Navigation links -->
+<div id="navigation">
+  <p>
+    <% if @back_index %><%= link_to("Back", :action => :index,  :search_term => @search_term, :back_index => @back_index) %><% end %>
+    <% if @next_index %><%= link_to("Next", :action => :index,  :search_term => @search_term, :next_index => @next_index) %><% end %>
+  </p>
+</div>

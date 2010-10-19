@@ -1,0 +1,11 @@
+<div class="result">
+  <p class="result_url"><a href="<%= result[:url] %>" onclick="return trackclick('<%=h(result[:url])%>')"><%= raw(truncate(result[:title], :length => 60)) %></a></p>
+  <p class="result_text"><%=raw(result[:text])%></p>
+  <p class="result_link"><%=CGI.unescape(result[:url])%></p>
+  <p class="result_keywords">
+    <% unless result[:keywords].empty? %>Related: <% end %>
+    <% result[:keywords].each do |keyword| %>
+      <%= link_to(keyword, { :action => :index, :search_term => keyword }) %>
+    <% end %>
+  </p>
+</div>

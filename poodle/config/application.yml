@@ -1,0 +1,24 @@
+# See: http://github.com/binarylogic/settingslogic
+defaults: &defaults
+    revision: 0.9
+    title: Poodle
+    feedback_email: foo@bar.com
+    description: A web based search engine
+    icon: favicon.ico
+    search_results_per_page: 10
+    solr_url: http://localhost:8983/solr
+    solr_fail: Failed to complete query, please contact technical support
+    browser_fail: You must have JavaScript enabled. Please enable it and return to the search page.
+    stats_hits_per_day_title: Last seven days
+    stats_hits_per_day_no_data: No click-through's in the last seven days!
+    stats_hits_per_day_search_count_text: Number of searches
+    stats_hits_per_day_clicked_count_text: Number of clicked search results
+
+development:
+    <<: *defaults
+
+test:
+    <<: *defaults
+
+production:
+    <<: *defaults

@@ -1,0 +1,9 @@
+source 'http://rubygems.org'
+
+gem 'rsolr'
+gem 'hpricot'
+gem 'fakeweb'
+
+# Ensure mocha configures itself with test/unit loaded
+require 'test/unit'
+gem 'mocha'

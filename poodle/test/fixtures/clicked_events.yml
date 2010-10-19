@@ -1,0 +1,12 @@
+search_found_foo_dot_com:
+    clicked_url_id: 1
+    created_at: Time.parse("2000-01-01 00:00:00 UTC").utc.to_s(:db)
+
+# Generate a linear ramp for the graph tests
+<% for day in 1..7 %>
+    <% for event in 1..day %>
+searched_at_<%= day %>_<%= event %>:
+    clicked_url_id: 1
+    created_at: <%= Date.parse("2010-10-#{day}").to_time(:utc).utc.to_s(:db) %>
+    <% end %>
+<% end %>

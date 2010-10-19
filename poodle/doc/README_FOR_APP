@@ -1,0 +1,1 @@
+I'm using YARD to generate documentation, if you are just starting out then please see the pre-compiled html docs. Otherwise try 'rake doc:yard' (but note at the moment the documentation goes to the root folder)

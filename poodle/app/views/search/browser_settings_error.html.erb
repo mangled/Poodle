@@ -1,0 +1,7 @@
+<div id="searchinfo">
+<p style="text-align:center"><%= link_to("Back to Search", :controller=>:search, :action=>:index) %></p>
+</div>
+
+<% if flash[:notice] %>
+  <div id="notice"><%= flash[:notice] %></div>
+<% end %>

@@ -1,0 +1,1575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: TestCrawler</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo; 
+    
+    
+    <span class="title">TestCrawler</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: TestCrawler
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Test::Unit::TestCase</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Test::Unit::TestCase</li>
+          
+            <li class="next">TestCrawler</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_expect_uri-instance_method" title="#add_expect_uri (instance method)">- (Object) <strong>add_expect_uri</strong>(url, body = 'Hello world', content_type = &quot;text/html&quot;, status = [&quot;200&quot;, &quot;OK&quot;]) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_crawler-instance_method" title="#check_crawler (instance method)">- (Object) <strong>check_crawler</strong>(graph, ignore = [], index = true, maxdepth = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Silly, bloated test that needs re-factoring!!!.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#crawl-instance_method" title="#crawl (instance method)">- (Object) <strong>crawl</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#graph_basic-instance_method" title="#graph_basic (instance method)">- (Object) <strong>graph_basic</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#make_web-instance_method" title="#make_web (instance method)">- (Object) <strong>make_web</strong>(root, initial_node, graph, maxdepth) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Relative/non-relative test (add later when code is tidier).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#params-instance_method" title="#params (instance method)">- (Object) <strong>params</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Helpers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup-instance_method" title="#setup (instance method)">- (Object) <strong>setup</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_bad_url-instance_method" title="#test_bad_url (instance method)">- (Object) <strong>test_bad_url</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_crawl_all-instance_method" title="#test_crawl_all (instance method)">- (Object) <strong>test_crawl_all</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_crawl_with_ignore-instance_method" title="#test_crawl_with_ignore (instance method)">- (Object) <strong>test_crawl_with_ignore</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_index_no_follow-instance_method" title="#test_index_no_follow (instance method)">- (Object) <strong>test_index_no_follow</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Only look for links in text/html.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_options_removes_slash-instance_method" title="#test_options_removes_slash (instance method)">- (Object) <strong>test_options_removes_slash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_referrer-instance_method" title="#test_referrer (instance method)">- (Object) <strong>test_referrer</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_same_site-instance_method" title="#test_same_site (instance method)">- (Object) <strong>test_same_site</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_skip_fragment-instance_method" title="#test_skip_fragment (instance method)">- (Object) <strong>test_skip_fragment</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_skip_path-instance_method" title="#test_skip_path (instance method)">- (Object) <strong>test_skip_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_solr_crawler_no_title-instance_method" title="#test_solr_crawler_no_title (instance method)">- (Object) <strong>test_solr_crawler_no_title</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Grotty - More of a regression test.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_solr_crawler_with_title-instance_method" title="#test_solr_crawler_with_title (instance method)">- (Object) <strong>test_solr_crawler_with_title</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Grotty - More of a regression test.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_title-instance_method" title="#test_title (instance method)">- (Object) <strong>test_title</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_href-instance_method" title="#to_href (instance method)">- (Object) <strong>to_href</strong>(url) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add_expect_uri-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_expect_uri</strong>(url, body = 'Hello world', content_type = &quot;text/html&quot;, status = [&quot;200&quot;, &quot;OK&quot;]) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186
+187
+188</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 186</span>
+
+<span class='def def kw'>def</span> <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'Hello world'</span><span class='comma token'>,</span> <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='string val'>&quot;text/html&quot;</span><span class='comma token'>,</span> <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='string val'>&quot;200&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;OK&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='register_uri identifier id'>register_uri</span><span class='lparen token'>(</span><span class='symbol val'>:get</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='status identifier id'>status</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="check_crawler-instance_method">
+  
+    - (<tt>Object</tt>) <strong>check_crawler</strong>(graph, ignore = [], index = true, maxdepth = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Silly, bloated test that needs re-factoring!!!
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 197</span>
+
+<span class='def def kw'>def</span> <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph identifier id'>graph</span><span class='comma token'>,</span> <span class='ignore identifier id'>ignore</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='maxdepth identifier id'>maxdepth</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='comment val'># Not checking logging information so ignore</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span>
+
+    <span class='urll identifier id'>urll</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/a.html'</span>
+
+    <span class='urls identifier id'>urls</span><span class='comma token'>,</span> <span class='pages identifier id'>pages</span> <span class='assign token'>=</span> <span class='make_web identifier id'>make_web</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='urll identifier id'>urll</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:a</span><span class='comma token'>,</span> <span class='graph identifier id'>graph</span><span class='comma token'>,</span> <span class='maxdepth identifier id'>maxdepth</span><span class='rparen token'>)</span>
+
+    <span class='error_pages identifier id'>error_pages</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='pages identifier id'>pages</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='page identifier id'>page</span><span class='bitor op'>|</span>
+        <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='register_uri identifier id'>register_uri</span><span class='lparen token'>(</span>
+            <span class='symbol val'>:get</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='page identifier id'>page</span><span class='lbrack token'>[</span><span class='symbol val'>:body</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='page identifier id'>page</span><span class='lbrack token'>[</span><span class='symbol val'>:content_type</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='page identifier id'>page</span><span class='lbrack token'>[</span><span class='symbol val'>:status</span><span class='rbrack token'>]</span>
+        <span class='rparen token'>)</span>
+        <span class='error_pages identifier id'>error_pages</span><span class='lbrack token'>[</span><span class='url identifier id'>url</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='page identifier id'>page</span> <span class='if if_mod kw'>if</span> <span class='page identifier id'>page</span><span class='lbrack token'>[</span><span class='symbol val'>:status</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='neq op'>!=</span> <span class='string val'>&quot;200&quot;</span>
+    <span class='end end kw'>end</span>
+
+    <span class='ids identifier id'>ids</span> <span class='assign token'>=</span> <span class='Set constant id'>Set</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+    <span class='cur_depth identifier id'>cur_depth</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+    <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='urll identifier id'>urll</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='symbol val'>:depth</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='maxdepth identifier id'>maxdepth</span><span class='comma token'>,</span> <span class='symbol val'>:ignore</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='ignore identifier id'>ignore</span><span class='comma token'>,</span> <span class='symbol val'>:index</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='index identifier id'>index</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+    <span class='links identifier id'>links</span> <span class='assign token'>=</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='p identifier id'>p</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='notop op'>!</span><span class='error_pages identifier id'>error_pages</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='notop op'>!</span><span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+        <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+        <span class='assert_nil identifier id'>assert_nil</span> <span class='title identifier id'>title</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='rparen token'>)</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='urls identifier id'>urls</span><span class='dot token'>.</span><span class='delete? fid id'>delete?</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='string val'>&quot;rb&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='comma token'>,</span> <span class='pages identifier id'>pages</span><span class='lbrack token'>[</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='dot token'>.</span><span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='pages identifier id'>pages</span><span class='lbrack token'>[</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:content_type</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='depth identifier id'>depth</span> <span class='minus op'>-</span> <span class='cur_depth identifier id'>cur_depth</span> <span class='lt op'>&lt;</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+        <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='depth identifier id'>depth</span> <span class='leq op'>&lt;=</span> <span class='maxdepth identifier id'>maxdepth</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='maxdepth identifier id'>maxdepth</span>
+        <span class='cur_depth identifier id'>cur_depth</span> <span class='assign token'>=</span> <span class='depth identifier id'>depth</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='string val'>&quot;ua&quot;</span><span class='comma token'>,</span> <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='last_request identifier id'>last_request</span><span class='lbrack token'>[</span><span class='string val'>&quot;User-Agent&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='string val'>&quot;me&quot;</span><span class='comma token'>,</span> <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='last_request identifier id'>last_request</span><span class='lbrack token'>[</span><span class='string val'>&quot;From&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='ignore identifier id'>ignore</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='comment val'># Always returns total links seen, even if they generate an error</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='pages identifier id'>pages</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='index identifier id'>index</span>
+    <span class='else else kw'>else</span>
+        <span class='urls identifier id'>urls</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='url identifier id'>url</span><span class='bitor op'>|</span>
+            <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='ignore identifier id'>ignore</span><span class='dot token'>.</span><span class='any? fid id'>any?</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='reg identifier id'>reg</span><span class='bitor op'>|</span> <span class='url identifier id'>url</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='match op'>=~</span> <span class='dregexp node'>/#{Regexp.quote(reg)}/</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='error_pages identifier id'>error_pages</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='pages identifier id'>pages</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled count&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="crawl-instance_method">
+  
+    - (<tt>Object</tt>) <strong>crawl</strong>(url) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+180
+181
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 180</span>
+
+<span class='def def kw'>def</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
+    <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='yield yield kw'>yield</span> <span class='uri identifier id'>uri</span> <span class='if if_mod kw'>if</span> <span class='block_given? fid id'>block_given?</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="graph_basic-instance_method">
+  
+    - (<tt>Object</tt>) <strong>graph_basic</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 243</span>
+
+<span class='def def kw'>def</span> <span class='graph_basic identifier id'>graph_basic</span>
+    <span class='lbrack token'>[</span>
+        <span class='lbrace token'>{</span>
+            <span class='symbol val'>:d</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;text/html&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='string val'>&quot;404&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Not Found&quot;</span><span class='rbrack token'>]</span><span class='rbrace token'>}</span>
+        <span class='rbrace token'>}</span><span class='comma token'>,</span>
+        <span class='lbrace token'>{</span>
+            <span class='symbol val'>:a</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:b</span><span class='comma token'>,</span> <span class='symbol val'>:c</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:b</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:d</span><span class='comma token'>,</span> <span class='symbol val'>:e</span><span class='comma token'>,</span> <span class='symbol val'>:a</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:c</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:f</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:d</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:e</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='symbol val'>:g</span><span class='comma token'>,</span> <span class='symbol val'>:f</span> <span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:f</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='symbol val'>:g</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+        <span class='rbrace token'>}</span>
+    <span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="make_web-instance_method">
+  
+    - (<tt>Object</tt>) <strong>make_web</strong>(root, initial_node, graph, maxdepth) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Relative/non-relative test (add later when code is tidier)
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 261</span>
+
+<span class='def def kw'>def</span> <span class='make_web identifier id'>make_web</span><span class='lparen token'>(</span><span class='root identifier id'>root</span><span class='comma token'>,</span> <span class='initial_node identifier id'>initial_node</span><span class='comma token'>,</span> <span class='graph identifier id'>graph</span><span class='comma token'>,</span> <span class='maxdepth identifier id'>maxdepth</span><span class='rparen token'>)</span>
+    <span class='pages identifier id'>pages</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='depth identifier id'>depth</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+    <span class='urls identifier id'>urls</span> <span class='assign token'>=</span> <span class='Set constant id'>Set</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+
+    <span class='info identifier id'>info</span><span class='comma token'>,</span> <span class='tree identifier id'>tree</span> <span class='assign token'>=</span> <span class='graph identifier id'>graph</span>
+
+    <span class='rem identifier id'>rem</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='initial_node identifier id'>initial_node</span><span class='rbrack token'>]</span>
+    <span class='while while kw'>while</span> <span class='notop op'>!</span><span class='rem identifier id'>rem</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+        <span class='foo identifier id'>foo</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+        <span class='rem identifier id'>rem</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='node identifier id'>node</span><span class='bitor op'>|</span>
+            <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='root identifier id'>root</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='dstring node'>&quot;/#{node}.html&quot;</span><span class='rparen token'>)</span>
+            <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;&lt;head&gt;&lt;title&gt;#{tree[node]}&lt;/title&gt;&lt;/head&gt;&quot;</span>
+            <span class='tree identifier id'>tree</span><span class='lbrack token'>[</span><span class='node identifier id'>node</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='child identifier id'>child</span><span class='bitor op'>|</span>
+                <span class='body identifier id'>body</span> <span class='opasgn op'>+=</span> <span class='dstring node'>&quot;&lt;body&gt;http://foo/bar.html &lt;a href=\&quot;/#{child}.html\&quot;&gt;#{child}&lt;/a&gt;&lt;/body&gt;&quot;</span>
+                <span class='foo identifier id'>foo</span><span class='dot token'>.</span><span class='insert identifier id'>insert</span><span class='lparen token'>(</span><span class='integer val'>-1</span><span class='comma token'>,</span> <span class='child identifier id'>child</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='pages identifier id'>pages</span><span class='dot token'>.</span><span class='has_key? fid id'>has_key?</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+            <span class='end end kw'>end</span>
+            <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='string val'>&quot;text/html&quot;</span>
+            <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='string val'>&quot;200&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;OK&quot;</span><span class='rbrack token'>]</span>
+            <span class='if if kw'>if</span> <span class='info identifier id'>info</span><span class='dot token'>.</span><span class='has_key? fid id'>has_key?</span> <span class='node identifier id'>node</span>
+                <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='info identifier id'>info</span><span class='lbrack token'>[</span><span class='node identifier id'>node</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:content_type</span><span class='rbrack token'>]</span>
+                <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='info identifier id'>info</span><span class='lbrack token'>[</span><span class='node identifier id'>node</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:status</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+            <span class='pages identifier id'>pages</span><span class='lbrack token'>[</span><span class='url identifier id'>url</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='status identifier id'>status</span><span class='rbrace token'>}</span>
+            <span class='urls identifier id'>urls</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='root identifier id'>root</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='dstring node'>&quot;/#{node}.html&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+        <span class='rem identifier id'>rem</span> <span class='assign token'>=</span> <span class='foo identifier id'>foo</span>
+        <span class='break break kw'>break</span> <span class='if if_mod kw'>if</span> <span class='depth identifier id'>depth</span> <span class='eq op'>==</span> <span class='maxdepth identifier id'>maxdepth</span>
+        <span class='depth identifier id'>depth</span> <span class='opasgn op'>+=</span> <span class='integer val'>1</span>
+    <span class='end end kw'>end</span>
+    <span class='lbrack token'>[</span><span class='urls identifier id'>urls</span><span class='comma token'>,</span> <span class='pages identifier id'>pages</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="params-instance_method">
+  
+    - (<tt>Object</tt>) <strong>params</strong>(url) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Helpers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 176</span>
+
+<span class='def def kw'>def</span> <span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
+    <span class='lbrace token'>{</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:ignore</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:index</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:solr</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@solr ivar id'>@solr</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;me&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;ua&quot;</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setup-instance_method">
+  
+    - (<tt>Object</tt>) <strong>setup</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 18</span>
+
+<span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
+    <span class='@log ivar id'>@log</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='@solr ivar id'>@solr</span> <span class='assign token'>=</span> <span class='string val'>'http://localhost:1234/'</span>
+    <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='allow_net_connect identifier id'>allow_net_connect</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_bad_url-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_bad_url</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 61</span>
+
+<span class='def def kw'>def</span> <span class='test_bad_url identifier id'>test_bad_url</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Invalid link in page http://www.foo.com/foo.html : bad URI(is not URI?): http://www.foo.com/foo\\bar.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    
+    <span class='url1 identifier id'>url1</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo\\bar.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled one url&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_crawl_all-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_crawl_all</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 38</span>
+
+<span class='def def kw'>def</span> <span class='test_crawl_all identifier id'>test_crawl_all</span>
+    <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='integer val'>2</span><span class='rparen token'>)</span>
+    <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_crawl_with_ignore-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_crawl_with_ignore</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 45</span>
+
+<span class='def def kw'>def</span> <span class='test_crawl_with_ignore identifier id'>test_crawl_with_ignore</span>
+    <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>'g.html'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_index_no_follow-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_index_no_follow</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Only look for links in text/html
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 83</span>
+
+<span class='def def kw'>def</span> <span class='test_index_no_follow identifier id'>test_index_no_follow</span> 
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.stuff'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+
+    <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.stuff'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/bar.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>'text/unknown'</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='bitor op'>|</span> <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='url identifier id'>url</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled one url&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_options_removes_slash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_options_removes_slash</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 24</span>
+
+<span class='def def kw'>def</span> <span class='test_options_removes_slash identifier id'>test_options_removes_slash</span>
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>'-u'</span><span class='comma token'>,</span> <span class='string val'>'http://goo/'</span><span class='comma token'>,</span> <span class='string val'>'-s'</span><span class='comma token'>,</span> <span class='string val'>'http://foo/solr'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;http://foo/solr&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>'-u'</span><span class='comma token'>,</span> <span class='string val'>'http://goo/'</span><span class='comma token'>,</span> <span class='string val'>'-s'</span><span class='comma token'>,</span> <span class='string val'>'http://foo/solr/'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;http://foo/solr&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>'-u'</span><span class='comma token'>,</span> <span class='string val'>'http://goo/'</span><span class='comma token'>,</span> <span class='string val'>'-s'</span><span class='comma token'>,</span> <span class='string val'>'http://foo/'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;http://foo&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+  
+  <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>'-u'</span><span class='comma token'>,</span> <span class='string val'>'http://goo/'</span><span class='comma token'>,</span> <span class='string val'>'-s'</span><span class='comma token'>,</span> <span class='string val'>'http://foo'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;http://foo&quot;</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:solr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_referrer-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_referrer</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 105</span>
+
+<span class='def def kw'>def</span> <span class='test_referrer identifier id'>test_referrer</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span>
+
+    <span class='url1 identifier id'>url1</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/bar.html'</span>
+    <span class='url3 identifier id'>url3</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/wib.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url3 identifier id'>url3</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url3 identifier id'>url3</span><span class='rparen token'>)</span>
+    <span class='links identifier id'>links</span> <span class='assign token'>=</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='last_request identifier id'>last_request</span><span class='lbrack token'>[</span><span class='string val'>&quot;Referer&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='url1 identifier id'>url1</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='last_request identifier id'>last_request</span><span class='lbrack token'>[</span><span class='string val'>&quot;Referer&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='url1 identifier id'>url1</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='url2 identifier id'>url2</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='last_request identifier id'>last_request</span><span class='lbrack token'>[</span><span class='string val'>&quot;Referer&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='url2 identifier id'>url2</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='eq op'>==</span> <span class='url3 identifier id'>url3</span>
+    <span class='end end kw'>end</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>3</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled three urls&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_same_site-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_same_site</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 49</span>
+
+<span class='def def kw'>def</span> <span class='test_same_site identifier id'>test_same_site</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as host differs http://www.bar.com/'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    
+    <span class='url1 identifier id'>url1</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.bar.com/'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled one url&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_skip_fragment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_skip_fragment</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 72</span>
+
+<span class='def def kw'>def</span> <span class='test_skip_fragment identifier id'>test_skip_fragment</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipped http://www.foo.com/bar.html#3'</span><span class='rparen token'>)</span>
+
+    <span class='url1 identifier id'>url1</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/bar.html#3'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='comma token'>,</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='bitor op'>|</span> <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='neq op'>!=</span> <span class='url2 identifier id'>url2</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled two urls&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_skip_path-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_skip_path</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 93</span>
+
+<span class='def def kw'>def</span> <span class='test_skip_path identifier id'>test_skip_path</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping indexing as path URL http://www.foo.com/'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/bar.html'</span><span class='rparen token'>)</span>
+
+    <span class='url1 identifier id'>url1</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/'</span>
+    <span class='url2 identifier id'>url2</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/bar.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url2 identifier id'>url2</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='comma token'>,</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url1 identifier id'>url1</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='bitor op'>|</span> <span class='assert identifier id'>assert</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='neq op'>!=</span> <span class='url1 identifier id'>url1</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled two urls&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_solr_crawler_no_title-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_solr_crawler_no_title</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Grotty - More of a regression test
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 148</span>
+
+<span class='def def kw'>def</span> <span class='test_solr_crawler_no_title identifier id'>test_solr_crawler_no_title</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='at_least_once identifier id'>at_least_once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='SolrCrawler constant id'>SolrCrawler</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:curl</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='regexp_matches identifier id'>regexp_matches</span><span class='lparen token'>(</span>
+        <span class='regexp val'>/&quot;http:\/\/localhost:1234\/update\/extract\?literal\.id=8a3ca15ba2d277f677b4b2d3598ae57b&amp;commit=true&amp;literal\.url=http%3A%2F%2Fwww.foo.com%2Ffoo.html&quot; -H 'Content-type%3Atext%2Fhtml' -F &quot;myfile=@/</span>
+    <span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='true true kw'>true</span><span class='rparen token'>)</span>
+
+    <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='SolrCrawler constant id'>SolrCrawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled one url&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_solr_crawler_with_title-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_solr_crawler_with_title</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Grotty - More of a regression test
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 161</span>
+
+<span class='def def kw'>def</span> <span class='test_solr_crawler_with_title identifier id'>test_solr_crawler_with_title</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='at_least_once identifier id'>at_least_once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='SolrCrawler constant id'>SolrCrawler</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:curl</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='regexp_matches identifier id'>regexp_matches</span><span class='lparen token'>(</span>
+        <span class='regexp val'>/&quot;http:\/\/localhost:1234\/update\/extract\?literal\.id=8a3ca15ba2d277f677b4b2d3598ae57b&amp;literal\.crawled_title=squid\+man&amp;commit=true&amp;literal\.url=http%3A%2F%2Fwww.foo.com%2Ffoo.html&quot; -H 'Content-type%3Atext%2Fhtml' -F &quot;myfile=@/</span>
+    <span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='true true kw'>true</span><span class='rparen token'>)</span>
+
+    <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;&lt;head&gt;&lt;title&gt;squid man - Foo Wiki&lt;/title&gt;&lt;/head&gt;&quot;</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='comma token'>,</span> <span class='SolrCrawler constant id'>SolrCrawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='symbol val'>:title_strip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'- Foo Wiki'</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='length identifier id'>length</span><span class='comma token'>,</span> <span class='string val'>&quot;Crawled one url&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_title-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_title</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 123</span>
+
+<span class='def def kw'>def</span> <span class='test_title identifier id'>test_title</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span>
+    <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.html'</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;foo&quot;</span><span class='rparen token'>)</span>
+    <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert_nil identifier id'>assert_nil</span> <span class='title identifier id'>title</span>
+    <span class='end end kw'>end</span>
+    <span class='comment val'># Strip not set</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;&lt;head&gt;&lt;title&gt;squid man&lt;/title&gt;&lt;/head&gt;&quot;</span><span class='rparen token'>)</span>
+    <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert_nil identifier id'>assert_nil</span> <span class='title identifier id'>title</span>
+    <span class='end end kw'>end</span>
+    <span class='comment val'># Strip set no title change</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;&lt;head&gt;&lt;title&gt;squid man - Foo Wiki&lt;/title&gt;&lt;/head&gt;&quot;</span><span class='rparen token'>)</span>
+        <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='symbol val'>:title_strip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'treacle'</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert_nil identifier id'>assert_nil</span> <span class='title identifier id'>title</span>
+    <span class='end end kw'>end</span>
+    <span class='comment val'># Strip set and title changed</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;&lt;head&gt;&lt;title&gt;squid man - Foo Wiki&lt;/title&gt;&lt;/head&gt;&quot;</span><span class='rparen token'>)</span>
+        <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='symbol val'>:title_strip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'- Foo Wiki'</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='content_file_path identifier id'>content_file_path</span><span class='comma token'>,</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='title identifier id'>title</span><span class='comma token'>,</span> <span class='depth identifier id'>depth</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='log identifier id'>log</span><span class='bitor op'>|</span>
+        <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;squid man&quot;</span><span class='comma token'>,</span> <span class='title identifier id'>title</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_href-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_href</strong>(url) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_crawler.rb', line 190</span>
+
+<span class='def def kw'>def</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
+    <span class='string val'>&quot;&lt;a href=\&quot;&quot;</span> <span class='plus op'>+</span> <span class='url identifier id'>url</span> <span class='plus op'>+</span> <span class='string val'>&quot;\&quot;&gt;Bar&lt;/a&gt;&quot;</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:32 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

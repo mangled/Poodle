@@ -1,0 +1,86 @@
+body {
+  background-color: #FFFFFF;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.highlight {
+  font-weight:bold;
+}
+
+#searchfield {
+  text-align:center;
+  border-top:1px solid;
+}
+
+input.search{
+  font-size: 20px;
+}
+
+.results {
+  margin-left:15%;
+  margin-bottom:2%;
+  padding-left:1%;
+  border-left: 1px solid;
+}
+
+.result {
+}
+
+.result_space {
+  margin-bottom: 1em;
+}
+
+.result_url {
+  font-size: 20px;
+}
+
+.result_keywords {
+  margin-top:-0.5em;
+  font-size: 10px;
+}
+
+.result_text {
+  font-size: 14px;
+  margin-top:-1em;
+}
+
+.result_link {
+  margin-top:-1em;
+  color: green;
+  font-size: 10px;
+}
+
+#no_results {
+  text-align:center;
+}
+
+#searchinfo {
+  padding-top: 0px;
+  border-top: 1px solid;
+  background: lightblue;
+  text-align: right;
+}
+
+#navigation {
+  text-align:center;
+  font-size: 20px;
+}
+
+#revision {
+  text-align: right;
+  border-top: 1px solid;
+  font-size: small;
+  font-family: Arial, Verdana, sans-serif;
+}
+
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller Arial, Verdana, sans-serif;
+  text-align:center;
+}
+

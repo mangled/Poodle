@@ -1,0 +1,21 @@
+# Rakefile for Scripts
+require 'rake/testtask'
+require 'yard'
+require 'yard/rake/yardoc_task'
+  
+namespace :doc do
+  root = File.dirname(__FILE__)
+  dest = File.join(root, '..', 'doc', 'rdoc', 'scripts')
+
+  desc 'Generate documentation'
+  YARD::Rake::YardocTask.new(:yard) do |yt|
+    yt.files   = Dir.glob(File.join(root, '**', '*.rb'))
+    yt.options = ['--output-dir', dest, '--readme', File.join(root, 'README.md')]
+  end
+end
+
+desc 'Run all tests'
+Rake::TestTask.new(:test) do |t|
+  t.test_files = 'test/test.rb'
+  t.verbose = true
+end

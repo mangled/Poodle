@@ -1,0 +1,19 @@
+# Rakefile for Scripts
+require 'yard'
+require 'yard/rake/yardoc_task'
+  
+namespace :doc do
+  root = File.dirname(__FILE__)
+  dest = File.join(root, '..', 'rdoc')
+
+  desc 'Generate documentation'
+  YARD::Rake::YardocTask.new(:yard) do |yt|
+    yt.files   = []
+    yt.options = ['--output-dir', dest, '-', 'INSTALLATION.md', 'TODO.md', 'INSTALLATION_WINDOWS.md', 'INSTALLATION_UBUNTU.md']
+  end
+end
+
+desc 'Run tests'
+task :test do
+  # None
+end

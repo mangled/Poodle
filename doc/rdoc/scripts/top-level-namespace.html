@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Top Level Namespace</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    
+    
+    <span class="title">Top Level Namespace</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Top Level Namespace
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="ContentAnalyzer.html" title="ContentAnalyzer (class)">ContentAnalyzer</a></span>, <span class='object_link'><a href="Crawler.html" title="Crawler (class)">Crawler</a></span>, <span class='object_link'><a href="CrawlerOptions.html" title="CrawlerOptions (class)">CrawlerOptions</a></span>, <span class='object_link'><a href="PurgeOptions.html" title="PurgeOptions (class)">PurgeOptions</a></span>, <span class='object_link'><a href="SolrCrawler.html" title="SolrCrawler (class)">SolrCrawler</a></span>, <span class='object_link'><a href="SolrPurge.html" title="SolrPurge (class)">SolrPurge</a></span>, <span class='object_link'><a href="TestCrawler.html" title="TestCrawler (class)">TestCrawler</a></span>, <span class='object_link'><a href="TestPurge.html" title="TestPurge (class)">TestPurge</a></span>
+    
+  
+</p>
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(url, items) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_dead_content-instance_method" title="#find_dead_content (instance method)">- (Object) <strong>find_dead_content</strong>(url, ids) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query_content-instance_method" title="#query_content (instance method)">- (Object) <strong>query_content</strong>(url, start = 0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="delete-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete</strong>(url, items) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 101</span>
+
+<span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='items identifier id'>items</span><span class='rparen token'>)</span>
+    <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='connect identifier id'>connect</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='url identifier id'>url</span><span class='rparen token'>)</span>
+    <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Removing #{items.length}&quot;</span>
+    <span class='items identifier id'>items</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='item identifier id'>item</span><span class='bitor op'>|</span>
+        <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;Deleting #{item[1]}&quot;</span>
+        <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='delete_by_id identifier id'>delete_by_id</span> <span class='item identifier id'>item</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+    <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='commit identifier id'>commit</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="find_dead_content-instance_method">
+  
+    - (<tt>Object</tt>) <strong>find_dead_content</strong>(url, ids) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 111</span>
+
+<span class='def def kw'>def</span> <span class='find_dead_content identifier id'>find_dead_content</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='ids identifier id'>ids</span><span class='rparen token'>)</span>
+    <span class='delete identifier id'>delete</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='ids identifier id'>ids</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='bitor op'>|</span>
+        <span class='begin begin kw'>begin</span>
+            <span class='sleep identifier id'>sleep</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.025</span><span class='rparen token'>)</span>
+            <span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;User-Agent&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;foo&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;From&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;bar&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;Referer&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span> <span class='comment val'># ONLY want headers, switch to Net::Http?</span>
+        <span class='rescue rescue kw'>rescue</span> <span class='URI constant id'>URI</span><span class='colon2 op'>::</span><span class='InvalidURIError constant id'>InvalidURIError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+            <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{id} #{url} #{e}&quot;</span>
+            <span class='delete identifier id'>delete</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rbrack token'>]</span>
+        <span class='rescue rescue kw'>rescue</span> <span class='OpenURI constant id'>OpenURI</span><span class='colon2 op'>::</span><span class='HTTPError constant id'>HTTPError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+            <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{id} #{url} #{e}&quot;</span>
+            <span class='if if kw'>if</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='io identifier id'>io</span><span class='dot token'>.</span><span class='status identifier id'>status</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span> <span class='neq op'>!=</span> <span class='integer val'>401</span>
+                <span class='puts identifier id'>puts</span> <span class='dstring node'>&quot;#{e.io.status[0].to_i}&quot;</span>
+                <span class='delete identifier id'>delete</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='delete identifier id'>delete</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="query_content-instance_method">
+  
+    - (<tt>Object</tt>) <strong>query_content</strong>(url, start = 0) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/purge.rb', line 131</span>
+
+<span class='def def kw'>def</span> <span class='query_content identifier id'>query_content</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='start identifier id'>start</span> <span class='assign token'>=</span> <span class='integer val'>0</span><span class='rparen token'>)</span>
+    <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='connect identifier id'>connect</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='url identifier id'>url</span><span class='rparen token'>)</span>
+
+    <span class='response identifier id'>response</span> <span class='assign token'>=</span> <span class='solr identifier id'>solr</span><span class='dot token'>.</span><span class='select identifier id'>select</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'id:*'</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span><span class='integer val'>10</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>'id,url'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+    <span class='start_index identifier id'>start_index</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;start&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='end_index identifier id'>end_index</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;numFound&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+    <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;responseHeader&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;params&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;rows&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='to_i identifier id'>to_i</span>
+
+    <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='response identifier id'>response</span><span class='lbrack token'>[</span><span class='string val'>&quot;response&quot;</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>&quot;docs&quot;</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='doc identifier id'>doc</span><span class='bitor op'>|</span>
+        <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='doc identifier id'>doc</span><span class='lbrack token'>[</span><span class='string val'>&quot;id&quot;</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='doc identifier id'>doc</span><span class='lbrack token'>[</span><span class='string val'>&quot;url&quot;</span><span class='rbrack token'>]</span>
+    <span class='end end kw'>end</span>
+
+    <span class='lbrack token'>[</span><span class='start_index identifier id'>start_index</span><span class='comma token'>,</span> <span class='end_index identifier id'>end_index</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Tue Oct 19 13:34:32 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

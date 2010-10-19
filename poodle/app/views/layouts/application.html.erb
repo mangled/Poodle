@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link title="<%=@name%>" rel="search" type="application/opensearchdescription+xml" href="<%=@provider%>">
+  <title><%=@name%></title>
+  <%= csrf_meta_tag %>
+  <!-- JavaScript -->
+  <%= javascript_include_tag :defaults %>
+  <!-- Stylesheets -->
+  <%= stylesheet_link_tag :all %>
+  <!-- Link click tracking -->
+  <script language="JavaScript">
+    function trackclick(url) {
+        new Ajax.Request('/search/search_result_clicked', { asynchronous: false, method: 'post', parameters: {url: encodeURIComponent(url)} });
+        return true;
+    }
+  </script>
+  <!-- JavaScript enabled detection -->
+  <% if @stop_check_browser.nil? %>
+    <noscript>
+      <meta http-equiv="refresh" content=";url=/search/browser_settings_error">
+    </noscript>
+  <% end %>
+</head>
+<body>
+
+<h2 style="text-align:center"><%=@name%></h2>
+<%= yield %>
+
+<!-- Current revision -->
+<div id="revision"><%= h(@revision) %></div>
+
+</body>
+</html>
