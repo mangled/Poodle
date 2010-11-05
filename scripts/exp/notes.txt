@@ -8,6 +8,8 @@ require 'sqlite3'
 
 $:.unshift File.join(File.dirname(__FILE__), ".") 
 
+content = uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s, "If-Modified-Since" => last_crawl.to_s)
+
 def extract_links(uri, referer, params)
     begin
         open(uri, referer, params, params[:lastcrawl])

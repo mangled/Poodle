@@ -30,8 +30,13 @@ module Poodle
                 crawled_title, new_links = analyze(uri, content, params)
                 [crawled_title, new_links, content]
             rescue OpenURI::HTTPError => e
-                params[:log].warn("Error opening #{uri} #{e}")
-                raise AnalyzerError, e
+                if e.io.status[0]  == '304'
+                    params[:log].info("Content hasn't changed since last crawl #{uri}") unless params[:quiet]
+                    raise AnalyzerError, "FIXME: work in progress"
+                else
+                    params[:log].warn("Error opening #{uri} #{e}")
+                    raise AnalyzerError, e
+                end
             end
         end
 

@@ -121,6 +121,16 @@ module Poodle
             assert_equal nil, crawled_title
         end
     
+        def test_content_not_changed
+            @log.expects(:info).once.with('Content hasn\'t changed since last crawl http://www.foo.com/bar.html')
+            p = { :log => @log, :user_agent => "007", :from => "mars" }
+            add_expect_uri("http://www.foo.com/bar.html", "hello", "text/html", ["304", "Not Modified"])
+            exception = assert_raise(AnalyzerError) {
+                Analyzer.new().extract_links(URI.parse("http://www.foo.com/bar.html"), "peter pan", p)
+            }
+            assert_match "FIXME: work in progress", exception.message
+        end
+
         # Helpers
         #########
     
