@@ -8,20 +8,21 @@ Again the code is an example, I have used it on an intra-net but I would not tru
 The script is in ruby and it has built in "help". I.e. at a command prompt (in the `./Poodle/script/lib` folder) type `crawler.rb -h` or `ruby crawler.rb -h` you should see something along the lines of:
 
         (web) crawler for indexing content into Solr. To use a proxy, set http_proxy=http://foo:1234
-        
+
             -u, --url URL                    Initial URL to crawl
             -s, --solr URL                   URL to Solr
             -t, --title TEXT                 Strip TEXT from the title
             -l, --log NAME                   NAME of log file (else STDOUT)
             -a, --useragent NAME             User agent name
             -f, --from FROM                  From details
-            -i, --ignore x,y,z               Ignore url's matching given patterns
+            -i, --ignore x,y,z               Ignore url's matching given patterns (not a regexp)
+            -c, --accept x,y,z               Only process url's matching given patterns (not a regexp)
             -w, --wait N                     Wait N seconds between each fetch
-            -d, --depth D                    Max depth to crawl
             -e, --index                      Crawl AND index the content
             -q, --quiet                      Reduce log messages to informational only
-                --yuk                        Horrible hack to fix poor CDATA termination, specific to a site - fix
-            -h, --help                       Show this message
+            -h, --threads N                  Set number of crawler threads to use
+            --yuk                            Horrible hack to fix poor CDATA termination, specific to a site - fix
+            --help                           Show this message
 
 Perform a test crawl
 --------------------
@@ -32,11 +33,11 @@ Now run up the crawler against some content - I have provided a ".zip" of my blo
 
 An example command line is as follows (as used to index a media-wiki site):
 
-        ruby crawler.rb -l log.txt -t '- Wiki' -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://wiki/index.php?title=Main_Page" -s "http://localhost:8983/solr/" -i Special:,action=edit,printable=,oldid=,action=history,diff=,.exe,.asp,.dot
+        ruby crawler.rb -h 3 -l log.txt -t '- Wiki' -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://wiki/index.php?title=Main_Page" -s "http://localhost:8983/solr/" -i Special:,action=edit,printable=,oldid=,action=history,diff=,.exe,.asp,.dot
 
 To crawl the example "test-site", you could use the following:
 
-	ruby crawler.rb -l mangled.log -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://localhost:8080/blog/index.html" -s "http://localhost:8983/solr/" -i category,tag
+	ruby crawler.rb -h 3 -l mangled.log -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://localhost:8080/blog/index.html" -s "http://localhost:8983/solr/" -i category,tag
 
 You *need* to look at the logs and experiment with indexing as its highly likely you will need to fine tune rejection of URL's. Some site content especially blogs have a large amount of redundant links.
 
