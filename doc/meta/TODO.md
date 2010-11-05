@@ -3,13 +3,12 @@ Release: 1.0
 
 This is the current "to-do" list for release 1.0. If you wish to contribute, then tackling any of these items would be a great help. Hopefully they are clear enough to get going, else e-mail <a href="http://www.google.com/recaptcha/mailhide/d?k=01vdgNNADQlgrqj5lMuKLpag==&c=dLzYSFd6PdPBc5paL9eJKJ62wOQODVZwCaNzqvMcxyI=">me</a>.
 
-1. Update the crawler to index files/folders
+1. Update the crawler to index files/folders (really - just crawl web front ends to file systems? Nice to have for now?)
 2. Add a check in the crawler for url length > 1024 - Basically improve cycle checking
 3. Keep a local database to check dates/content => no re-index (at least to Solr) unless stale
 4. RSS feeds/news via AJAX on the right of the poodle search page
 5. Want to index, newsgroups, Version1/Trac...
 6. Move Solr to non-example folder etc.
-7. Add a quiet option to the crawler
 8. Add a new field to categorise content crawler -f "wiki" or -f "blog", this allows material specific queries
 9. Add image search. Suspect you can do this from the content type field?
 10. Save search terms and provide a hint when user types in search box
@@ -27,5 +26,5 @@ This is the current "to-do" list for release 1.0. If you wish to contribute, the
 22. Improve word wrap function, needs to remove space on newlines and the tests are pants :-)
 23. Solr helper should have options for word-wrap passed in
 24. No docs for code! So add some!!!
-25. Think about a distributed crawler. I.e. use rinda etc. more than one thread...
+
 
