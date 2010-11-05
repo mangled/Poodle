@@ -1,0 +1,215 @@
+#!/usr/bin/env ruby
+####################
+### NOT USED WIP ###
+####################
+# This is a scratch pad of code - It doesn't run at present
+
+require 'sqlite3'
+
+$:.unshift File.join(File.dirname(__FILE__), ".") 
+
+def extract_links(uri, referer, params)
+    begin
+        open(uri, referer, params, params[:lastcrawl])
+    rescue OpenURI::HTTPError => e
+        if e.io.status[0]  == '304'
+            params[:log].info("Content hasn't changed since last crawl #{uri}") unless params[:quiet]
+
+            if @db and @db.has?(uri)
+                links = []
+                @db.links_from(uri).each {|l| links << [l, uri] }
+                return [nil, links, nil, false]
+            else
+                if get_content_type(uri) == 'text/html' # Do a get
+                    open(uri, referer, params, nil, false)
+                else
+                    return [nil, [], nil, false]
+                end
+            end
+        else
+            params[:log].warn("Error opening #{uri} #{e}")
+            raise AnalyzerError, e
+        end
+    end
+end
+
+################################################################################
+
+module CrawlInfo
+    def init
+        write("<crawlinfo/>")
+    end
+
+    def when_last_crawled(uri)
+        init() if require_new?
+        root = REXML::Document.new(read()).root
+        elem = root.elements["crawl[@url=\"#{uri.to_s}\"]"]
+        Time.parse(elem.elements["time"].text) if elem
+    end
+
+    def write_last_crawled(uri, time)
+        document = REXML::Document.new(read()).root
+        elem = document.root.elements["crawl[@url=\"#{uri.to_s}\"]"]
+        if elem
+            elem.elements["time"].text = time.to_s
+        else
+            elem = document.root.elements.add("crawl")
+            elem.attributes['url'] = uri.to_s
+            elem = elem.elements.add("time")
+            elem.text = time.to_s
+        end
+        formatter = REXML::Formatters::Pretty.new
+        out = ""
+        formatter.write(document, out)
+        replace_with(out)
+    end
+end
+
+class FileCrawlInfo
+    include CrawlInfo
+
+    def initialize(path)
+        @path = path
+    end
+
+    def require_new?
+        !File.exists?(@path)
+    end
+
+    def write(s)
+        File.open(@path, 'w+') {|content| content.write(s) }
+    end
+    
+    def read
+        File.open(@path) {|content| content.read }
+    end
+
+    def replace_with(s)
+        File.delete(@path)
+        write(s)
+    end
+end
+
+# CrawlInfo Tests
+#################
+
+class MemoryCrawlInfo
+  include CrawlInfo
+
+  def initialize
+    @content = StringIO.new
+  end
+
+  def require_new?
+    to_s.empty?
+  end
+
+  def write(s)
+    @content << s
+  end
+
+  def read
+    to_s
+  end
+  
+  def replace_with(s)
+    @content = StringIO.new(s)
+  end
+
+  def to_s
+    pos = @content.pos
+    @content.rewind
+    s = @content.read
+    @content.pos = pos
+    s
+  end
+end
+
+def test_crawlinfo
+  # Not testing FileCrawlInfo as it's a pain, this checks call logic...
+  test_crawlinfo(MemoryCrawlInfo.new)
+end
+
+def test_crawlinfo(crawlinfo)
+  uri = URI.parse("http://www.foo.com/")
+  assert_equal nil, crawlinfo.when_last_crawled(uri)
+  crawlinfo.write_last_crawled(uri, Time.parse("2010-01-01"))
+  assert_equal Time.parse("2010-01-01"), crawlinfo.when_last_crawled(uri)
+
+  uri = URI.parse("http://www.bar.com/")
+  assert_equal nil, crawlinfo.when_last_crawled(uri)
+  crawlinfo.write_last_crawled(uri, Time.parse("2009-01-01"))
+  assert_equal Time.parse("2009-01-01"), crawlinfo.when_last_crawled(uri)
+end
+
+################################################################################
+
+class UrlDatabase
+
+  def initialize(path)
+    existed = File.exists?(path)
+    @db = SQLite3::Database.new(path)
+    create_tables unless existed
+  end
+  
+  def has?(uri)
+    !@db.get_first_row("select * from urls where url = ?", uri.to_s).nil?
+  end
+
+  def get(uri)
+    row = @db.get_first_row("select * from urls where url = ?", uri.to_s)
+    unless row
+      @db.execute("insert into urls values(?, ?)", nil, uri.to_s)
+      row = @db.get_first_row("select * from urls where url = ?", uri.to_s)
+    end
+    row
+  end
+  
+  def links_from(uri)
+      links = []
+      if has?(uri) # There is a more effecient sql statement for this join table
+          uri_id = get(uri)[0]
+          @db.execute("select * from urllinks where url = :url", :url => uri_id) do |link|
+            row = @db.get_first_row("select * from urls where url = ?", link[1])
+            if row
+                links << URI.parse(link[1])
+            end # ELSE KILL BOGUS?
+          end
+      end
+      links
+  end
+
+  def add(uri, links = [])
+    uri_id = get(uri)[0]
+    links.each do |link|
+      link_id = get(link)[0]
+      row = @db.get_first_row("select * from urllinks where url = :url and link = :link", :url => uri_id, :link => link_id)
+      @db.execute("insert into urllinks values(:url, :link)", :url => uri_id, :link => link_id) unless row
+    end
+  end
+
+  def delete(uri)
+    if has?(uri)
+      uri_id = get(uri)[0]
+      puts "deleting #{uri} #{uri_id}"
+      @db.execute("delete from urls where id = :id", :id => uri_id)
+      @db.execute("delete from urllinks where url = :url or link = :link", :url => uri_id, :link => uri_id)
+    end
+  end
+
+  def create_tables()
+    @db.execute("create table urls(id integer primary key autoincrement, url string)")
+    @db.execute("create table urllinks(url integer, link integer)")
+  end
+  
+  def to_s
+    s = ""
+    s << "Urls Table\n"
+    @db.execute("select * from urls").each {|row| s << row.join(" ") + "\n" }
+    s << "\n"
+    s << "Url Links Table\n"
+    @db.execute("select * from urllinks").each {|row| s << row.join(" ") + "\n" }
+    s
+  end
+
+end
