@@ -2,6 +2,7 @@
 require 'sqlite3'
 
 module Poodle
+    
     class Cache
         # Need to work out deletion of items (use seen list?) and how to iterate from the work-queue
         # Iterate from cache instead of work-queue (need adapter): Use next_id, ">" and first_row? for remove
@@ -26,9 +27,17 @@ module Poodle
             @done = false
         end
 
+        # Still think this sould be generated from the cache i.e. new_work_queue() returns a class WorkQueue which does the following.
         # Need done and kill! might want to pull this out into a cache work queue? remove might be better there too? Just need
         # an execute(cmd) method on this? add() passes through? workqueue should probably define a last_crawl as always nil?
-        def remove
+        # Actually all I need to-do is remove the work-queue, it is basically dead
+        # This class needs synchronisation objects though
+        #
+        # analyze()
+        # add new urls (empty (and so is content) if not modified)
+        #
+        # rescue xxx => delete url from cache
+        def remove # RENAME TO next, add synch.
             unless @done
                 @current_id = @current_id || 0
                 if @current_id == 0
@@ -39,7 +48,7 @@ module Poodle
                 cached_url = @db.get_first_row("select * from urls where id > :id order by id", :id => @current_id)
                 if cached_url
                     @current_id = cached_url[0]
-                    yield URI.parse(cached_url[1])
+                    yield [@current_id.to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]]
                 else
                     @done = true
                     nil
@@ -51,13 +60,19 @@ module Poodle
             !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
         end
         
-        def add(uri, checksum)
-            write(uri, checksum)
+        def add(uri, referer, title, checksum)
+            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+            unless cached_url
+                @db.execute("insert into urls values(?, ?, ?, ?, ?)", nil, uri.to_s, referer.to_s, title, checksum)
+                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
+            end
+            site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
+            @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
         end
 
         def get(uri)
            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-           [cached_url[0].to_i, URI.parse(cached_url[1]), cached_url[2]] if cached_url
+           [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]] if cached_url
         end
 
         def delete(uri)
@@ -71,19 +86,10 @@ module Poodle
         end
 
     private
-        def write(uri, checksum)
-            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-            unless cached_url
-                @db.execute("insert into urls values(?, ?, ?)", nil, uri.to_s, checksum)
-                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
-            end
-            site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
-            @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
-        end
 
         def create_tables()
             @db.execute("create table if not exists sites(id integer primary key autoincrement, url string, at string)")
-            @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, checksum string)")
+            @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, referer string, title string, checksum string)")
             @db.execute("create table if not exists site_urls(id integer primary key autoincrement, site_id integer, url_id integer)")
         end
     end

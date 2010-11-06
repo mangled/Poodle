@@ -18,13 +18,15 @@ module Poodle
         cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'), db)
 
         uri = URI.parse("http://www.ear.com/a.html")
+        title = "Eating Space Suits"
+        referer = nil
         chk = "hello world"
 
         assert_equal false, cache.has?(uri)
         assert_equal nil, cache.get(URI.parse("http://www.ear.com/b.html"))
-        cache.add(uri, chk)
+        cache.add(uri, referer, title, chk)
         assert_equal true, cache.has?(uri)
-        assert_equal [1, uri, chk], cache.get(uri)
+        assert_equal [1, uri, URI.parse(""), title, chk], cache.get(uri)
         cache.delete(uri)
         assert_equal false, cache.has?(uri)
     end
@@ -53,13 +55,13 @@ module Poodle
         uri = URI.parse("http://www.ear.com/a.html")
         chk = "hello thing"
         assert_equal false, cache.has?(uri)
-        cache.add(uri, chk)
+        cache.add(uri, URI.parse("http://www.rat.com/wig.html"), "cheese", chk)
 
         site2 = URI.parse("http://www.elbow.com")
         cache = Cache.new(site2, at, db)
         
         assert_equal true, cache.has?(uri)
-        cache.add(uri, chk)
+        cache.add(uri, URI.parse("http://www.rat.com/wam.html"), "shoe", chk)
         cache.delete(uri)
         assert_equal true, cache.has?(uri)
     end
@@ -74,8 +76,8 @@ module Poodle
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
         uri = URI.parse("http://www.rat.com/halibut.html")
-        cache.add(uri, "1234")
-        cache.remove {|item| assert_equal uri, item }
+        cache.add(uri, URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
+        cache.remove {|item| assert_equal [1, uri, URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
         cache.remove {|item| raise "should not be called" }
     end
 
@@ -85,13 +87,13 @@ module Poodle
         base_uri = "http://www.rat.com/halibut"
         expected = []
         0.upto(10) do |i|
-            expected << URI.parse(base_uri + i.to_s + ".html")
-            cache.add(expected[-1], "1234")
+            expected << [i + 1, URI.parse(base_uri + i.to_s + ".html"), URI.parse("http://www.rat.com/wig.html"), "bar", "1234"]
+            cache.add(expected[-1][1], expected[-1][2], expected[-1][3], expected[-1][4])
         end
         0.upto(10) { |i| cache.remove {|item| assert_equal expected[i], item }}
         cache.remove {|item| raise "should not be called" }
         cache.remove {|item| raise "should not be called" }
     end
 
-  end  
+  end
 end
