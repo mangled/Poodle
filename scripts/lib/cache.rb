@@ -23,6 +23,28 @@ module Poodle
                 cached_site = @db.get_first_row("select * from sites where url = :url", :url => site_uri.to_s)
             end
             @site_id = cached_site[0]
+            @done = false
+        end
+
+        # Need done and kill! might want to pull this out into a cache work queue? remove might be better there too? Just need
+        # an execute(cmd) method on this? add() passes through? workqueue should probably define a last_crawl as always nil?
+        def remove
+            unless @done
+                @current_id = @current_id || 0
+                if @current_id == 0
+                    cmd = "select * from urls where id > :id order by id"
+                else
+                    cmd = "select * from urls where id >= :id order by id" if @current_id == 0
+                end
+                cached_url = @db.get_first_row("select * from urls where id > :id order by id", :id => @current_id)
+                if cached_url
+                    @current_id = cached_url[0]
+                    yield URI.parse(cached_url[1])
+                else
+                    @done = true
+                    nil
+                end
+            end
         end
 
         def has?(uri)

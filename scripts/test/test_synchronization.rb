@@ -27,9 +27,11 @@ module Poodle
       
       queue = WorkQueue.new(1)
       queue.remove {|item| assert_equal 1, item }
+      queue.remove {|item| raise "should not be called" }
 
       queue = WorkQueue.new([1, 2])
       queue.remove {|item| assert_equal [1, 2], item }
+      queue.remove {|item| raise "should not be called" }
     end
   
     def populate(queue)

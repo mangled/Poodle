@@ -10,16 +10,12 @@ $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 require 'cache'
 
 module Poodle
-  # THIS IS WIP !!
+
   class TestCache < Test::Unit::TestCase
     
     def test_urls
         db = SQLite3::Database.new(":memory:")
-
-        site1 = URI.parse("http://www.ear.com")
-        at = Time.parse('2010-01-01')
-        cache = Cache.new(site1, at, db)
-        assert_equal nil, cache.last_crawled_site_at
+        cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'), db)
 
         uri = URI.parse("http://www.ear.com/a.html")
         chk = "hello world"
@@ -31,11 +27,31 @@ module Poodle
         assert_equal [1, uri, chk], cache.get(uri)
         cache.delete(uri)
         assert_equal false, cache.has?(uri)
+    end
+    
+    def test_last_crawled
+        db = SQLite3::Database.new(":memory:")
+
+        site1 = URI.parse("http://www.ear.com")
+        at = Time.parse('2010-01-01')
+
+        cache = Cache.new(site1, at, db)
+        assert_equal nil, cache.last_crawled_site_at
         
-        # Two sites share a url, check delete doesn't kill it
         cache = Cache.new(site1, at, db)
         assert_equal at, cache.last_crawled_site_at
+    end
+    
+    def test_delete_site_specific
+        db = SQLite3::Database.new(":memory:")
+
+        site1 = URI.parse("http://www.ear.com")
+        at = Time.parse('2010-01-01')
         
+        cache = Cache.new(site1, at, db)
+        
+        uri = URI.parse("http://www.ear.com/a.html")
+        chk = "hello thing"
         assert_equal false, cache.has?(uri)
         cache.add(uri, chk)
 
@@ -46,6 +62,35 @@ module Poodle
         cache.add(uri, chk)
         cache.delete(uri)
         assert_equal true, cache.has?(uri)
+    end
+
+    def test_remove_on_empty
+        db = SQLite3::Database.new(":memory:")
+        cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        cache.remove {|item| raise "should not be called" }
+    end
+    
+    def test_remove_one
+        db = SQLite3::Database.new(":memory:")
+        cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        uri = URI.parse("http://www.rat.com/halibut.html")
+        cache.add(uri, "1234")
+        cache.remove {|item| assert_equal uri, item }
+        cache.remove {|item| raise "should not be called" }
+    end
+
+    def test_remove_many
+        db = SQLite3::Database.new(":memory:")
+        cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        base_uri = "http://www.rat.com/halibut"
+        expected = []
+        0.upto(10) do |i|
+            expected << URI.parse(base_uri + i.to_s + ".html")
+            cache.add(expected[-1], "1234")
+        end
+        0.upto(10) { |i| cache.remove {|item| assert_equal expected[i], item }}
+        cache.remove {|item| raise "should not be called" }
+        cache.remove {|item| raise "should not be called" }
     end
 
   end  
