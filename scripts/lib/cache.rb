@@ -3,71 +3,66 @@ require 'sqlite3'
 
 module Poodle
     class Cache
+        # Need to work out deletion of items (use seen list?) and how to iterate from the work-queue
+        # Iterate from cache instead of work-queue (need adapter): Use next_id, ">" and first_row? for remove
+        # If a new url appears add to cache. At the end I need to iterate "seen" and delete any url's "not" seen
+        # this seems costly, but it has to be done at the end unless I record url -> links.
+        
+        attr_accessor :last_crawled_site_at
     
-      def initialize()
-        #existed = File.exists?(path)
-        @db = SQLite3::Database.new(":memory:")
-        create_tables #unless existed
-      end
+        def initialize(site_uri, at, db)
+            @db = db
+            create_tables
 
-      def has?(uri)
-        !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
-      end
-    
-      def get(uri)
-        row = @db.get_first_row("select * from urls where url = ?", uri.to_s)
-        unless row
-          @db.execute("insert into urls values(?, ?)", nil, uri.to_s)
-          row = @db.get_first_row("select * from urls where url = ?", uri.to_s)
+            cached_site = @db.get_first_row("select * from sites where url = :url", :url => site_uri.to_s)
+            if cached_site
+                @last_crawled_site_at = Time.parse(cached_site[2])
+                @db.execute("update sites set at = :at where id = :id", :at => at.to_s, :id => cached_site[0])
+            else
+                @db.execute("insert into sites values(?, ?, ?)", nil, site_uri.to_s, at.to_s) # I think I can get the row back w/o another query
+                cached_site = @db.get_first_row("select * from sites where url = :url", :url => site_uri.to_s)
+            end
+            @site_id = cached_site[0]
         end
-        row
-      end
-      
-      def links_from(uri)
-          links = []
-          if has?(uri) # There is a more effecient sql statement for this join table
-              uri_id = get(uri)[0]
-              @db.execute("select * from urllinks where url = :url", :url => uri_id) do |link|
-                row = @db.get_first_row("select * from urls where url = ?", link[1])
-                if row
-                    links << URI.parse(link[1])
-                end # ELSE KILL BOGUS?
-              end
-          end
-          links
-      end
-    
-      def add(uri, links = [])
-        uri_id = get(uri)[0]
-        links.each do |link|
-          link_id = get(link)[0]
-          row = @db.get_first_row("select * from urllinks where url = :url and link = :link", :url => uri_id, :link => link_id)
-          @db.execute("insert into urllinks values(:url, :link)", :url => uri_id, :link => link_id) unless row
+
+        def has?(uri)
+            !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
         end
-      end
-    
-      def delete(uri)
-        if has?(uri)
-          uri_id = get(uri)[0]
-          puts "deleting #{uri} #{uri_id}"
-          @db.execute("delete from urls where id = :id", :id => uri_id)
-          @db.execute("delete from urllinks where url = :url or link = :link", :url => uri_id, :link => uri_id)
+        
+        def add(uri, checksum)
+            write(uri, checksum)
         end
-      end
-    
-      def create_tables()
-        @db.execute("create table urls(id integer primary key autoincrement, url string)")
-        @db.execute("create table urllinks(url integer, link integer)")
-      end
-      
-      def to_s
-        s = ""
-        s << "Urls Table\n"
-        @db.execute("select * from urls").each {|row| s << row.join(" ") + "\n" }
-        s << "\n"
-        s << "Url Links Table\n"
-        @db.execute("select * from urllinks").each {|row| s << row.join(" ") + "\n" }
-        s
-      end
+
+        def get(uri)
+           cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+           [cached_url[0].to_i, URI.parse(cached_url[1]), cached_url[2]] if cached_url
+        end
+
+        def delete(uri)
+            cached_url = get(uri)
+            if cached_url
+                @db.execute("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
+                @db.execute("delete from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
+                remaining_site_references  = @db.get_first_row("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
+                @db.execute("delete from urls where id = :id", :id => cached_url[0]) unless remaining_site_references
+            end
+        end
+
+    private
+        def write(uri, checksum)
+            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+            unless cached_url
+                @db.execute("insert into urls values(?, ?, ?)", nil, uri.to_s, checksum)
+                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
+            end
+            site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
+            @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
+        end
+
+        def create_tables()
+            @db.execute("create table if not exists sites(id integer primary key autoincrement, url string, at string)")
+            @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, checksum string)")
+            @db.execute("create table if not exists site_urls(id integer primary key autoincrement, site_id integer, url_id integer)")
+        end
     end
 end
