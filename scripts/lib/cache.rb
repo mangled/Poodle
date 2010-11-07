@@ -1,19 +1,14 @@
 #!/usr/bin/env ruby
 require 'sqlite3'
 require 'thread'
-require 'pp'
 
 module Poodle
     
     class Cache
-        # Need to work out deletion of items (use seen list?) and how to iterate from the work-queue
-        # Iterate from cache instead of work-queue (need adapter): Use next_id, ">" and first_row? for remove
-        # If a new url appears add to cache. At the end I need to iterate "seen" and delete any url's "not" seen
-        # this seems costly, but it has to be done at the end unless I record url -> links.
         
         attr_accessor :last_crawled_site_at
     
-        def initialize(site_uri, at, db) # default to in-memory?
+        def initialize(site_uri, at, db = SQLite3::Database.new(":memory:"))
             @db = db
             create_tables
 
@@ -22,24 +17,20 @@ module Poodle
                 @last_crawled_site_at = Time.parse(cached_site[2])
                 @db.execute("update sites set at = :at where id = :id", :at => at.to_s, :id => cached_site[0])
             else
-                @db.execute("insert into sites values(?, ?, ?)", nil, site_uri.to_s, at.to_s) # I think I can get the row back w/o another query
+                @db.execute("insert into sites values(?, ?, ?)", nil, site_uri.to_s, at.to_s)
                 cached_site = @db.get_first_row("select * from sites where url = :url", :url => site_uri.to_s)
             end
-            @site_id = cached_site[0]
+            @done = false
             @semaphore = Mutex.new
         end
+        
+        def Cache.from_path(site_uri, at, path)
+            filename = File.join(path, site_uri.host.gsub(/\./, '_'))
+            db = SQLite3::Database.new(filename)
+            Cache.new(site_uri, at, db)
+        end
 
-        # Still think this sould be generated from the cache i.e. new_work_queue() returns a class WorkQueue which does the following.
-        # Need done and kill! might want to pull this out into a cache work queue? remove might be better there too? Just need
-        # an execute(cmd) method on this? add() passes through? workqueue should probably define a last_crawl as always nil?
-        # Actually all I need to-do is remove the work-queue, it is basically dead
-        # This class needs synchronisation objects though
-        #
-        # analyze()
-        # add new urls (empty (and so is content) if not modified)
-        #
-        # rescue xxx => delete url from cache
-        def remove # RENAME TO next, add synch.
+        def next
             unless @done
                 yielded = false
                 item = nil
@@ -54,6 +45,45 @@ module Poodle
                 yield item if (block_given? and not yielded)
             end
         end
+        
+        def done?
+            @semaphore.synchronize { next_item().nil? or @done }
+        end
+
+        def kill(with_message = false)
+            puts "Shutting down work queue(s)..." if with_message
+            @done = true
+        end
+
+        def has?(uri)
+            @semaphore.synchronize do
+                !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
+            end
+        end
+        
+        def add(uri, referer, title, checksum)
+            @semaphore.synchronize do
+                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+                unless cached_url
+                    @db.execute("insert into urls values(?, ?, ?, ?, ?)", nil, uri.to_s, referer.to_s, title, checksum)
+                    cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+                end
+                cached_url
+            end
+        end
+
+        def get(uri)
+            @semaphore.synchronize { first(uri) }
+        end
+
+        def delete(uri)
+            @semaphore.synchronize do
+                cached_url = first(uri)
+                @db.execute("delete from urls where id = :id", :id => cached_url[0]) if cached_url
+            end
+        end
+
+    private
 
         def next_item
             cached_url = unless @current_id
@@ -68,42 +98,6 @@ module Poodle
             @db.get_first_row("select * from urls where id > :id order by id", :id => last_id).nil?
         end
 
-        def has?(uri)
-            @semaphore.synchronize do
-                !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
-            end
-        end
-        
-        def add(uri, referer, title, checksum)
-            @semaphore.synchronize do
-                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-                unless cached_url
-                    @db.execute("insert into urls values(?, ?, ?, ?, ?)", nil, uri.to_s, referer.to_s, title, checksum)
-                    cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
-                end
-                site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
-                @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
-            end
-        end
-
-        def get(uri)
-            @semaphore.synchronize { first(uri) }
-        end
-
-        def delete(uri)
-            @semaphore.synchronize do
-                cached_url = first(uri)
-                if cached_url
-                    @db.execute("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
-                    @db.execute("delete from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
-                    remaining_site_references  = @db.get_first_row("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
-                    @db.execute("delete from urls where id = :id", :id => cached_url[0]) unless remaining_site_references
-                end
-            end
-        end
-
-    private
-    
         def first(uri)
             cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
             [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]] if cached_url
@@ -112,7 +106,6 @@ module Poodle
         def create_tables()
             @db.execute("create table if not exists sites(id integer primary key autoincrement, url string, at string)")
             @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, referer string, title string, checksum string)")
-            @db.execute("create table if not exists site_urls(id integer primary key autoincrement, site_id integer, url_id integer)")
         end
     end
 end
