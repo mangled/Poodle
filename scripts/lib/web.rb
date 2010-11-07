@@ -13,7 +13,7 @@ module Poodle
     class Crawler
 
         def Crawler.crawl(params, indexer = nil, analyzer = Analyzer.new, urls = WorkQueue.new, crawled = CrawledSet.new)
-            while !urls.done?
+            begin
                 urls.remove do |item|
                     uri, referer = item
                     id = Crawler.unique_id(uri)
@@ -28,7 +28,7 @@ module Poodle
                     end
                     crawled.add(id)
                 end
-            end
+            end while !urls.done?
             crawled
         end
 

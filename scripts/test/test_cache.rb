@@ -58,21 +58,25 @@ module Poodle
     def test_next_on_empty
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
-        cache.next {|item| raise "should not be called" }
+        iterator = cache.new_iterator
+
+        iterator.next {|item| raise "should not be called" }
     end
     
     def test_next_one
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        iterator = cache.new_iterator
         uri = URI.parse("http://www.rat.com/halibut.html")
         cache.add(uri, URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
-        cache.next {|item| assert_equal [1, uri, URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
-        cache.next {|item| raise "should not be called" }
+        iterator.next {|item| assert_equal [1, uri, URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
+        iterator.next {|item| raise "should not be called" }
     end
     
     def test_next_many
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        iterator = cache.new_iterator
         base_uri = "http://www.rat.com/halibut"
         expected = []
         0.upto(10) do |i|
@@ -80,43 +84,47 @@ module Poodle
             expected << expectation
             cache.add(expectation[1], expectation[2], expectation[3], expectation[4])
         end
-        0.upto(10) { |i| cache.next {|item| assert_equal expected[i], item }}
-        cache.next {|item| raise "should not be called" }
-        cache.next {|item| raise "should not be called" }
+        0.upto(10) { |i| iterator.next {|item| assert_equal expected[i], item }}
+        iterator.next {|item| raise "should not be called" }
+        iterator.next {|item| raise "should not be called" }
     end
     
     def test_done
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
-        assert_equal true, cache.done?
+        iterator = cache.new_iterator
+
+        assert_equal true, iterator.done?
         cache.add(URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
-        assert_equal false, cache.done?
-        cache.next {|item| assert_equal [1, URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
-        assert_equal true, cache.done?
+        assert_equal false, iterator.done?
+        iterator.next {|item| assert_equal [1, URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
+        assert_equal true, iterator.done?
         cache.add(URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
-        assert_equal true, cache.done?
+        assert_equal true, iterator.done?
         cache.add(URI.parse("http://www.rat.com/herring.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
-        assert_equal false, cache.done?
-        cache.kill
-        cache.next {|item| raise "should not be called" }
-        assert_equal true, cache.done?
+        assert_equal false, iterator.done?
+        iterator.kill
+        iterator.next {|item| raise "should not be called" }
+        assert_equal true, iterator.done?
     end
     
     def test_threaded_simple
         db = SQLite3::Database.new(":memory:")
         cache = Cache.new(URI.parse("http://www.rat.com"), Time.parse('2010-02-01'), db)
+        iterator = cache.new_iterator
+
         cache.add(URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234")
         a = Thread.new do
-            assert_equal false, cache.done?
-            cache.next {|item| assert_equal [1, URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
-            cache.next {|item| raise "should not be called" }
+            assert_equal false, iterator.done?
+            iterator.next {|item| assert_equal [1, URI.parse("http://www.rat.com/halibut.html"), URI.parse("http://www.rat.com/wig.html"), "foo", "1234"], item }
+            iterator.next {|item| raise "should not be called" }
         end
         a.join
         b = Thread.new do
-            assert_equal true, cache.done?
-            cache.next {|item| raise "should not be called" }
+            assert_equal true, iterator.done?
+            iterator.next {|item| raise "should not be called" }
         end
-        assert_equal true, cache.done?
+        assert_equal true, iterator.done?
         b.join
     end
 
@@ -125,6 +133,11 @@ module Poodle
         at = Time.parse("2001-01-01")
         path = "~/home/foo/"
         
+        SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com')).returns("not a real db")
+        Cache.expects(:new).with(uri, at, "not a real db").returns(nil)
+        Cache.from_path(uri, at, path)
+        
+        path = "~/home/bar"
         SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com')).returns("not a real db")
         Cache.expects(:new).with(uri, at, "not a real db").returns(nil)
         Cache.from_path(uri, at, path)
