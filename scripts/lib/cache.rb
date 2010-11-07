@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'sqlite3'
+require 'thread'
+require 'pp'
 
 module Poodle
     
@@ -11,7 +13,7 @@ module Poodle
         
         attr_accessor :last_crawled_site_at
     
-        def initialize(site_uri, at, db)
+        def initialize(site_uri, at, db) # default to in-memory?
             @db = db
             create_tables
 
@@ -24,7 +26,7 @@ module Poodle
                 cached_site = @db.get_first_row("select * from sites where url = :url", :url => site_uri.to_s)
             end
             @site_id = cached_site[0]
-            @done = false
+            @semaphore = Mutex.new
         end
 
         # Still think this sould be generated from the cache i.e. new_work_queue() returns a class WorkQueue which does the following.
@@ -39,53 +41,73 @@ module Poodle
         # rescue xxx => delete url from cache
         def remove # RENAME TO next, add synch.
             unless @done
-                @current_id = @current_id || 0
-                if @current_id == 0
-                    cmd = "select * from urls where id > :id order by id"
-                else
-                    cmd = "select * from urls where id >= :id order by id" if @current_id == 0
+                yielded = false
+                item = nil
+                @semaphore.synchronize do
+                    item = next_item
+                    @current_id = item[0] if item
+                    if next_empty?(@current_id)
+                        yield item if (block_given? and item)
+                        yielded = true
+                    end
                 end
-                cached_url = @db.get_first_row("select * from urls where id > :id order by id", :id => @current_id)
-                if cached_url
-                    @current_id = cached_url[0]
-                    yield [@current_id.to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]]
-                else
-                    @done = true
-                    nil
-                end
+                yield item if (block_given? and not yielded)
             end
+        end
+
+        def next_item
+            cached_url = unless @current_id
+                @db.get_first_row("select * from urls order by id")
+            else
+                @db.get_first_row("select * from urls where id > :id order by id", :id => @current_id)
+            end
+            [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]] if cached_url
+        end
+
+        def next_empty?(last_id)
+            @db.get_first_row("select * from urls where id > :id order by id", :id => last_id).nil?
         end
 
         def has?(uri)
-            !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
+            @semaphore.synchronize do
+                !@db.get_first_row("select * from urls where url = :url", :url => uri.to_s).nil?
+            end
         end
         
         def add(uri, referer, title, checksum)
-            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-            unless cached_url
-                @db.execute("insert into urls values(?, ?, ?, ?, ?)", nil, uri.to_s, referer.to_s, title, checksum)
-                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
+            @semaphore.synchronize do
+                cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+                unless cached_url
+                    @db.execute("insert into urls values(?, ?, ?, ?, ?)", nil, uri.to_s, referer.to_s, title, checksum)
+                    cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s) # Do I need to do - this, I think I can get the info from above
+                end
+                site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
+                @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
             end
-            site_url = @db.get_first_row("select * from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
-            @db.execute("insert into site_urls values(?, ?, ?)", nil, @site_id, cached_url[0]) unless site_url
         end
 
         def get(uri)
-           cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-           [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]] if cached_url
+            @semaphore.synchronize { first(uri) }
         end
 
         def delete(uri)
-            cached_url = get(uri)
-            if cached_url
-                @db.execute("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
-                @db.execute("delete from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
-                remaining_site_references  = @db.get_first_row("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
-                @db.execute("delete from urls where id = :id", :id => cached_url[0]) unless remaining_site_references
+            @semaphore.synchronize do
+                cached_url = first(uri)
+                if cached_url
+                    @db.execute("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
+                    @db.execute("delete from site_urls where site_id = :site_id and url_id = :url_id", :site_id => @site_id, :url_id => cached_url[0])
+                    remaining_site_references  = @db.get_first_row("select * from site_urls where url_id = :url_id", :url_id => cached_url[0])
+                    @db.execute("delete from urls where id = :id", :id => cached_url[0]) unless remaining_site_references
+                end
             end
         end
 
     private
+    
+        def first(uri)
+            cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
+            [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3], cached_url[4]] if cached_url
+        end
 
         def create_tables()
             @db.execute("create table if not exists sites(id integer primary key autoincrement, url string, at string)")
