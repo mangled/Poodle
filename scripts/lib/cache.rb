@@ -66,7 +66,13 @@ module Poodle
 
         def find(uri)
             cached_url = @db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
-            [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3].to_s, cached_url[4].to_s] if cached_url
+            if cached_url # Fixme: DRY - This is the same as the cache get()
+                # .to_s required as windows seems to convert to int if it can! Look into this.
+                referer = cached_url[2].empty? ? nil : URI.parse(cached_url[2])
+                title = cached_url[3].to_s.empty? ? nil : cached_url[3].to_s
+                chk = cached_url[4].to_s.empty? ? nil : cached_url[4].to_s
+                [cached_url[0].to_i, URI.parse(cached_url[1]), referer, title, chk]
+            end
         end
 
         def create_tables()
@@ -116,7 +122,13 @@ module Poodle
             else
                 @db.get_first_row("select * from urls where id > :id order by id", :id => @current_id)
             end
-            [cached_url[0].to_i, URI.parse(cached_url[1]), URI.parse(cached_url[2]), cached_url[3].to_s, cached_url[4].to_s] if cached_url
+            if cached_url
+                # .to_s required as windows seems to convert to int if it can! Look into this.
+                referer = cached_url[2].empty? ? nil : URI.parse(cached_url[2])
+                title = cached_url[3].to_s.empty? ? nil : cached_url[3].to_s
+                chk = cached_url[4].to_s.empty? ? nil : cached_url[4].to_s
+                [cached_url[0].to_i, URI.parse(cached_url[1]), referer, title, chk]
+            end
         end
 
         def next_empty?(last_id)

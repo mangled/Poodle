@@ -27,13 +27,19 @@ module Poodle
         assert_equal nil, cache.get(URI.parse("http://www.ear.com/b.html"))
         cache.add(uri, nil, title, chk)
         assert_equal true, cache.has?(uri)
-        assert_equal [1, uri, URI.parse(""), title, chk], cache.get(uri)
+        assert_equal [1, uri, nil, title, chk], cache.get(uri)
         cache.delete(uri)
         assert_equal false, cache.has?(uri)
         cache.add(uri, referer, title, chk)
         assert_equal [2, uri, referer, title, chk], cache.get(uri)
+        cache.add(uri, referer, title, chk)
+        assert_equal [2, uri, referer, title, chk], cache.get(uri)
+        cache.delete(uri)
+        
+        cache.add(uri, nil, nil, nil)
+        assert_equal [3, uri, nil, nil, nil], cache.get(uri)
     end
-    
+
     def test_last_crawled
         db = SQLite3::Database.new(":memory:")
     
@@ -80,7 +86,7 @@ module Poodle
         base_uri = "http://www.rat.com/halibut"
         expected = []
         0.upto(10) do |i|
-            expectation = [i + 1, URI.parse(base_uri + i.to_s + ".html"), URI.parse("http://www.rat.com/wig.html"), "bar", i.to_s]
+            expectation = [i + 1, URI.parse(base_uri + i.to_s + ".html"), nil, nil, nil]
             expected << expectation
             cache.add(expectation[1], expectation[2], expectation[3], expectation[4])
         end
