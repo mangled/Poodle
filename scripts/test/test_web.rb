@@ -18,7 +18,7 @@ require 'synchronization'
 # everything. As the code has been refactored more tests have been produced which
 # overlap those here. Basically a number of these tests can be removed (carefully!)
 module Poodle
-    class TestCrawler < Test::Unit::TestCase
+    class TestWeb < Test::Unit::TestCase
     
         class FakeIndexer
             attr_accessor :items, :expectations
@@ -39,7 +39,7 @@ module Poodle
             @solr = 'http://localhost:1234/'
             FakeWeb.allow_net_connect = false
         end
-    
+        
         def test_crawl_all
             check_crawler(graph_basic())
             check_crawler(graph_basic(), [], false)
@@ -122,10 +122,10 @@ module Poodle
     
             p = params(url1.to_s)
             analyzer = mock()
-            analyzer.expects(:extract_links).with(url4, url3, p).returns(["4", [], nil])
-            analyzer.expects(:extract_links).with(url3, url2, p).returns(["3", { url4 => url3 }, to_href(url4.to_s)])
-            analyzer.expects(:extract_links).with(url2, url1, p).returns(["2", { url3 => url2 }, to_href(url3.to_s)])
-            analyzer.expects(:extract_links).with(url1, "",   p).returns(["1", { url2 => url1 }, to_href(url2.to_s)])
+            analyzer.expects(:extract_links).with(url4, url3, p).yields("4", [], nil)
+            analyzer.expects(:extract_links).with(url3, url2, p).yields("3", [[ url4, url3 ]], to_href(url4.to_s))
+            analyzer.expects(:extract_links).with(url2, url1, p).yields("2", [[ url3, url2 ]], to_href(url3.to_s))
+            analyzer.expects(:extract_links).with(url1, "",   p).yields("1", [[ url2, url1 ]], to_href(url2.to_s))
     
             links = crawl(url1.to_s, nil, analyzer)
             assert_equal(4, links.length, "Crawled four urls")
@@ -134,7 +134,7 @@ module Poodle
         def test_relative_url_normalized
             @log.stubs(:info)
             @log.stubs(:warn)
-    
+        
             root = 'http://www.woo.com/'
             urls = ['woo.html', 'bar.html', 'woo/woo.html', 'boing.html', '../twang.html']
         
@@ -153,11 +153,11 @@ module Poodle
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.bar#1"), [], [])
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.bar"), [], [])
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/"), [], [])
-
+        
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.bar"), ['.bar'], [])
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.BaR"), ['.bar'], [])
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.bar"), ['.doc'], [])
-
+        
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.bar"), [], ['.bar'])
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.BaR"), [], ['.bar'])
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com/foo.wiz"), [], ['.bar'])

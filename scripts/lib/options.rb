@@ -7,7 +7,8 @@ require 'rexml/formatters/default'
 
 module Poodle
     class CrawlerOptions
-        def CrawlerOptions.get_options(args)
+
+        def CrawlerOptions.default
             options = {}
             options[:ignore] = []
             options[:accept] = []
@@ -17,7 +18,12 @@ module Poodle
             options[:from] = "foo@bar.com"
             options[:threads] = 1
             options[:wait] = 1
+            options
+        end
         
+        def CrawlerOptions.get_options(args)
+            options = CrawlerOptions.default
+
             opts = OptionParser.new do |opts|
                 opts.banner = "(web) crawler for indexing content into Solr. To use a proxy, set http_proxy=http://foo:1234"
                 opts.separator ""

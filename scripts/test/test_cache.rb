@@ -54,15 +54,27 @@ module Poodle
     end
     
     def test_populate
-        cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'))
+        db = SQLite3::Database.new(":memory:")
+
+        cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'), db)
         expected = random_expectations
         cache.add(expected)
+
         queue = WorkQueue.new
         assert true, queue.done?
+        assert_equal nil, queue.last_crawled_site_at
         cache.populate(queue)
+        assert_equal nil, queue.last_crawled_site_at
         assert_equal false, queue.done?
+
         0.upto(10) {|i| queue.remove {|item| assert_equal expected[i], item } }
         assert_equal true, queue.done?
+        
+        cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'), db)
+        expected = random_expectations
+        cache.add(expected)
+        cache.populate(queue)
+        assert_equal Time.parse('2010-01-01'), queue.last_crawled_site_at
     end
     
     def test_delete

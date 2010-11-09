@@ -29,22 +29,27 @@ module Poodle
 
         def Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
             begin
-                title, new_links, content = analyzer.extract_links(uri, referer, params)
-                new_links.each do |link|
-                    urls.add(link[0], link[1])
-                end
+                # Add test
+                params[:last_crawled_site_at] = urls.last_crawled_site_at if urls.last_crawled_site_at
+                analyzer.extract_links(uri, referer, params) do |title, new_links, content|
 
-                if Crawler.should_index?(uri, (params[:index] and indexer))
-                    uri_id = Crawler.unique_id(uri)
-                    indexer.index({ :uri => uri, :content => content, :id => uri_id, :title => title })
-                    params[:log].info("Indexed #{uri}")
-                else
-                    params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
+                    # Note: because links are added here they will be filtered on the current accept rules
+                    # (on the parent) if these cmd line options change then the database is basically invalid?
+                    new_links.each {|link| urls.add(link[0], link[1]) }
+    
+                    if Crawler.should_index?(uri, (params[:index] and indexer))
+                        uri_id = Crawler.unique_id(uri)
+                        indexer.index({ :uri => uri, :content => content, :id => uri_id, :title => title })
+                        params[:log].info("Indexed #{uri}")
+                    else
+                        params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
+                    end
                 end
             rescue AnalyzerError => e
+                # Analyzer will have logged
             end
         end
-    
+
         def Crawler.unique_id(uri)
             digest = Digest::MD5.new().update(uri.normalize().to_s)
             digest.hexdigest

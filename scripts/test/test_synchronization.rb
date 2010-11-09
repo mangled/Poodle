@@ -16,6 +16,9 @@ module Poodle
     def test_queue
       queue = WorkQueue.new
   
+      assert_equal nil, queue.last_crawled_site_at
+      assert_equal 0, queue.processed.length
+  
       assert_equal true, queue.done?
       queue.remove {|item| assert_equal nil, item }
       assert_equal true, queue.done?
@@ -23,6 +26,8 @@ module Poodle
       expected = populate(queue)
       0.upto(10) {|i| queue.remove {|item| assert_equal expected[i], item } }
       assert_equal true, queue.done?
+      assert_equal 11, queue.processed.length
+      0.upto(10) {|i| assert_equal expected[i], queue.processed[i] }
 
       populate(queue)
       assert_equal false, queue.done?
@@ -35,11 +40,13 @@ module Poodle
       queue.remove {|item| raise "should not be called" }
       assert_equal true, queue.done?
       
+      queue = WorkQueue.new()
       expected = [UrlUtilities::random_url(), UrlUtilities::random_url()]
       queue.add(expected[0], expected[1])
       queue.add(expected[0], expected[1])
       queue.remove {|item| assert_equal expected, item }
       queue.remove {|item| raise "should not be called" }
+      assert_equal 1, queue.processed.length
     end
   
     def populate(queue)

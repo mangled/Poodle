@@ -26,13 +26,17 @@ module Poodle
 
         def extract_links(uri, referer, params)
             begin
-                content = uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s)
+                # Needs test
+                content = if params[:last_crawled_site_at]
+                    uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s, "If-Modified-Since" => params[:last_crawled_site_at].to_s)
+                else
+                    uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s)
+                end
                 crawled_title, new_links = analyze(uri, content, params)
-                [crawled_title, new_links, content]
+                yield [crawled_title, new_links, content]
             rescue OpenURI::HTTPError => e
                 if e.io.status[0]  == '304'
-                    params[:log].info("Content hasn't changed since last crawl #{uri}") unless params[:quiet]
-                    raise AnalyzerError, "FIXME: work in progress"
+                    params[:log].info("Content hasn't changed since last crawl #{uri}")
                 else
                     params[:log].warn("Error opening #{uri} #{e}")
                     raise AnalyzerError, e

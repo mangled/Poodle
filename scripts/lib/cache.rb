@@ -25,6 +25,8 @@ module Poodle
             @db.execute("select * from urls order by id") do |item|
                 container.add(URI.parse(item[1]), URI.parse(item[2]))
             end
+            # YUK!!!
+            container.last_crawled_site_at = last_crawled_site_at
         end
 
         def add(items)

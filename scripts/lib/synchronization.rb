@@ -7,6 +7,8 @@ require 'monitor'
 module Poodle
     class WorkQueue
 
+        attr_accessor :last_crawled_site_at
+
         def initialize(initial = nil)
             @done = false
             @items = []
@@ -51,7 +53,6 @@ module Poodle
         end
         
         def processed
-            raise "Queue must be done!" unless done?
             @processed
         end
 
