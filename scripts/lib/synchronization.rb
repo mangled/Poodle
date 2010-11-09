@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'set'
+require 'digest/md5'
 require 'monitor'
 
 module Poodle
@@ -9,30 +10,29 @@ module Poodle
         def initialize(initial = nil)
             @done = false
             @items = []
-            @items << initial if initial
+            @processed = []
+            @crawled = Set.new
             @items.extend(MonitorMixin)
+            add(initial[0], initial[1]) if initial
         end
 
-        def add(item)
-            @items.synchronize { @items << item }
+        # Bad name - It only adds new/unseen
+        def add(uri, referer)
+            @items.synchronize do
+                id = unique_id(uri)
+                unless @crawled.include?(id)
+                    @items << [uri, referer]
+                    @crawled.add(id)
+                end
+            end
         end
 
-        # This needs explanation!
-        # It's very subtle and is present to stop deadlock on the main thread, basically
-        # I couldn't wait on an empty queue because it's possible all threads will block
-        # and the main thread will hang. This is an atypical use of threads, they are
-        # both producing and consuming content.
-        #
-        # When a thread removes an item, if the queue is empty it yields it within the
-        # mutex. This ensures that any thread blocked on the mutex will wait - In the
-        # hope that when the yield (and the mutex) returns there might be some more content.
-        # If there isn't then nothing has been added and it doesn't yield, if there is the same
-        # pattern continues. This stops deadlock in the main thread and is quite nice!
         def remove()
             yielded = false
             item = nil
             @items.synchronize do
                 item = @items.shift
+                @processed << item if item
                 if @items.empty?
                     yield item if (block_given? and item)
                     yielded = true
@@ -49,31 +49,15 @@ module Poodle
             puts "Shutting down work queue(s)..." if with_message
             @done = true
         end
-    end
-
-    class CrawledSet
-
-        def initialize()
-            @crawled = Set.new
-            @crawled.extend(MonitorMixin)
-        end
         
-        def add(id)
-            @crawled.synchronize do
-                @crawled.add(id)
-            end
+        def processed
+            raise "Queue must be done!" unless done?
+            @processed
         end
 
-        def seen?(id)
-            @crawled.synchronize do
-                @crawled.include?(id)
-            end
-        end
-
-        def length
-            @crawled.synchronize do
-                @crawled.length
-            end
+        def unique_id(uri)
+            digest = Digest::MD5.new().update(uri.normalize().to_s)
+            digest.hexdigest
         end
     end
 end

@@ -12,39 +12,37 @@ require 'indexers'
 module Poodle
     class Crawler
 
-        def Crawler.crawl(params, indexer = nil, analyzer = Analyzer.new, urls = WorkQueue.new, crawled = CrawledSet.new)
+        def Crawler.crawl(params, indexer = nil, analyzer = Analyzer.new, urls = WorkQueue.new)
             begin
                 urls.remove do |item|
                     uri, referer = item
-                    id = Crawler.unique_id(uri)
-                    if Crawler.should_analyze?(uri, params[:ignore], params[:accept]) and not crawled.seen?(id)
+                    if Crawler.should_analyze?(uri, params[:ignore], params[:accept])
                         sleep(params[:wait]) if params[:wait]
-                        new_links = Crawler.analyze_and_index(uri, id, referer, params, urls, indexer, analyzer)
-                        new_links.each do |link|
-                            urls.add(link) unless crawled.seen?(Crawler.unique_id(link[0]))
-                        end
+                        Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
                     else
-                        params[:log].warn("Skipped #{uri}") unless crawled.seen?(id) or params[:quiet]
+                        params[:log].warn("Skipped #{uri}") unless params[:quiet]
                     end
-                    crawled.add(id)
                 end
             end while !urls.done?
-            crawled
+            urls.processed
         end
 
-        def Crawler.analyze_and_index(uri, id, referer, params, urls, indexer, analyzer)
-            new_links = []
+        def Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
             begin
                 title, new_links, content = analyzer.extract_links(uri, referer, params)
+                new_links.each do |link|
+                    urls.add(link[0], link[1])
+                end
+
                 if Crawler.should_index?(uri, (params[:index] and indexer))
-                    indexer.index({ :uri => uri, :content => content, :id => id, :title => title })
+                    uri_id = Crawler.unique_id(uri)
+                    indexer.index({ :uri => uri, :content => content, :id => uri_id, :title => title })
                     params[:log].info("Indexed #{uri}")
                 else
                     params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
                 end
             rescue AnalyzerError => e
             end
-            new_links
         end
     
         def Crawler.unique_id(uri)
