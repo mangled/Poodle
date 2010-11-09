@@ -15,29 +15,37 @@ module Poodle
         def Crawler.crawl(params, indexer = nil, analyzer = Analyzer.new, urls = WorkQueue.new)
             begin
                 urls.remove do |item|
-                    uri, referer = item
+                    uri, referer, checksum = item
+                    checksum = nil
                     if Crawler.should_analyze?(uri, params[:ignore], params[:accept])
                         sleep(params[:wait]) if params[:wait]
-                        Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
+                        checksum = Crawler.analyze_and_index(uri, referer, checksum, params, urls, indexer, analyzer)
                     else
                         params[:log].warn("Skipped #{uri}") unless params[:quiet]
                     end
+                    checksum
                 end
             end while !urls.done?
             urls.processed
         end
 
-        def Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
+        def Crawler.analyze_and_index(uri, referer, last_checksum, params, urls, indexer, analyzer)
+            checksum = nil
             begin
-                # Add test
+                # Add test - ans don't pass in this horrible way :-) Pass "at" into the main crawl method
+                # then remove hack from queue and cache
                 params[:last_crawled_site_at] = urls.last_crawled_site_at if urls.last_crawled_site_at
+
                 analyzer.extract_links(uri, referer, params) do |title, new_links, content|
+                    new_links.each {|link| urls.add(link[0], link[1], nil) }
 
                     # Note: because links are added here they will be filtered on the current accept rules
                     # (on the parent) if these cmd line options change then the database is basically invalid?
-                    new_links.each {|link| urls.add(link[0], link[1]) }
-    
-                    if Crawler.should_index?(uri, (params[:index] and indexer))
+                    
+                    # THIS NEEDS TIDYING AND A TEST OR TWO ADDED i.e. no tests exist for content checksum checks
+                    checksum = Crawler.checksum(content)
+
+                    if Crawler.should_index?(uri, (params[:index] and indexer)) and last_checksum != checksum
                         uri_id = Crawler.unique_id(uri)
                         indexer.index({ :uri => uri, :content => content, :id => uri_id, :title => title })
                         params[:log].info("Indexed #{uri}")
@@ -48,6 +56,7 @@ module Poodle
             rescue AnalyzerError => e
                 # Analyzer will have logged
             end
+            checksum
         end
 
         def Crawler.unique_id(uri)
@@ -55,6 +64,13 @@ module Poodle
             digest.hexdigest
         end
         
+        def Crawler.checksum(content)
+            content.rewind if content.respond_to?(:rewind)
+            digest = Digest::MD5.new().update(content.to_s)
+            digest.hexdigest
+            content.rewind if content.respond_to?(:rewind)
+        end
+
         def Crawler.should_analyze?(uri, ignore, accept)
             return false if uri.scheme != 'http' or uri.fragment
             if accept.empty? # Yuk, use nils?

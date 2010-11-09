@@ -35,15 +35,15 @@ module Poodle
       assert_equal true, queue.done?
       
       expected = UrlUtilities::random_url()
-      queue = WorkQueue.new([expected, expected])
-      queue.remove {|item| assert_equal [expected, expected], item }
+      queue = WorkQueue.new([expected, expected, "xyz"])
+      queue.remove {|item| assert_equal [expected, expected, "xyz"], item }
       queue.remove {|item| raise "should not be called" }
       assert_equal true, queue.done?
       
       queue = WorkQueue.new()
-      expected = [UrlUtilities::random_url(), UrlUtilities::random_url()]
-      queue.add(expected[0], expected[1])
-      queue.add(expected[0], expected[1])
+      expected = [UrlUtilities::random_url(), UrlUtilities::random_url(), "tyeuie"]
+      queue.add(expected[0], expected[1], expected[2])
+      queue.add(expected[0], expected[1], expected[2])
       queue.remove {|item| assert_equal expected, item }
       queue.remove {|item| raise "should not be called" }
       assert_equal 1, queue.processed.length
@@ -52,8 +52,8 @@ module Poodle
     def populate(queue)
       expected = []
       0.upto(10) do |i|
-        value = [UrlUtilities::random_url(), UrlUtilities::random_url()]
-        queue.add(value[0], value[1])
+        value = [UrlUtilities::random_url(), UrlUtilities::random_url(), i.to_s]
+        queue.add(value[0], value[1], value[2])
         expected << value
         assert_equal false, queue.done?
       end

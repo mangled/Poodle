@@ -12,7 +12,7 @@ require 'synchronization'
 require 'options'
 
 module Poodle
-    def Poodle.crawl(options, cache, logger)
+    def Poodle.crawl(options, cache, started_at, logger)
 
         options[:log] = logger
     
@@ -23,8 +23,6 @@ module Poodle
         logger.info("Threads: #{options[:threads]}")
         logger.info("Minimum seconds between fetch: #{options[:wait]}")
         logger.info("Indexing: #{options[:index]}")
-    
-        started_at = Time.now
 
         urls_to_crawl = WorkQueue.new([options[:url], ""])
         trap("INT") { urls_to_crawl.kill(true) }
@@ -51,6 +49,8 @@ module Poodle
 end
 
 if __FILE__ == $0
+    started_at = Time.now
+
     options =
     begin
         Poodle::CrawlerOptions.get_options(ARGV)
@@ -68,7 +68,7 @@ if __FILE__ == $0
     cache = Poodle::Cache.from_path(options[:url], started_at, ".")
 
     begin
-        crawl(options, cache, logger)
+        Poodle::crawl(options, cache, started_at, logger)
     rescue Exception => e
         puts "Unhandled exception: #{e}"
         logger.fatal("Unhandled exception: #{e}")

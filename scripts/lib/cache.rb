@@ -23,7 +23,7 @@ module Poodle
         
         def populate(container)
             @db.execute("select * from urls order by id") do |item|
-                container.add(URI.parse(item[1]), URI.parse(item[2]))
+                container.add(URI.parse(item[1]), URI.parse(item[2]), item[3].to_s)
             end
             # YUK!!!
             container.last_crawled_site_at = last_crawled_site_at
@@ -31,10 +31,10 @@ module Poodle
 
         def add(items)
             @db.transaction do |db|
-                items.each do |uri, referer|
+                items.each do |uri, referer, checksum|
                     cached_url = db.get_first_row("select * from urls where url = :url", :url => uri.to_s)
                     unless cached_url
-                        db.execute("insert into urls values(?, ?, ?)", nil, uri.to_s, referer.to_s)
+                        db.execute("insert into urls values(?, ?, ?, ?)", nil, uri.to_s, referer.to_s, checksum.to_s)
                     end
                 end
             end
@@ -48,7 +48,7 @@ module Poodle
 
         def create_tables()
             @db.execute("create table if not exists sites(id integer primary key autoincrement, url string, at string)")
-            @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, referer string)")
+            @db.execute("create table if not exists urls(id integer primary key autoincrement, url string, referer string, checksum string)")
         end
         
         def update(site_uri, at)

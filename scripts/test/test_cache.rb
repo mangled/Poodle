@@ -89,7 +89,7 @@ module Poodle
     def random_expectations
       expected = []
       0.upto(10) do |i|
-        expected << [UrlUtilities::random_url(), UrlUtilities::random_url()]
+        expected << [UrlUtilities::random_url(), UrlUtilities::random_url(), i.to_s]
       end
       expected
     end

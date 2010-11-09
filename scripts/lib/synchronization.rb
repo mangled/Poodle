@@ -15,15 +15,15 @@ module Poodle
             @processed = []
             @crawled = Set.new
             @items.extend(MonitorMixin)
-            add(initial[0], initial[1]) if initial
+            add(initial[0], initial[1], initial[2]) if initial
         end
 
         # Bad name - It only adds new/unseen
-        def add(uri, referer)
+        def add(uri, referer, checksum)
             @items.synchronize do
                 id = unique_id(uri)
                 unless @crawled.include?(id)
-                    @items << [uri, referer]
+                    @items << [uri, referer, checksum]
                     @crawled.add(id)
                 end
             end
@@ -36,11 +36,15 @@ module Poodle
                 item = @items.shift
                 @processed << item if item
                 if @items.empty?
-                    yield item if (block_given? and item)
-                    yielded = true
+                    if (block_given? and item)
+                        @processed[-1][2] = yield item
+                        yielded = true
+                    end
                 end
             end
-            yield item if (block_given? and not yielded)
+            if (block_given? and not yielded)
+                @processed[-1][2] = yield item if @processed[-1]
+            end
         end
 
         def done?

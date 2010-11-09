@@ -31,11 +31,13 @@ module Poodle
       WorkQueue.expects(:new).with([options[:url], ""]).returns(queue)
       Crawler.expects(:crawl).returns(nil)
 
-      cache = Cache.new(options[:url], Time.parse("2000-01-01"))
+      started_at = Time.parse("2000-01-01")
+
+      cache = Cache.new(options[:url], started_at)
       cache.expects(:delete)
       cache.expects(:add).with(["hello"])
       
-      Poodle.crawl(options, cache, logger)
+      Poodle.crawl(options, cache, started_at, logger)
     end
 
   end
