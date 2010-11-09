@@ -16,7 +16,6 @@ module Poodle
             begin
                 urls.remove do |item|
                     uri, referer, checksum = item
-                    checksum = nil
                     if Crawler.should_analyze?(uri, params[:ignore], params[:accept])
                         sleep(params[:wait]) if params[:wait]
                         checksum = Crawler.analyze_and_index(uri, referer, checksum, params, urls, indexer, analyzer)
@@ -66,9 +65,12 @@ module Poodle
         
         def Crawler.checksum(content)
             content.rewind if content.respond_to?(:rewind)
-            digest = Digest::MD5.new().update(content.to_s)
-            digest.hexdigest
+            digest = Digest::MD5.new()
+            content.readlines.each do |line|
+                digest.update(line.to_s)
+            end
             content.rewind if content.respond_to?(:rewind)
+            digest.hexdigest
         end
 
         def Crawler.should_analyze?(uri, ignore, accept)

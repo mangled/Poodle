@@ -37,13 +37,15 @@ module Poodle
                 @processed << item if item
                 if @items.empty?
                     if (block_given? and item)
-                        @processed[-1][2] = yield item
+                        checksum = yield item
+                        @processed[-1][2] = checksum
                         yielded = true
                     end
                 end
             end
             if (block_given? and not yielded)
-                @processed[-1][2] = yield item if @processed[-1]
+                checksum = yield item
+                @processed[-1][2] = checksum if @processed[-1]
             end
         end
 

@@ -24,10 +24,12 @@ module Poodle
         logger.info("Minimum seconds between fetch: #{options[:wait]}")
         logger.info("Indexing: #{options[:index]}")
 
-        urls_to_crawl = WorkQueue.new([options[:url], ""])
+        urls_to_crawl = WorkQueue.new
         trap("INT") { urls_to_crawl.kill(true) }
-
         cache.populate(urls_to_crawl)
+        
+        # Add after populate - won't add if the uri is present
+        urls_to_crawl.add(options[:url], "", nil)
 
         workers = ThreadsWait.new
         1.upto(options[:threads]) do |i|
