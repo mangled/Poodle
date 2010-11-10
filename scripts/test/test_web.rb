@@ -28,8 +28,8 @@ module Poodle
               @expectations = expectations
             end
     
-            def index(uri, content, title)
-                @items << { :uri => uri, :content => content, :title => title }
+            def index(uri, content, title, checksum = nil)
+                @items << { :uri => uri, :content => content, :title => title, :checksum => checksum }
                 @expectations.shift.call(@items[-1]) if @expectations
             end
         end
@@ -115,11 +115,6 @@ module Poodle
             url3 = URI.parse('http://www.foo.com/wiz/pop/')
             url4 = URI.parse('http://www.foo.com/foo.pdf')
     
-            add_expect_uri(url1.to_s, to_href(url2.to_s))
-            add_expect_uri(url2.to_s, to_href(url3.to_s))
-            add_expect_uri(url3.to_s, to_href(url4.to_s))
-            add_expect_uri(url4.to_s)
-    
             p = params(url1.to_s)
             analyzer = mock()
             analyzer.expects(:extract_links).with(url4, url3, nil, p).yields("4", [], nil)
@@ -164,6 +159,58 @@ module Poodle
             assert_equal true, Crawler.should_analyze?(URI.parse("http://www.foo.com/"), [], ['.doc'])
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com"), [], ['.doc'])
         end
+        
+        def test_checksum_no_change
+            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html')
+
+            url = URI.parse('http://www.foo.com/foo.html')
+
+            add_expect_uri(url.to_s, "foo")
+            p = params(url.to_s)
+
+            indexer_expectations = []
+            indexer_expectations << lambda do |hash|
+                assert_equal "cheese is the checksum", hash[:checksum]
+                "cheese is the checksum"
+            end
+
+            indexer = FakeIndexer.new(indexer_expectations)
+            
+            queue = Poodle::WorkQueue.new([url, "", "cheese is the checksum"])
+            assert_equal 1, crawl(url.to_s, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal "cheese is the checksum", queue.processed[0][2]
+        end
+        
+        def test_checksum_change
+            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html')
+
+            url = URI.parse('http://www.foo.com/foo.html')
+
+            add_expect_uri(url.to_s, "foo")
+            p = params(url.to_s)
+
+            indexer_expectations = []
+            indexer_expectations << lambda do |hash|
+                assert_equal "cheese was the checksum", hash[:checksum]
+                "sandwich is the new checksum"
+            end
+
+            indexer = FakeIndexer.new(indexer_expectations)
+            
+            queue = Poodle::WorkQueue.new([url, "", "cheese was the checksum"])
+            assert_equal 1, crawl(url.to_s, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal "sandwich is the new checksum", queue.processed[0][2]
+        end
+
+        def test_analyzer_exception
+            url = URI.parse('http://www.foo.com/foo.html')
+        
+            p = params(url.to_s)
+            analyzer = mock()
+            analyzer.expects(:extract_links).with(url, "", nil, p).raises(AnalyzerError, 'message')
+
+            assert_equal [[url, "", nil]], crawl(url.to_s, nil, analyzer)
+        end
 
         # Helpers
         #########
@@ -172,8 +219,7 @@ module Poodle
             { :url => URI.parse(url), :ignore => [], :accept => [], :index => true, :log => @log, :solr => @solr, :from => "me", :user_agent => "ua" }
         end
         
-        def crawl(url, indexer = FakeIndexer.new, analyzer = Poodle::Analyzer.new)
-            queue = Poodle::WorkQueue.new([URI.parse(url), ""])
+        def crawl(url, indexer = FakeIndexer.new, analyzer = Poodle::Analyzer.new, queue = Poodle::WorkQueue.new([URI.parse(url), ""]))
             Crawler.crawl(params(url), indexer, analyzer, queue)
             queue.processed
         end

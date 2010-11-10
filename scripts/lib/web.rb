@@ -19,42 +19,29 @@ module Poodle
                     else
                         params[:log].warn("Skipped #{uri}") unless params[:quiet]
                     end
-                    checksum # Test this...
+                    [uri, referer, checksum] # At some point catch here and return nil => drop uri
                 end
             end while !urls.done?
         end
 
-        def Crawler.analyze_and_index(uri, referer, last_checksum, params, urls, indexer, analyzer)
-            checksum = nil
+        def Crawler.analyze_and_index(uri, referer, checksum, params, urls, indexer, analyzer)
             begin
                 analyzer.extract_links(uri, referer, urls.last_crawled_site_at, params) do |title, new_links, content|
                     # Note: because links are added here they will be filtered on the current accept rules
                     # (on the parent) if these cmd line options change then the database is basically invalid?
                     new_links.each {|link| urls.add(link[0], link[1], nil) }
 
-                    # THIS NEEDS TIDYING AND A TEST OR TWO ADDED i.e. no tests exist for content checksum checks
-                    checksum = Crawler.checksum(content) # This should be in the indexer?
-
-                    if Crawler.should_index?(uri, (params[:index] and indexer)) and last_checksum != checksum
-                        indexer.index(uri, content, title)
+                    if Crawler.should_index?(uri, (params[:index] and indexer))
+                        checksum = indexer.index(uri, content, title, checksum)
                         params[:log].info("Indexed #{uri}")
                     else
                         params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
                     end
+                    checksum
                 end
-            rescue AnalyzerError => e
+            rescue AnalyzerError => e                
             end
             checksum
-        end
-        
-        def Crawler.checksum(content)
-            content.rewind if content.respond_to?(:rewind)
-            digest = Digest::MD5.new()
-            content.readlines.each do |line|
-                digest.update(line.to_s)
-            end
-            content.rewind if content.respond_to?(:rewind)
-            digest.hexdigest
         end
 
         def Crawler.should_analyze?(uri, ignore, accept)

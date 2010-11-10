@@ -24,10 +24,27 @@ module Poodle
       assert_equal true, queue.done?
 
       expected = populate(queue)
-      0.upto(10) {|i| queue.remove {|item| assert_equal expected[i], item } }
+      0.upto(10) do |i|
+        queue.remove do |item|
+          assert_equal expected[i], item
+          item
+        end
+      end
       assert_equal true, queue.done?
       assert_equal 11, queue.processed.length
       0.upto(10) {|i| assert_equal expected[i], queue.processed[i] }
+
+      queue = WorkQueue.new
+      expected = populate(queue)
+      0.upto(10) do |i|
+        queue.remove do |uri, referer, checksum|
+          assert_equal expected[i], [uri, referer, checksum]
+          ["a", "b", "c"]
+        end
+      end
+      assert_equal true, queue.done?
+      assert_equal 11, queue.processed.length
+      0.upto(10) {|i| assert_equal ["a", "b", "c"], queue.processed[i] }
 
       populate(queue)
       assert_equal false, queue.done?

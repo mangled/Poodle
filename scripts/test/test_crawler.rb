@@ -25,10 +25,12 @@ module Poodle
       logger.stubs(:info)
 
       queue = mock()
+      queue.expects(:add).with(options[:url], "", nil)
       queue.expects("last_crawled_site_at=").with(nil)
       queue.expects(:processed).returns(["hello"])
 
-      WorkQueue.expects(:new).with([options[:url], ""]).returns(queue)
+      WorkQueue.expects(:new).with(nil).returns(queue)
+      
       Crawler.expects(:crawl).returns(nil)
 
       started_at = Time.parse("2000-01-01")

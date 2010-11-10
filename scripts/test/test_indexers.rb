@@ -13,6 +13,17 @@ require 'web'
 module Poodle
     class TestIndexers < Test::Unit::TestCase
     
+        class FakeContent
+            attr_accessor :content_type
+            def initialize(type, body)
+                @content_type = type
+                @body = StringIO.new(body)
+            end
+            def readlines()
+                @body.readlines
+            end
+        end
+    
         def setup
             @log = mock()
             @solr = 'http://localhost:1234/'
@@ -57,6 +68,26 @@ module Poodle
         
             add_expect_uri(url)
             assert_equal(1, crawl(params(url)).length, "Crawled one url")
+        end
+
+        def test_checksum_differs
+            solr = URI.parse("http://www.solr.com/")
+            indexer = SolrIndexer.new({ :solr => solr, :log => @log })
+            SolrIndexer.expects(:curl).returns(true)
+
+            uri = URI.parse("http://www.funk.com/")
+            content = FakeContent.new("foo/bar", "this is the body text!")
+            assert_equal "1b3c95d45cb56c5f5e397fd850c19acf", indexer.index(uri, content, "titled good stuff", "current checksum is 1234")
+        end
+        
+        def test_checksum_same
+            solr = URI.parse("http://www.solr.com/")
+            indexer = SolrIndexer.new({ :solr => solr, :log => @log })
+            SolrIndexer.expects(:curl).never
+
+            uri = URI.parse("http://www.funk.com/")
+            content = FakeContent.new("foo/bar", "this is the body text!")
+            assert_equal "1b3c95d45cb56c5f5e397fd850c19acf", indexer.index(uri, content, "titled good stuff", "1b3c95d45cb56c5f5e397fd850c19acf")
         end
 
         # Helpers

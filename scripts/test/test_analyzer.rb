@@ -146,7 +146,7 @@ module Poodle
             end
             add_expect_uri("http://www.foo.com/bar.html", "hello", "text/html", ["304", "Not Modified"])
             Analyzer.new().extract_links(URI.parse("http://www.foo.com/bar.html"), "peter pan", Time.parse("2010-01-01"), p) do |content|
-                assert_equal [], content
+                raise "should not be called"
             end
         end
         

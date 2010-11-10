@@ -34,18 +34,13 @@ module Poodle
             item = nil
             @items.synchronize do
                 item = @items.shift
-                @processed << item if item
                 if @items.empty?
-                    if (block_given? and item)
-                        checksum = yield item
-                        @processed[-1][2] = checksum
-                        yielded = true
-                    end
+                    @processed << (yield item) if (block_given? and item)
+                    yielded = true
                 end
             end
             if (block_given? and not yielded)
-                checksum = yield item
-                @processed[-1][2] = checksum if @processed[-1]
+                @processed << (yield item)
             end
         end
 

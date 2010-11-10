@@ -14,29 +14,37 @@ module Poodle
             @log = params[:log]
         end
     
-        def index(uri, content, title)
+        def index(uri, content, title, checksum)
             begin
-                temp_file = SolrIndexer.new_temp(content)
-                id = unique_id(uri)
-                if title
-                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&literal.crawled_title=#{CGI.escape(title)}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
-                else
-                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
+                temp_file, current_checksum = new_temp(content)
+                if current_checksum != checksum
+                    checksum = current_checksum
+                    id = unique_id(uri)
+                    if title
+                        solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&literal.crawled_title=#{CGI.escape(title)}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
+                    else
+                        solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
+                    end
+                    solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + content.content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
+                    @log.warn("#{uri} Curl failed") unless SolrIndexer.curl(solr_args)
                 end
-                solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + content.content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
-                @log.warn("#{uri} Curl failed") unless SolrIndexer.curl(solr_args)
             ensure
                 temp_file.unlink() if temp_file
             end
+            checksum
         end
-        
-        def SolrIndexer.new_temp(content)
+
+        def new_temp(content)
+            digest = Digest::MD5.new
             temp_file = Tempfile.new("content")
             temp_file.binmode
-            temp_file << content.readlines
+            content.readlines.each do |line|
+                temp_file << line
+                digest.update(line)
+            end
             temp_file.flush()
             temp_file.close()
-            temp_file
+            [temp_file, digest.hexdigest]
         end
 
         def unique_id(uri)
