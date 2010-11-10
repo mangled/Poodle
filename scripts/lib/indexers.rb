@@ -27,6 +27,8 @@ module Poodle
                     end
                     solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + content.content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
                     @log.warn("#{uri} Curl failed") unless SolrIndexer.curl(solr_args)
+                else
+                    @log.info("Skipped indexing as checksum hasn't changed #{uri}")
                 end
             ensure
                 temp_file.unlink() if temp_file

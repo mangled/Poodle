@@ -81,6 +81,7 @@ module Poodle
         end
         
         def test_checksum_same
+            @log.expects(:info).once.with('Skipped indexing as checksum hasn\'t changed http://www.funk.com/')
             solr = URI.parse("http://www.solr.com/")
             indexer = SolrIndexer.new({ :solr => solr, :log => @log })
             SolrIndexer.expects(:curl).never
