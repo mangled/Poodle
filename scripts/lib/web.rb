@@ -22,7 +22,7 @@ module Poodle
                     else
                         params[:log].warn("Skipped #{uri}") unless params[:quiet]
                     end
-                    checksum
+                    checksum # Test this...
                 end
             end while !urls.done?
             urls.processed
