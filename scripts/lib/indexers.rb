@@ -4,6 +4,7 @@ require 'uri'
 require 'tempfile'
 require 'pathname'
 require 'cgi'
+require 'digest/md5'
 
 module Poodle
     class SolrIndexer
@@ -13,19 +14,19 @@ module Poodle
             @log = params[:log]
         end
     
-        def index(item)
-            # Might be better having a class or struct - for readability?
-            temp_file = SolrIndexer.new_temp(item[:content])
+        def index(uri, content, title)
             begin
-                if item[:title]
-                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{item[:id]}&literal.crawled_title=#{CGI.escape(item[:title])}&commit=true&literal.url=#{CGI.escape(item[:uri].to_s)}")
+                temp_file = SolrIndexer.new_temp(content)
+                id = unique_id(uri)
+                if title
+                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&literal.crawled_title=#{CGI.escape(title)}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
                 else
-                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{item[:id]}&commit=true&literal.url=#{CGI.escape(item[:uri].to_s)}")
+                    solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
                 end
-                solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + item[:content].content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
-                @log.warn("#{item[:uri]} Curl failed") unless SolrIndexer.curl(solr_args)
+                solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + content.content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
+                @log.warn("#{uri} Curl failed") unless SolrIndexer.curl(solr_args)
             ensure
-                temp_file.unlink()
+                temp_file.unlink() if temp_file
             end
         end
         
@@ -37,7 +38,12 @@ module Poodle
             temp_file.close()
             temp_file
         end
-    
+
+        def unique_id(uri)
+            digest = Digest::MD5.new().update(uri.normalize().to_s)
+            digest.hexdigest
+        end
+
         # This is here to simplify unit-testing, couldn't be bothered overriding back-tic's
         def SolrIndexer.curl(s)
             `curl #{s}`

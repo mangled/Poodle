@@ -28,8 +28,8 @@ module Poodle
               @expectations = expectations
             end
     
-            def index(item)
-                @items << item
+            def index(uri, content, title)
+                @items << { :uri => uri, :content => content, :title => title }
                 @expectations.shift.call(@items[-1]) if @expectations
             end
         end
@@ -173,7 +173,9 @@ module Poodle
         end
         
         def crawl(url, indexer = FakeIndexer.new, analyzer = Poodle::Analyzer.new)
-            Crawler.crawl(params(url), indexer, analyzer, Poodle::WorkQueue.new([URI.parse(url), ""]))
+            queue = Poodle::WorkQueue.new([URI.parse(url), ""])
+            Crawler.crawl(params(url), indexer, analyzer, queue)
+            queue.processed
         end
 
         def add_expect_uri(url, body = 'Hello world', content_type = "text/html", status = ["200", "OK"])
@@ -204,16 +206,15 @@ module Poodle
                 error_pages[url.to_s] = page if page[:status][0] != "200"
             end
     
-            ids = Set.new
             p = params(urll).merge({:ignore => ignore, :index => index})
     
             indexer = FakeIndexer.new
-            links = Crawler.crawl(p, indexer, Poodle::Analyzer.new, Poodle::WorkQueue.new([p[:url], ""]))
+            queue = Poodle::WorkQueue.new([p[:url], ""])
+            Crawler.crawl(p, indexer, Poodle::Analyzer.new, queue)
+            links = queue.processed
     
             indexer.items.each do |item|
                 assert(!error_pages.keys.include?(item[:uri].to_s))
-                assert(!ids.include?(item[:id]))
-                ids.add(item[:id])
                 assert_nil item[:title]
                 assert(urls.delete? item[:uri].to_s)
                 assert_equal(item[:content].content_type, pages[item[:uri].to_s][:content_type])

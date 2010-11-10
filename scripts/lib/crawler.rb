@@ -33,14 +33,11 @@ module Poodle
 
         workers = ThreadsWait.new
         1.upto(options[:threads]) do |i|
-            workers.join_nowait(
-                Thread.new do
-                    Crawler.crawl(options, SolrIndexer.new(options), Analyzer.new, urls_to_crawl)
-                end
-            )
+            thread = Thread.new { Crawler.crawl(options, SolrIndexer.new(options), Analyzer.new, urls_to_crawl) }
+            workers.join_nowait(thread)
         end
         workers.all_waits
-        
+
         # There are smarter ways or finding unused items!
         processed = urls_to_crawl.processed
         cache.delete

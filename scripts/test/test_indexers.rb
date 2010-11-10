@@ -71,7 +71,9 @@ module Poodle
         end
 
         def crawl(p)
-            Crawler.crawl(p, SolrIndexer.new(p), Poodle::Analyzer.new, Poodle::WorkQueue.new([p[:url], ""]))
+            queue = Poodle::WorkQueue.new([p[:url], ""])
+            Crawler.crawl(p, SolrIndexer.new(p), Poodle::Analyzer.new, queue)
+            queue.processed
         end
     end
 end
