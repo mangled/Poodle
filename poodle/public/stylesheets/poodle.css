@@ -36,17 +36,20 @@ input.search{
 }
 
 .result_keywords {
-  margin-top:-0.5em;
+  margin-top:0em;
+  margin-bottom:0.5em;
   font-size: 10px;
 }
 
 .result_text {
   font-size: 14px;
-  margin-top:-1em;
+  margin-top:0em;
+  margin-bottom:0.5em;
 }
 
 .result_link {
-  margin-top:-1em;
+  margin-top:0em;
+  margin-bottom:0.5em;
   color: green;
   font-size: 10px;
 }

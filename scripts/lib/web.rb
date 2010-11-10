@@ -31,21 +31,17 @@ module Poodle
         def Crawler.analyze_and_index(uri, referer, last_checksum, params, urls, indexer, analyzer)
             checksum = nil
             begin
-                # Add test - ans don't pass in this horrible way :-) Pass "at" into the main crawl method
-                # then remove hack from queue and cache
-                params[:last_crawled_site_at] = urls.last_crawled_site_at if urls.last_crawled_site_at
-
-                analyzer.extract_links(uri, referer, params) do |title, new_links, content|
-                    new_links.each {|link| urls.add(link[0], link[1], nil) }
+                analyzer.extract_links(uri, referer, urls.last_crawled_site_at, params) do |title, new_links, content|
 
                     # Note: because links are added here they will be filtered on the current accept rules
                     # (on the parent) if these cmd line options change then the database is basically invalid?
-                    
+                    new_links.each {|link| urls.add(link[0], link[1], nil) }
+
                     # THIS NEEDS TIDYING AND A TEST OR TWO ADDED i.e. no tests exist for content checksum checks
-                    checksum = Crawler.checksum(content)
+                    checksum = Crawler.checksum(content) # This should be in the indexer?
 
                     if Crawler.should_index?(uri, (params[:index] and indexer)) and last_checksum != checksum
-                        uri_id = Crawler.unique_id(uri)
+                        uri_id = Crawler.unique_id(uri) # Put this in the indexer and stop using a hash to pass stuff like this!
                         indexer.index({ :uri => uri, :content => content, :id => uri_id, :title => title })
                         params[:log].info("Indexed #{uri}")
                     else
