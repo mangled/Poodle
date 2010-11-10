@@ -29,9 +29,8 @@ module Poodle
 
         def Crawler.analyze_and_index(uri, referer, params, urls, indexer, analyzer)
             begin
-                # Add test
-                params[:last_crawled_site_at] = urls.last_crawled_site_at if urls.last_crawled_site_at
-                analyzer.extract_links(uri, referer, params) do |title, new_links, content|
+
+                analyzer.extract_links(uri, referer, urls.last_crawled_site_at, params) do |title, new_links, content|
 
                     # Note: because links are added here they will be filtered on the current accept rules
                     # (on the parent) if these cmd line options change then the database is basically invalid?

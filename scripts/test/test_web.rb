@@ -122,10 +122,10 @@ module Poodle
     
             p = params(url1.to_s)
             analyzer = mock()
-            analyzer.expects(:extract_links).with(url4, url3, p).yields("4", [], nil)
-            analyzer.expects(:extract_links).with(url3, url2, p).yields("3", [[ url4, url3 ]], to_href(url4.to_s))
-            analyzer.expects(:extract_links).with(url2, url1, p).yields("2", [[ url3, url2 ]], to_href(url3.to_s))
-            analyzer.expects(:extract_links).with(url1, "",   p).yields("1", [[ url2, url1 ]], to_href(url2.to_s))
+            analyzer.expects(:extract_links).with(url4, url3, nil, p).yields("4", [], nil)
+            analyzer.expects(:extract_links).with(url3, url2, nil, p).yields("3", [[ url4, url3 ]], to_href(url4.to_s))
+            analyzer.expects(:extract_links).with(url2, url1, nil, p).yields("2", [[ url3, url2 ]], to_href(url3.to_s))
+            analyzer.expects(:extract_links).with(url1, "",   nil, p).yields("1", [[ url2, url1 ]], to_href(url2.to_s))
     
             links = crawl(url1.to_s, nil, analyzer)
             assert_equal(4, links.length, "Crawled four urls")

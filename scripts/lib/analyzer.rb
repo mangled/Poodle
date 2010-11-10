@@ -24,11 +24,11 @@ module Poodle
 
     class Analyzer
 
-        def extract_links(uri, referer, params)
+        def extract_links(uri, referer, last_crawled_site_at, params)
             begin
                 # Needs test
-                content = if params[:last_crawled_site_at]
-                    uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s, "If-Modified-Since" => params[:last_crawled_site_at].to_s)
+                content = if last_crawled_site_at
+                    uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s, "If-Modified-Since" => last_crawled_site_at.to_s)
                 else
                     uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s)
                 end
