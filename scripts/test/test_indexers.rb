@@ -59,7 +59,6 @@ module Poodle
         end
         
         def test_curl_fails
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html').returns(nil)
             @log.expects(:warn).once.with('http://www.foo.com/foo.html Curl failed').returns(nil)
     
             SolrIndexer.expects(:curl).returns(false)
@@ -71,6 +70,7 @@ module Poodle
         end
 
         def test_checksum_differs
+            @log.expects(:info).once.with('Indexed http://www.funk.com/')
             solr = URI.parse("http://www.solr.com/")
             indexer = SolrIndexer.new({ :solr => solr, :log => @log })
             SolrIndexer.expects(:curl).returns(true)

@@ -33,7 +33,6 @@ module Poodle
 
                     if Crawler.should_index?(uri, (params[:index] and indexer))
                         checksum = indexer.index(uri, content, title, checksum)
-                        params[:log].info("Indexed #{uri}") # This should be in the indexer?
                     else
                         params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
                     end

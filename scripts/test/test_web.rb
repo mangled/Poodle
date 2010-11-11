@@ -51,7 +51,6 @@ module Poodle
         end
         
         def test_same_site
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html').returns(nil)
             @log.expects(:warn).once.with('Skipping as host differs http://www.bar.com/').returns(nil)
             
             url1 = 'http://www.foo.com/foo.html'
@@ -63,7 +62,6 @@ module Poodle
         end
         
         def test_bad_url
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html').returns(nil)
             @log.expects(:warn).once.with('Invalid link in page http://www.foo.com/foo.html : bad URI(is not URI?): http://www.foo.com/foo\\bar.html').returns(nil)
             
             url1 = 'http://www.foo.com/foo.html'
@@ -74,7 +72,6 @@ module Poodle
         end
         
         def test_skip_fragment
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html').returns(nil)
             @log.expects(:warn).once.with('Skipped http://www.foo.com/bar.html#3')
         
             url1 = 'http://www.foo.com/foo.html'
@@ -84,9 +81,7 @@ module Poodle
             assert_equal(2, crawl(url1) { |uri| assert(uri.to_s != url2) }.length, "Crawled two urls")
         end
         
-        def test_index_no_follow # Only look for links in text/html
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.stuff').returns(nil)
-        
+        def test_index_no_follow
             url = 'http://www.foo.com/foo.stuff'
             url2 = 'http://www.foo.com/bar.html'
         
@@ -96,7 +91,6 @@ module Poodle
         
         def test_skip_path
             @log.expects(:warn).once.with('Skipping indexing http://www.foo.com/').returns(nil)
-            @log.expects(:info).once.with('Indexed http://www.foo.com/bar.html')
         
             url1 = 'http://www.foo.com/'
             url2 = 'http://www.foo.com/bar.html'
@@ -161,8 +155,6 @@ module Poodle
         end
         
         def test_checksum_no_change
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html')
-
             url = URI.parse('http://www.foo.com/foo.html')
 
             add_expect_uri(url.to_s, "foo")
@@ -182,8 +174,6 @@ module Poodle
         end
         
         def test_checksum_change
-            @log.expects(:info).once.with('Indexed http://www.foo.com/foo.html')
-
             url = URI.parse('http://www.foo.com/foo.html')
 
             add_expect_uri(url.to_s, "foo")

@@ -26,7 +26,11 @@ module Poodle
                         solr_url = URI.join(@solr.to_s, "update/extract?literal.id=#{id}&commit=true&literal.url=#{CGI.escape(uri.to_s)}")
                     end
                     solr_args = "--silent \"#{solr_url}\" -H '#{CGI.escape("Content-type:" + content.content_type)}' -F \"myfile=@#{Pathname.new(temp_file.path)}\""
-                    @log.warn("#{uri} Curl failed") unless SolrIndexer.curl(solr_args)
+                    if SolrIndexer.curl(solr_args)
+                        @log.info("Indexed #{uri}")
+                    else
+                        @log.warn("#{uri} Curl failed")
+                    end
                 else
                     @log.info("Skipped indexing as checksum hasn't changed #{uri}")
                 end
