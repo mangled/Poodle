@@ -9,7 +9,7 @@ namespace :doc do
   desc 'Generate documentation'
   YARD::Rake::YardocTask.new(:yard) do |yt|
     yt.files   = []
-    yt.options = ['--output-dir', dest, '-', 'INSTALLATION.md', 'TODO.md', 'INSTALLATION_WINDOWS.md', 'INSTALLATION_UBUNTU.md']
+    yt.options = ['--output-dir', dest, '--readme', 'README.md', '-', 'INSTALLATION.md', 'TODO.md', 'INSTALLATION_WINDOWS.md', 'INSTALLATION_UBUNTU.md']
   end
 end
 

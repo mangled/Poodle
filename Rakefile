@@ -14,13 +14,13 @@ namespace :doc do
 
   desc 'Copy media for documentation'
   task :media do
-    cp './poodle/public/images/poodle.jpg', './doc/rdoc/'
+    cp './poodle.jpg', './doc/rdoc/'
   end
 
   desc 'Generate overview documentation'
   YARD::Rake::YardocTask.new(:overview) do |yt|
     yt.files   = []
-    yt.options = ['--output-dir', dest, '--readme', 'README.md', '-', 'VERSION.md', 'CHANGES.md']
+    yt.options = ['--output-dir', dest, '-', 'VERSION.md', 'CHANGES.md']
   end
 
   desc 'Generate *all* api documentation'
@@ -33,7 +33,7 @@ namespace :doc do
   end
 
   desc 'Generate *all* documentation'
-  task :all => [:yard, :overview, :media] do
+  task :all => [:overview, :yard, :media] do
   end
 
 end
