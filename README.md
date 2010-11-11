@@ -1,7 +1,7 @@
-<img src="./poodle.jpg" alt="Poodle" width="96" height="96"/>
+<img src="poodle.jpg" alt="Poodle" width="96" height="96"/>
 
-[Poodle]
-========
+Poodle
+======
 
 Poodle is collection of ruby based "tools" which work collectively with Apache Solr to produce a simple intranet search tool. It is similar to the Java based Nutch search tool - Although at present nowhere near as rounded.
 
