@@ -26,7 +26,7 @@ module Poodle
 
         urls_to_crawl = WorkQueue.new
         trap("INT") { urls_to_crawl.kill(true) }
-        cache.populate(urls_to_crawl)
+        cache.populate(urls_to_crawl) if options[:cache_enabled]
         
         # Add after populate - won't add if the uri is present
         urls_to_crawl.add(options[:url], "", nil)
@@ -38,10 +38,12 @@ module Poodle
         end
         workers.all_waits
 
-        # There are smarter ways or finding unused items!
         processed = urls_to_crawl.processed
-        cache.delete
-        cache.add(processed)
+        if options[:cache_enabled]
+            # There are smarter ways or finding unused items!
+            cache.delete
+            cache.add(processed)
+        end
 
         logger.info("Crawled #{processed.length} url(s) in #{(Time.now - started_at)/60.0} minutes")
     end

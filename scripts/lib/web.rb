@@ -32,7 +32,8 @@ module Poodle
                     new_links.each {|link| urls.add(link[0], link[1], nil) }
 
                     if Crawler.should_index?(uri, (params[:index] and indexer))
-                        checksum = indexer.index(uri, content, title, checksum)
+                        last_checksum = params[:cache_enabled] ? checksum : nil
+                        checksum = indexer.index(uri, content, title, last_checksum)
                     else
                         params[:log].warn("Skipping indexing #{uri}")  unless params[:quiet]
                     end

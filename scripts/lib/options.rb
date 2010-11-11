@@ -18,9 +18,10 @@ module Poodle
             options[:from] = "foo@bar.com"
             options[:threads] = 1
             options[:wait] = 1
+            options[:cache_enabled] = false
             options
         end
-        
+
         def CrawlerOptions.get_options(args)
             options = CrawlerOptions.default
 
@@ -38,6 +39,7 @@ module Poodle
                 opts.on("-w N", "--wait N", Integer, "Wait N seconds between each fetch") {|n| options[:wait] = n }
                 opts.on("-e", "--index", "Crawl AND index the content") { |v| options[:index] = v }
                 opts.on("-q", "--quiet", "Reduce log messages to informational only") { |q| options[:quiet] = q }
+                opts.on("--local-cache", "Enable local caching of data (off by default)") {|l| options[:cache_enabled] = l }
                 opts.on("-h N", "--threads N", Integer, "Set number of crawler threads to use") {|t| options[:threads] = t}
                 opts.on("--yuk", "Horrible hack to fix poor CDATA termination, specific to a site - fix") {|y| options[:yuk] = y }
                 opts.on_tail("-h", "--help", "Show this message") do

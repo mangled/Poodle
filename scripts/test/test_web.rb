@@ -162,6 +162,21 @@ module Poodle
 
             indexer_expectations = []
             indexer_expectations << lambda do |hash|
+                assert_equal nil, hash[:checksum]
+                "cheese is the checksum"
+            end
+
+            indexer = FakeIndexer.new(indexer_expectations)
+            
+            queue = Poodle::WorkQueue.new([url, "", "cheese is the checksum"])
+            assert_equal 1, crawl_with_params(p, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal "cheese is the checksum", queue.processed[0][2]
+            
+            add_expect_uri(url.to_s, "foo")
+            p = {:cache_enabled => true}.merge(params(url.to_s))
+
+            indexer_expectations = []
+            indexer_expectations << lambda do |hash|
                 assert_equal "cheese is the checksum", hash[:checksum]
                 "cheese is the checksum"
             end
@@ -169,7 +184,7 @@ module Poodle
             indexer = FakeIndexer.new(indexer_expectations)
             
             queue = Poodle::WorkQueue.new([url, "", "cheese is the checksum"])
-            assert_equal 1, crawl(url.to_s, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal 1, crawl_with_params(p, indexer, Poodle::Analyzer.new, queue).length
             assert_equal "cheese is the checksum", queue.processed[0][2]
         end
         
@@ -181,6 +196,21 @@ module Poodle
 
             indexer_expectations = []
             indexer_expectations << lambda do |hash|
+                assert_equal nil, hash[:checksum]
+                "sandwich is the checksum"
+            end
+
+            indexer = FakeIndexer.new(indexer_expectations)
+            
+            queue = Poodle::WorkQueue.new([url, "", "cheese was the checksum"])
+            assert_equal 1, crawl_with_params(p, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal "sandwich is the checksum", queue.processed[0][2]
+
+            add_expect_uri(url.to_s, "foo")
+            p = {:cache_enabled => true}.merge(params(url.to_s))
+
+            indexer_expectations = []
+            indexer_expectations << lambda do |hash|
                 assert_equal "cheese was the checksum", hash[:checksum]
                 "sandwich is the new checksum"
             end
@@ -188,7 +218,7 @@ module Poodle
             indexer = FakeIndexer.new(indexer_expectations)
             
             queue = Poodle::WorkQueue.new([url, "", "cheese was the checksum"])
-            assert_equal 1, crawl(url.to_s, indexer, Poodle::Analyzer.new, queue).length
+            assert_equal 1, crawl_with_params(p, indexer, Poodle::Analyzer.new, queue).length
             assert_equal "sandwich is the new checksum", queue.processed[0][2]
         end
 
@@ -211,6 +241,11 @@ module Poodle
         
         def crawl(url, indexer = FakeIndexer.new, analyzer = Poodle::Analyzer.new, queue = Poodle::WorkQueue.new([URI.parse(url), ""]))
             Crawler.crawl(params(url), indexer, analyzer, queue)
+            queue.processed
+        end
+        
+        def crawl_with_params(params, indexer = FakeIndexer.new, analyzer = Poodle::Analyzer.new, queue = Poodle::WorkQueue.new([URI.parse(url), ""]))
+            Crawler.crawl(params, indexer, analyzer, queue)
             queue.processed
         end
 

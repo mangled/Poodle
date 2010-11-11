@@ -49,13 +49,18 @@ module Poodle
       test_opt("-q", "--quiet", true, :quiet)
       test_opt("-h", "--threads", "3", :threads, 3)
       test_opt("--yuk", "--yuk", true, :yuk)
+      test_opt(nil, "--local-cache", true, :cache_enabled)
     end
   
     def test_opt(short, long, value, option, converted_value = nil)
-      options = CrawlerOptions.get_options(@opts + [short, value])
-      assert_equal converted_value ? converted_value : value, options[option]
-      options = CrawlerOptions.get_options(@opts + [long, value])
-      assert_equal converted_value ? converted_value : value, options[option]
+      if short
+        options = CrawlerOptions.get_options(@opts + [short, value])
+        assert_equal converted_value ? converted_value : value, options[option]
+      end
+      if long
+        options = CrawlerOptions.get_options(@opts + [long, value])
+        assert_equal converted_value ? converted_value : value, options[option]
+      end
     end
     
     def test_defaults
@@ -70,6 +75,7 @@ module Poodle
       assert_equal "foo@bar.com", options.delete(:from)
       assert_equal 1, options.delete(:wait)
       assert_equal 1, options.delete(:threads)
+      assert_equal false, options.delete(:cache_enabled)
       assert_equal 0, options.length
     end
   end
