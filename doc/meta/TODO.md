@@ -5,7 +5,6 @@ This is the current "to-do" list for release 1.0. If you wish to contribute, the
 
 1. Update the crawler to index files/folders (really - just crawl web front ends to file systems? Nice to have for now?)
 2. Add a check in the crawler for url length > 1024 - Basically improve cycle checking
-3. Keep a local database to check dates/content => no re-index (at least to Solr) unless stale
 4. RSS feeds/news via AJAX on the right of the poodle search page
 5. Want to index, newsgroups, Version1/Trac...
 6. Move Solr to non-example folder etc.
@@ -20,7 +19,6 @@ This is the current "to-do" list for release 1.0. If you wish to contribute, the
 16. Returned highlight text has, remove any leading/trailing ".\":()" etc. (don't knacker emphasis though)
 17. Offer links from solr results? Solr provides links for the content, possibly add a "+" option to get at them?
 18. Unit test terms such as "R&D"
-19. Crawler needs re-factoring - Want to mix-in site specific content indexing
 20. Extend solr tests for text formatting - I have added empty title and <> checks and limit keywords to three.
 21. Add tests for open-search
 22. Improve word wrap function, needs to remove space on newlines and the tests are pants :-)
