@@ -1,4 +1,4 @@
-<img src="poodle.jpg" alt="Poodle" width="96" height="96"/>
+<img src="https://github.com/mangled/Poodle/raw/0.9.1/poodle.jpg" alt="Poodle" width="96" height="96"/>
 
 Poodle
 ======

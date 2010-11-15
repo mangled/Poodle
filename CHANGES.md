@@ -10,10 +10,10 @@ None: Initial release
 -----
 
 - Crawler:
-    - Code somewhat tidier
+    - Code somewhat tidier, expanded coverage of unit tests
     - Supports multiple threads
     - Supports local caching of crawl times and content checksums (off by default)
-    - Added an accept option
+    - Added an accept option e.g. to only accept specific url's
     - Removed the depth option
 
 - Web server:
