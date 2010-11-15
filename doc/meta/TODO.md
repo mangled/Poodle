@@ -5,7 +5,7 @@ This is the current "to-do" list for release 1.0. If you wish to contribute, the
 
 01. Update the crawler to index files/folders (*really* - just crawl web front ends to file systems? Nice to have for now?)
 02. Add a check in the crawler for url length > 1024 - Basically improve cycle checking
-04. RSS feeds/news via AJAX on the right of the poodle search page
+04. RSS feeds/news via AJAX on the right of the poodle search page. Suggest using http://railscasts.com/episodes/128-starling-and-workling in the background to parse the title's and url's from feeds and put in the database. When a user visits the page the last "x" titles are displayed.
 05. Want to index, outlook newsgroups (folders), Trac...
 06. Move Solr to non-example folder etc.
 08. Add a new field to categorise content crawler -f "wiki" or -f "blog", this allows material specific queries
