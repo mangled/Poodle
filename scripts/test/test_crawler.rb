@@ -32,14 +32,11 @@ module Poodle
       
       Crawler.expects(:crawl).returns(nil)
 
-      started_at = Time.parse("2000-01-01")
+      Cache.expects(:from_path).never
 
-      cache = Cache.new(options[:url], started_at)
-      cache.expects(:populate).never
-      cache.expects(:delete).never
-      cache.expects(:add).never
+      started_at = Time.parse("2000-01-01")
       
-      Poodle.crawl(options, cache, started_at, logger)
+      Poodle.crawl(options, started_at, logger)
     end
 
     def test_crawl_cache_enabled
@@ -54,7 +51,6 @@ module Poodle
     
       queue = mock()
       queue.expects(:add).with(options[:url], "", nil)
-      queue.expects("last_crawled_site_at=").with(nil)
       queue.expects(:processed).returns(["hello"])
     
       WorkQueue.expects(:new).with(nil).returns(queue)
@@ -63,11 +59,13 @@ module Poodle
     
       started_at = Time.parse("2000-01-01")
     
-      cache = Cache.new(options[:url], started_at)
+      cache = mock()
+      cache.expects(:populate)
       cache.expects(:delete)
       cache.expects(:add).with(["hello"])
+      Cache.expects(:from_path).once.returns(cache)
       
-      Poodle.crawl(options, cache, started_at, logger)
+      Poodle.crawl(options, started_at, logger)
     end
 
   end

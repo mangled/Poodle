@@ -12,7 +12,7 @@ require 'synchronization'
 require 'options'
 
 module Poodle
-    def Poodle.crawl(options, cache, started_at, logger)
+    def Poodle.crawl(options, started_at, logger)
 
         options[:log] = logger
     
@@ -26,8 +26,10 @@ module Poodle
 
         urls_to_crawl = WorkQueue.new
         trap("INT") { urls_to_crawl.kill(true) }
-        cache.populate(urls_to_crawl) if options[:cache_enabled]
         
+        cache = Poodle::Cache.from_path(options[:url], started_at, ".") if options[:cache_enabled]
+        cache.populate(urls_to_crawl) if cache
+
         # Add after populate - won't add if the uri is present
         urls_to_crawl.add(options[:url], "", nil)
 
@@ -39,11 +41,10 @@ module Poodle
         workers.all_waits
 
         processed = urls_to_crawl.processed
-        if options[:cache_enabled]
-            # There are smarter ways or finding unused items!
-            cache.delete
+        if cache            
+            cache.delete # There are smarter ways or finding unused items!
             cache.add(processed)
-        end
+        end # Consider catching exceptions and _ensuring_ cache is deleted
 
         logger.info("Crawled #{processed.length} url(s) in #{(Time.now - started_at)/60.0} minutes")
     end
@@ -65,11 +66,9 @@ if __FILE__ == $0
     else
         Logger.new(STDOUT)
     end
-    
-    cache = Poodle::Cache.from_path(options[:url], started_at, ".")
 
     begin
-        Poodle::crawl(options, cache, started_at, logger)
+        Poodle::crawl(options, started_at, logger)
     rescue Exception => e
         puts "Unhandled exception: #{e}"
         logger.fatal("Unhandled exception: #{e}")
