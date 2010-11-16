@@ -20,6 +20,7 @@ The script is in ruby and it has built in "help". I.e. at a command prompt (in t
             -w, --wait N                     Wait N seconds between each fetch
             -e, --index                      Crawl AND index the content
             -q, --quiet                      Reduce log messages to informational only
+            --local-cache                    Enable local caching of data (off by default)
             -h, --threads N                  Set number of crawler threads to use
             --yuk                            Horrible hack to fix poor CDATA termination, specific to a site - fix
             --help                           Show this message
@@ -37,11 +38,11 @@ An example command line is as follows (as used to index a media-wiki site):
 
 To crawl the example "test-site", you could use the following:
 
-	ruby crawler.rb -h 3 -l mangled.log -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://localhost:8080/blog/index.html" -s "http://localhost:8983/solr/" -i category,tag
+        ruby crawler.rb -h 3 -l mangled.log -e -a "Search-Crawler/1.0" -f "foo@bar.com" -u "http://localhost:8080/blog/index.html" -s "http://localhost:8983/solr/" -i category,tag
 
 You *need* to look at the logs and experiment with indexing as its highly likely you will need to fine tune rejection of URL's. Some site content especially blogs have a large amount of redundant links.
 
-Repeated calls re-index content (updating existing and adding new, deleting old content isn't handled by the crawler, see "Refresh Crawled Content" below).
+Repeated calls re-index content (updating existing and adding new, deleting old content isn't handled by the crawler, see "Refresh Crawled Content" below). The `--local-cache` option is fairly new, so use with caution! It will keep a local database/cache of last crawled times and checksums for a url, this is used to limit the amount of content sent to Solr and in theory improve crawl times considerably (especially if the web-server being crawled supports `If-Modified-Since`).
 
 Once you have crawled some content you can use the Solr "GUI" to query, again I advise looking at the Solr documentation, if you have followed the default installation instructions the service should be at [http://localhost:8983/solr/admin/](http://localhost:8983/solr/admin/). If you crawled my sample blog you should be aware that the crawler needs tweaking to handle blog type content better (i.e. where a site has pages which link to many others), some terms to search for are 'lean' and 'ladder'. You should find better results using internal content.
 
@@ -50,7 +51,7 @@ You should run a cron job or Windows scheduled action to fire off indexing, say 
 Refresh Crawled Content
 -----------------------
 
-I have also written a script which checks the integrity of the Solr content, by checking stored URL's and deleting indexed items whose URL is "bad". This script should be run regularly, but less often than the indexers.
+I have also written a script which checks the integrity of the Solr content, by checking stored URL's and deleting indexed items whose URL is "bad". This script should be run regularly, but far less often than the indexers.
 
 The script is called `purge.rb` and can be found in `./Poodle/script/lib`. Again it has built in help, if you type (in the `./Poodle/script/lib` folder) `purge.rb -h` or `ruby purge.rb -h` you should see something along the lines of:
 

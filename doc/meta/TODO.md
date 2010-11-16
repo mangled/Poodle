@@ -24,5 +24,3 @@ This is the current "to-do" list for release 1.0. If you wish to contribute, the
 22. Improve word wrap function, needs to remove space on newlines and the tests are pants :-)
 23. Solr helper should have options for word-wrap passed in
 24. No docs for code! So add some!!!
-
-
