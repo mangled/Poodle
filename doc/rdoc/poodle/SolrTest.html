@@ -1,0 +1,711 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: SolrTest</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo; 
+    
+    
+    <span class="title">SolrTest</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: SolrTest
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Test::Unit::TestCase</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Test::Unit::TestCase</li>
+          
+            <li class="next">SolrTest</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">test/unit/solr_test.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_title_formatting-instance_method" title="#check_title_formatting (instance method)">- (Object) <strong>check_title_formatting</strong>(doc, expected_title, expected_keywords) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#doc-instance_method" title="#doc (instance method)">- (Object) <strong>doc</strong>(id, url, titles, keywords, crawled_title) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#highlight-instance_method" title="#highlight (instance method)">- (Object) <strong>highlight</strong>(text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_no_connection-instance_method" title="#test_no_connection (instance method)">- (Object) <strong>test_no_connection</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_query_no_results-instance_method" title="#test_query_no_results (instance method)">- (Object) <strong>test_query_no_results</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_query_results_retain_order-instance_method" title="#test_query_results_retain_order (instance method)">- (Object) <strong>test_query_results_retain_order</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_text_stripping-instance_method" title="#test_text_stripping (instance method)">- (Object) <strong>test_text_stripping</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_title_formatting-instance_method" title="#test_title_formatting (instance method)">- (Object) <strong>test_title_formatting</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="check_title_formatting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>check_title_formatting</strong>(doc, expected_title, expected_keywords) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 101</span>
+
+<span class='def def kw'>def</span> <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='comma token'>,</span> <span class='expected_title identifier id'>expected_title</span><span class='comma token'>,</span> <span class='expected_keywords identifier id'>expected_keywords</span><span class='rparen token'>)</span>
+  <span class='term identifier id'>term</span> <span class='assign token'>=</span> <span class='string val'>'bar'</span>
+  <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='string val'>'http://localhost:8983/solr'</span>
+  <span class='start identifier id'>start</span> <span class='assign token'>=</span> <span class='integer val'>4</span>
+  <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='integer val'>10</span>
+
+  <span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:select</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span>
+    <span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:hl=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;on&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;hl.fl&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;search&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;id,url,keywords,title,crawled_title&quot;</span><span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='string val'>&quot;response&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;docs&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='doc identifier id'>doc</span> <span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='string val'>&quot;highlighting&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+  <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:connect</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='solr identifier id'>solr</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span>
+
+  <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='Solr constant id'>Solr</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='rparen token'>)</span>
+  <span class='assert_not_nil identifier id'>assert_not_nil</span> <span class='results identifier id'>results</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>1</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>4</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='expected_keywords identifier id'>expected_keywords</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:keywords</span><span class='rbrack token'>]</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='expected_title identifier id'>expected_title</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:title</span><span class='rbrack token'>]</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:text</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="doc-instance_method">
+  
+    - (<tt>Object</tt>) <strong>doc</strong>(id, url, titles, keywords, crawled_title) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 124</span>
+
+<span class='def def kw'>def</span> <span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='titles identifier id'>titles</span><span class='comma token'>,</span> <span class='keywords identifier id'>keywords</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span><span class='rparen token'>)</span>
+  <span class='lbrace token'>{</span><span class='string val'>&quot;id&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='id identifier id'>id</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='string val'>&quot;title&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='titles identifier id'>titles</span><span class='comma token'>,</span> <span class='string val'>&quot;keywords&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='keywords identifier id'>keywords</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled_title&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='crawled_title identifier id'>crawled_title</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="highlight-instance_method">
+  
+    - (<tt>Object</tt>) <strong>highlight</strong>(text) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 128</span>
+
+<span class='def def kw'>def</span> <span class='highlight identifier id'>highlight</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='lbrace token'>{</span> <span class='string val'>&quot;search&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='text identifier id'>text</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_no_connection-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_no_connection</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 3</span>
+
+<span class='def def kw'>def</span> <span class='test_no_connection identifier id'>test_no_connection</span>
+  <span class='comment val'># Will fail if solr is running on this port! See search_controller_test as it checks this as well</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># DISABLED: Something in rsolr has changed behaviour - Need to investigate</span>
+  <span class='comment val'>#assert_raise(RuntimeError) {</span>
+  <span class='comment val'>#  Solr.find('foo', 'http://localhost:1234/solr', 0, 10)</span>
+  <span class='comment val'>#}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_query_no_results-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_query_no_results</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='test_query_no_results identifier id'>test_query_no_results</span>
+  <span class='term identifier id'>term</span> <span class='assign token'>=</span> <span class='string val'>'foo'</span>
+  <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='string val'>'http://localhost:8983/solr'</span>
+  <span class='start identifier id'>start</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='integer val'>10</span>
+
+  <span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+
+  <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:select</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span>
+    <span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:hl=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;on&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;hl.fl&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;search&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;id,url,keywords,title,crawled_title&quot;</span><span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='string val'>&quot;response&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;docs&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='string val'>&quot;highlighting&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+  <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:connect</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://localhost:8983/solr&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span>
+
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='Solr constant id'>Solr</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_query_results_retain_order-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_query_results_retain_order</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 29</span>
+
+<span class='def def kw'>def</span> <span class='test_query_results_retain_order identifier id'>test_query_results_retain_order</span>
+  <span class='term identifier id'>term</span> <span class='assign token'>=</span> <span class='string val'>'foo'</span>
+  <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='string val'>'http://localhost:8983/solr'</span>
+  <span class='start identifier id'>start</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
+  <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='integer val'>10</span>
+  
+  <span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+
+  <span class='expected_docs identifier id'>expected_docs</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+  <span class='expected_docs identifier id'>expected_docs</span> <span class='lshft op'>&lt;&lt;</span> <span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;3&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;z&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='expected_docs identifier id'>expected_docs</span> <span class='lshft op'>&lt;&lt;</span> <span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;2&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;y&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+  <span class='expected_docs identifier id'>expected_docs</span> <span class='lshft op'>&lt;&lt;</span> <span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;x&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+
+  <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:select</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span>
+    <span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:hl=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;on&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;hl.fl&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;search&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;id,url,keywords,title,crawled_title&quot;</span><span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='string val'>&quot;response&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;docs&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='expected_docs identifier id'>expected_docs</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='string val'>&quot;highlighting&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+
+  <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:connect</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;http://localhost:8983/solr&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span>
+
+  <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='Solr constant id'>Solr</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>3</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;z&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;y&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;x&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>2</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_text_stripping-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_text_stripping</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 82</span>
+
+<span class='def def kw'>def</span> <span class='test_text_stripping identifier id'>test_text_stripping</span>
+  <span class='term identifier id'>term</span> <span class='assign token'>=</span> <span class='string val'>'bar'</span>
+  <span class='solr identifier id'>solr</span> <span class='assign token'>=</span> <span class='string val'>'http://localhost:8983/solr'</span>
+  <span class='start identifier id'>start</span> <span class='assign token'>=</span> <span class='integer val'>4</span>
+  <span class='rows identifier id'>rows</span> <span class='assign token'>=</span> <span class='integer val'>10</span>
+
+  <span class='text identifier id'>text</span> <span class='assign token'>=</span> <span class='string val'>&quot;\t some            space! &quot;</span>
+
+  <span class='connection identifier id'>connection</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='connection identifier id'>connection</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:select</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span>
+    <span class='lbrace token'>{</span><span class='symbol val'>:q</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='symbol val'>:start=</span><span class='gt op'>&gt;</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='symbol val'>:rows=</span><span class='gt op'>&gt;</span> <span class='rows identifier id'>rows</span><span class='comma token'>,</span> <span class='symbol val'>:wt</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:ruby</span><span class='comma token'>,</span> <span class='symbol val'>:hl=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;on&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;hl.fl&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;search&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:fl</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span><span class='string val'>&quot;id,url,keywords,title,crawled_title&quot;</span><span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='string val'>&quot;response&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;docs&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span> <span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span> <span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='string val'>&quot;highlighting&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span> <span class='string val'>&quot;1&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='highlight identifier id'>highlight</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  
+  <span class='RSolr constant id'>RSolr</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:connect</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='solr identifier id'>solr</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='connection identifier id'>connection</span><span class='rparen token'>)</span>
+
+  <span class='results identifier id'>results</span> <span class='assign token'>=</span> <span class='Solr constant id'>Solr</span><span class='dot token'>.</span><span class='find identifier id'>find</span><span class='lparen token'>(</span><span class='term identifier id'>term</span><span class='comma token'>,</span> <span class='solr identifier id'>solr</span><span class='comma token'>,</span> <span class='start identifier id'>start</span><span class='comma token'>,</span> <span class='rows identifier id'>rows</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='string val'>&quot;some space!&quot;</span><span class='comma token'>,</span> <span class='results identifier id'>results</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='symbol val'>:text</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_title_formatting-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_title_formatting</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'test/unit/solr_test.rb', line 55</span>
+
+<span class='def def kw'>def</span> <span class='test_title_formatting identifier id'>test_title_formatting</span>
+  <span class='comment val'># id, url, titles, keywords, crawled_title</span>
+  
+  <span class='comment val'># If the crawled title is present use it</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;b&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;b&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># If a solr title exists then use it</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;b&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;f&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;x&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;f&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;x&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;v&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;x,y&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;v&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;x&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;y&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  
+  <span class='comment val'># Check keywords not in title</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;a&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;crawled title&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;v&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;v&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;v&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;v&quot;</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;x,v&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;v&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;x&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># Else use the first keyword, or if we have to the url</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;a,b&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;b&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='check_title_formatting identifier id'>check_title_formatting</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='lparen token'>(</span><span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;url&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;a,b,c&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;a&quot;</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>&quot;b&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;c&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Nov 20 10:49:03 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

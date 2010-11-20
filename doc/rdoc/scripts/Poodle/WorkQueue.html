@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf8" />
+<title>Class: Poodle::WorkQueue</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (W)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Poodle.html" title="Poodle (module)">Poodle</a></span></span>
+     &raquo; 
+    <span class="title">WorkQueue</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Poodle::WorkQueue
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Poodle::WorkQueue</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_crawled_site_at-instance_method" title="#last_crawled_site_at (instance method)">- (Object) <strong>last_crawled_site_at</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute last_crawled_site_at.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add-instance_method" title="#add (instance method)">- (Object) <strong>add</strong>(uri, referer, checksum) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Bad name - It only adds new/unseen.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#done%3F-instance_method" title="#done? (instance method)">- (Boolean) <strong>done?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (WorkQueue) <strong>initialize</strong>(initial = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of WorkQueue.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#kill-instance_method" title="#kill (instance method)">- (Object) <strong>kill</strong>(with_message = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#processed-instance_method" title="#processed (instance method)">- (Object) <strong>processed</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove-instance_method" title="#remove (instance method)">- (Object) <strong>remove</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unique_id-instance_method" title="#unique_id (instance method)">- (Object) <strong>unique_id</strong>(uri) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Poodle::WorkQueue (class)">WorkQueue</a></span></tt>) <strong>initialize</strong>(initial = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of WorkQueue
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14
+15
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 12</span>
+
+<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='initial identifier id'>initial</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
+    <span class='@done ivar id'>@done</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+    <span class='@items ivar id'>@items</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='@processed ivar id'>@processed</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='@crawled ivar id'>@crawled</span> <span class='assign token'>=</span> <span class='Set constant id'>Set</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+    <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='extend identifier id'>extend</span><span class='lparen token'>(</span><span class='MonitorMixin constant id'>MonitorMixin</span><span class='rparen token'>)</span>
+    <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='initial identifier id'>initial</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='initial identifier id'>initial</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='initial identifier id'>initial</span><span class='lbrack token'>[</span><span class='integer val'>2</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='initial identifier id'>initial</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="last_crawled_site_at=-instance_method"></span>
+      <span id="last_crawled_site_at-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="last_crawled_site_at-instance_method">
+  
+    - (<tt>Object</tt>) <strong>last_crawled_site_at</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute last_crawled_site_at
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 10</span>
+
+<span class='def def kw'>def</span> <span class='last_crawled_site_at identifier id'>last_crawled_site_at</span>
+  <span class='@last_crawled_site_at ivar id'>@last_crawled_site_at</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="add-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add</strong>(uri, referer, checksum) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Bad name - It only adds new/unseen
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 22</span>
+
+<span class='def def kw'>def</span> <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='referer identifier id'>referer</span><span class='comma token'>,</span> <span class='checksum identifier id'>checksum</span><span class='rparen token'>)</span>
+    <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='synchronize identifier id'>synchronize</span> <span class='do do kw'>do</span>
+        <span class='id identifier id'>id</span> <span class='assign token'>=</span> <span class='unique_id identifier id'>unique_id</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span>
+        <span class='unless unless kw'>unless</span> <span class='@crawled ivar id'>@crawled</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+            <span class='@items ivar id'>@items</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='referer identifier id'>referer</span><span class='comma token'>,</span> <span class='checksum identifier id'>checksum</span><span class='rbrack token'>]</span>
+            <span class='@crawled ivar id'>@crawled</span><span class='dot token'>.</span><span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='id identifier id'>id</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="done?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>done?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 47</span>
+
+<span class='def def kw'>def</span> <span class='done? fid id'>done?</span>
+    <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='synchronize identifier id'>synchronize</span> <span class='lbrace token'>{</span> <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='or or kw'>or</span> <span class='@done ivar id'>@done</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="kill-instance_method">
+  
+    - (<tt>Object</tt>) <strong>kill</strong>(with_message = false) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 51</span>
+
+<span class='def def kw'>def</span> <span class='kill identifier id'>kill</span><span class='lparen token'>(</span><span class='with_message identifier id'>with_message</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Shutting down work queue(s)...&quot;</span> <span class='if if_mod kw'>if</span> <span class='with_message identifier id'>with_message</span>
+    <span class='@done ivar id'>@done</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="processed-instance_method">
+  
+    - (<tt>Object</tt>) <strong>processed</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 56</span>
+
+<span class='def def kw'>def</span> <span class='processed identifier id'>processed</span>
+    <span class='@processed ivar id'>@processed</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="remove-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 32</span>
+
+<span class='def def kw'>def</span> <span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='yielded identifier id'>yielded</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+    <span class='item identifier id'>item</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
+    <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='synchronize identifier id'>synchronize</span> <span class='do do kw'>do</span>
+        <span class='item identifier id'>item</span> <span class='assign token'>=</span> <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='shift identifier id'>shift</span>
+        <span class='if if kw'>if</span> <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+            <span class='@processed ivar id'>@processed</span> <span class='lshft op'>&lt;&lt;</span> <span class='lparen token'>(</span><span class='yield yield kw'>yield</span> <span class='item identifier id'>item</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='lparen token'>(</span><span class='block_given? fid id'>block_given?</span> <span class='and and kw'>and</span> <span class='item identifier id'>item</span><span class='rparen token'>)</span>
+            <span class='yielded identifier id'>yielded</span> <span class='assign token'>=</span> <span class='true true kw'>true</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='if if kw'>if</span> <span class='lparen token'>(</span><span class='block_given? fid id'>block_given?</span> <span class='and and kw'>and</span> <span class='not not kw'>not</span> <span class='yielded identifier id'>yielded</span><span class='rparen token'>)</span>
+        <span class='@processed ivar id'>@processed</span> <span class='lshft op'>&lt;&lt;</span> <span class='lparen token'>(</span><span class='yield yield kw'>yield</span> <span class='item identifier id'>item</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="unique_id-instance_method">
+  
+    - (<tt>Object</tt>) <strong>unique_id</strong>(uri) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 60</span>
+
+<span class='def def kw'>def</span> <span class='unique_id identifier id'>unique_id</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span>
+    <span class='digest identifier id'>digest</span> <span class='assign token'>=</span> <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='normalize identifier id'>normalize</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
+    <span class='digest identifier id'>digest</span><span class='dot token'>.</span><span class='hexdigest identifier id'>hexdigest</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sat Nov 20 10:49:20 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.1 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
