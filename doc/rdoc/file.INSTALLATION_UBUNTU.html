@@ -66,6 +66,16 @@
     <span class='pow op'>**</span><span class='mult op'>*</span> <span class='LOCAL constant id'>LOCAL</span> <span class='GEMS constant id'>GEMS</span> <span class='pow op'>**</span><span class='mult op'>*</span>
 </pre>
 
+<p>I also need to update the version of gems installed through ubuntu:</p>
+
+<pre class="code">    <span class='xstring val'>`sudo gem install rubygems-update`</span>
+</pre>
+
+<p>Then (and <em>note</em> this step will remove any existing gems, also I had to use the full path to the gems bin folder e.g. <code>sudo /var/lib/gems/1.8/bin/update_rubygems</code>)</p>
+
+<pre class="code">    <span class='xstring val'>`sudo update_rubygems`</span>
+</pre>
+
 <p>Finally, you might need to add gems to your path to get them to run.</p>
 
 <p>Type: <code>gem environment</code> and look at the executable directory, the chances are it isn't on your path. You can (in the short term i.e. for the duration of your shell) type the following, <code>export PATH=$PATH:/var/lib/gems/1.8/bin</code> (for example), or place it into your <code>.bashrc</code> or <code>.profile</code> file.</p>
@@ -80,6 +90,11 @@
 <p>This is required to build native gems (note it ties to the ruby (major) version):</p>
 
 <pre class="code">    <span class='xstring val'>`sudo apt-get install ruby1.8-dev`</span>
+</pre>
+
+<p>This is alsi required:</p>
+
+<pre class="code">    <span class='xstring val'>`sudo apt-get install libopenssl-ruby1.8`</span>
 </pre>
 
 <h2><a href="http://curl.haxx.se/download.html">Curl</a></h2>
@@ -111,7 +126,7 @@
 <p>With the above installed you need to pull in the required gems and fetch/configure Apache Solr, return to <a href="file.INSTALLATION.html#Set-up_Environment">Common/Remaining Set-up</a> and follow the instructions.</p></div></div>
     
     <div id="footer">
-  Generated on Sat Nov 20 10:48:51 2010 by 
+  Generated on Sun Nov 21 18:44:47 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

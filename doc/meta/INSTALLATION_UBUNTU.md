@@ -23,6 +23,14 @@ You will also need to install ruby gems
 
 		*** LOCAL GEMS ***
 
+I also need to update the version of gems installed through ubuntu:
+
+        `sudo gem install rubygems-update`
+
+Then (and *note* this step will remove any existing gems, also I had to use the full path to the gems bin folder e.g. `sudo /var/lib/gems/1.8/bin/update_rubygems`)
+
+        `sudo update_rubygems`
+
 Finally, you might need to add gems to your path to get them to run.
 
 Type: `gem environment` and look at the executable directory, the chances are it isn't on your path. You can (in the short term i.e. for the duration of your shell) type the following, `export PATH=$PATH:/var/lib/gems/1.8/bin` (for example), or place it into your `.bashrc` or `.profile` file.
@@ -37,6 +45,10 @@ This might not be required, but I'm paranoid!
 This is required to build native gems (note it ties to the ruby (major) version):
 
 		`sudo apt-get install ruby1.8-dev`
+
+This is alsi required:
+
+        `sudo apt-get install libopenssl-ruby1.8`
 
 [Curl](http://curl.haxx.se/download.html)
 ------
