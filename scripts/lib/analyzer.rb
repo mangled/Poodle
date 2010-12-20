@@ -50,14 +50,16 @@ module Poodle
     
             if content.content_type == 'text/html'
                 begin
+                    # !!! Arg. some CDATA seems to stuff hpricot, so remove it
+                    formatted_content = content.readlines.join('')
                     # !!! Arg. one of the sites I'm indexing has badly terminated CDATA, this is horrid!!!
-                    doc =
                     if params[:yuk]
-                        Hpricot(content.readlines.to_s.gsub('/* ]] */', '/* ]]> */'))
-                    else
-                        Hpricot(content)
+                        formatted_content = formatted_content.gsub('/* ]] */', '/* ]]> */')
                     end
-    
+                    rm_cdata = /\/\*<!\[CDATA\[\*\/(.*?)\/\*\]\]>\*\//im
+                    formatted_content = formatted_content.gsub(rm_cdata, '')
+                    
+                    doc = Hpricot(formatted_content)
                     doc.search("[@href]").each do |page_url|
                         begin
                             link = URI.parse(page_url.attributes['href'])
