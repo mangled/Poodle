@@ -30,7 +30,7 @@ module Poodle
                 assert_equal [to_href("http://www.foo.com/hello.html")], content.readlines
             end
         end
-    
+        
         def test_with_link
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/", to_href("http://www.foo.com/hello.html"))
@@ -40,7 +40,7 @@ module Poodle
                 assert_equal [to_href("http://www.foo.com/hello.html")], content.readlines
             end
         end
-
+        
         def test_no_cross_site
             @log.expects(:warn).once.with('Skipping as host differs http://www.bar.com/hello.html')
             p = { :log => @log, :user_agent => "007", :from => "mars" }
@@ -51,7 +51,7 @@ module Poodle
                 assert_equal [to_href("http://www.bar.com/hello.html")], content.readlines
             end
         end
-
+        
         def test_follow_only_http_links
             @log.expects(:warn).once.with('Skipping as non-http file://hello.html')
             p = { :log => @log, :user_agent => "007", :from => "mars" }
@@ -60,6 +60,27 @@ module Poodle
                 assert_equal nil, crawled_title
                 assert_equal([], new_links)
                 assert_equal [to_href("file://hello.html")], content.readlines
+            end
+        end
+    
+        def test_stay_in_root_uri_scope
+            @log.expects(:warn).once.with('Skipping as path outside root scope http://www.foo.com/a/c/')
+            root = "http://www.foo.com/a/b/index.htm"
+            uri = "http://www.foo.com/a/b/foo.txt"
+            p = { :url => URI.parse(root), :log => @log, :user_agent => "007", :from => "mars", :scope_uri => true }
+            add_expect_uri(uri, to_href("http://www.foo.com/a/c/"))
+            Analyzer.new().extract_links(URI.parse(uri), "peter pan", nil, p) do |crawled_title, new_links, content|
+                assert_equal nil, crawled_title
+                assert_equal([], new_links)
+            end
+            
+            @log.expects(:warn).once.with('Skipping as path outside root scope http://www.foo.com/a/c/bar.txt')
+            uri = "http://www.foo.com/a/b/foo.txt"
+            p = { :url => URI.parse(root), :log => @log, :user_agent => "007", :from => "mars", :scope_uri => true }
+            add_expect_uri(uri, to_href("../c/bar.txt"))
+            Analyzer.new().extract_links(URI.parse(uri), "peter pan", nil, p) do |crawled_title, new_links, content|
+                assert_equal nil, crawled_title
+                assert_equal([], new_links)
             end
         end
     
@@ -73,7 +94,7 @@ module Poodle
                 assert_equal [to_href(":bar:foo")], content.readlines
             end
         end
-    
+        
         def test_no_links
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/")
@@ -83,7 +104,7 @@ module Poodle
                 assert_equal ['Hello world'], content.readlines
             end
         end
-    
+        
         def test_head_title
             body = '<html><head><title>Fish Head!</title></head></html>'
             p = { :log => @log, :user_agent => "007", :from => "mars" }
@@ -91,7 +112,7 @@ module Poodle
             Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "eel man", nil, p) do |crawled_title, new_links, content|
                 assert_equal nil, crawled_title
             end
-    
+        
             # Only store if the strip worked
             p.merge!({ :title_strip => 'Tree!'})
             add_expect_uri("http://www.foo.com/", body)
@@ -105,28 +126,28 @@ module Poodle
                 assert_equal 'Fish', crawled_title
             end
         end
-    
+        
         def test_ideas_title
             body = '<div class="contentheading bh_suggestiontitle">Womble</div>'
-    
+        
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/", body)
-
+        
             Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "eel man", nil, p) do |crawled_title, new_links, content|
                 assert_equal 'Womble', crawled_title
             end
-
+        
             add_expect_uri("http://www.foo.com/", body + body)
             Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "fish man", nil, p) do |crawled_title, new_links, content|
                 assert_equal nil, crawled_title
             end
         end
-    
+        
         def test_blog_title
             body = '<div class="post-title"><h1><a href="foo">Womble</a></h1></div>'
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/", body)
-
+        
             Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "squid man", nil, p) do |crawled_title, new_links, content|
                 assert_equal 'Womble', crawled_title
             end
@@ -136,7 +157,7 @@ module Poodle
                 assert_equal nil, crawled_title
             end
         end
-    
+        
         def test_handles_not_modified_304
             @log.expects(:info).twice.with('Content hasn\'t changed since last crawl http://www.foo.com/bar.html')
             p = { :log => @log, :user_agent => "007", :from => "mars" }
@@ -152,12 +173,12 @@ module Poodle
         
         def test_last_crawled_at
             p = { :log => @log, :user_agent => "007", :from => "mars" }
-
+        
             last_crawled_at = Time.parse("2010-01-01")
             uri = URI.parse("http://www.foo.com/bar.html")
             uri.expects(:open).with({'From' => 'mars', 'User-Agent' => '007', 'If-Modified-Since' => last_crawled_at.to_s, 'Referer' => 'peter pan'})
             uri.expects(:open).with({'From' => 'mars', 'User-Agent' => '007', 'Referer' => 'peter pan'})            
-
+        
             analyzer = Analyzer.new()
             analyzer.expects(:analyze).twice.with(uri, nil, p)            
             analyzer.extract_links(uri, "peter pan", nil, p) {|content| assert_equal [nil, nil, nil], content }

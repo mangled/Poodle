@@ -66,7 +66,17 @@ module Poodle
                             link = uri.merge(link) if link.relative?
                             if link.scheme == 'http'
                                 if uri.host == link.host # Stay in same site: By design, relax/remove this at your own risk
-                                    links << [link, uri] unless links.include? link
+                                    if params[:scope_uri]
+                                        root_path = params[:url].path.match(/.*\//)
+                                        link_path = link.path.match(/.*\//)
+                                        if root_path and link_path and link_path[0].include?(root_path[0])
+                                            links << [link, uri] unless links.include? link
+                                        else
+                                            log.warn("Skipping as path outside root scope #{link}") unless params[:quiet]
+                                        end
+                                    else
+                                        links << [link, uri] unless links.include? link
+                                    end
                                 else
                                     log.warn("Skipping as host differs #{link}") unless params[:quiet]
                                 end
@@ -78,8 +88,8 @@ module Poodle
                         end
                     end
                     crawled_title = find_title(doc, params[:title_strip])
-                rescue
-                    log.warn("Error extracting links for #{uri}")
+                #rescue
+                    #log.warn("Error extracting links for #{uri}")
                 ensure
                     content.rewind
                 end

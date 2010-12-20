@@ -15,7 +15,7 @@ module Poodle
         end
         
         def Cache.from_path(site_uri, at, path, delete_old = false)
-            filename = File.join(path, site_uri.host.gsub(/\./, '_'))
+            filename = File.join(path, (site_uri.host + "/" + site_uri.path).gsub(/\W/, '_'))
             File.delete(filename) if delete_old and File.exists?(filename)
             db = SQLite3::Database.new(filename)
             Cache.new(site_uri, at, db)

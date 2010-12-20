@@ -43,12 +43,12 @@ module Poodle
         at = Time.parse("2001-01-01")
         path = "~/home/foo/"
         
-        SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com')).returns("not a real db")
+        SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com__foo_html')).returns("not a real db")
         Cache.expects(:new).with(uri, at, "not a real db").returns(nil)
         Cache.from_path(uri, at, path)
         
         path = "~/home/bar"
-        SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com')).returns("not a real db")
+        SQLite3::Database.expects(:new).with(File.join(path, 'www_rat_com__foo_html')).returns("not a real db")
         Cache.expects(:new).with(uri, at, "not a real db").returns(nil)
         Cache.from_path(uri, at, path)
     end

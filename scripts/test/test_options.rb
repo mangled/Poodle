@@ -50,6 +50,7 @@ module Poodle
       test_opt("-h", "--threads", "3", :threads, 3)
       test_opt("--yuk", "--yuk", true, :yuk)
       test_opt(nil, "--local-cache", true, :cache_enabled)
+      test_opt(nil, "--scope-to-root", true, :scope_uri)
     end
   
     def test_opt(short, long, value, option, converted_value = nil)

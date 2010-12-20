@@ -39,6 +39,7 @@ module Poodle
                 opts.on("-w N", "--wait N", Integer, "Wait N seconds between each fetch") {|n| options[:wait] = n }
                 opts.on("-e", "--index", "Crawl AND index the content") { |v| options[:index] = v }
                 opts.on("-q", "--quiet", "Reduce log messages to informational only") { |q| options[:quiet] = q }
+                opts.on("--scope-to-root", "Only index if uri matches, completely, the initial root url path") { |s| options[:scope_uri] = true }
                 opts.on("--local-cache", "Enable local caching of data (off by default)") {|l| options[:cache_enabled] = l }
                 opts.on("-h N", "--threads N", Integer, "Set number of crawler threads to use") {|t| options[:threads] = t}
                 opts.on("--yuk", "Horrible hack to fix poor CDATA termination, specific to a site - fix") {|y| options[:yuk] = y }
