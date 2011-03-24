@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -329,7 +329,7 @@ Grotty - More of a regression test.
 103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 101</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 101</span>
 
 <span class='def def kw'>def</span> <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'Hello world'</span><span class='comma token'>,</span> <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='string val'>&quot;text/html&quot;</span><span class='comma token'>,</span> <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='string val'>&quot;200&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;OK&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='register_uri identifier id'>register_uri</span><span class='lparen token'>(</span><span class='symbol val'>:get</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='status identifier id'>status</span><span class='rparen token'>)</span>
@@ -360,7 +360,7 @@ Grotty - More of a regression test.
 109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 105</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 105</span>
 
 <span class='def def kw'>def</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='p identifier id'>p</span><span class='rparen token'>)</span>
     <span class='queue identifier id'>queue</span> <span class='assign token'>=</span> <span class='Poodle constant id'>Poodle</span><span class='colon2 op'>::</span><span class='WorkQueue constant id'>WorkQueue</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='p identifier id'>p</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
@@ -402,7 +402,7 @@ Helpers
 99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 97</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 97</span>
 
 <span class='def def kw'>def</span> <span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
     <span class='lbrace token'>{</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:ignore</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:accept</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:index</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:solr</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@solr ivar id'>@solr</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;me&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;ua&quot;</span> <span class='rbrace token'>}</span>
@@ -433,7 +433,7 @@ Helpers
 31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 27</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 27</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
     <span class='@log ivar id'>@log</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
@@ -471,7 +471,7 @@ Helpers
 81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 72</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 72</span>
 
 <span class='def def kw'>def</span> <span class='test_checksum_differs identifier id'>test_checksum_differs</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.funk.com/'</span><span class='rparen token'>)</span>
@@ -514,7 +514,7 @@ Helpers
 92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 83</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 83</span>
 
 <span class='def def kw'>def</span> <span class='test_checksum_same identifier id'>test_checksum_same</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipped indexing as checksum hasn\'t changed http://www.funk.com/'</span><span class='rparen token'>)</span>
@@ -557,7 +557,7 @@ Helpers
 70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 61</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 61</span>
 
 <span class='def def kw'>def</span> <span class='test_curl_fails identifier id'>test_curl_fails</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'http://www.foo.com/foo.html Curl failed'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -613,7 +613,7 @@ Grotty - More of a regression test
 45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 34</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 34</span>
 
 <span class='def def kw'>def</span> <span class='test_solr_crawler_no_title identifier id'>test_solr_crawler_no_title</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -671,7 +671,7 @@ Grotty - More of a regression test
 59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_indexers.rb', line 48</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_indexers.rb', line 48</span>
 
 <span class='def def kw'>def</span> <span class='test_solr_crawler_with_title identifier id'>test_solr_crawler_with_title</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Indexed http://www.foo.com/foo.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -696,7 +696,7 @@ Grotty - More of a regression test
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:04 2010 by 
+  Generated on Thu Mar 24 21:17:45 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

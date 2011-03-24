@@ -31,6 +31,20 @@ module Poodle
             end
         end
         
+        def test_analyze_frame
+            p = { :log => @log, :user_agent => "007", :from => "mars" }
+            body = '<frameset><frame src="frame1.htm"></frame><frame src="frame2.htm"></frame></frameset>'
+            add_expect_uri("http://www.foo.com/", body)
+            Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "peter pan", nil, p) do |crawled_title, new_links, content|
+                assert_equal nil, crawled_title
+                assert_equal([
+                    [URI.parse("http://www.foo.com/frame1.htm"), URI.parse("http://www.foo.com/")],
+                    [URI.parse("http://www.foo.com/frame2.htm"), URI.parse("http://www.foo.com/")]
+                ], new_links)
+                assert_equal [body], content.readlines
+            end
+        end
+        
         def test_with_link
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/", to_href("http://www.foo.com/hello.html"))

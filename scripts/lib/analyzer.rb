@@ -32,6 +32,7 @@ module Poodle
                     uri.open("User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => referer.to_s)
                 end
                 crawled_title, new_links = analyze(uri, content, params)
+
                 yield [crawled_title, new_links, content]
             rescue OpenURI::HTTPError => e
                 if e.io.status[0]  == '304'
@@ -47,7 +48,7 @@ module Poodle
             log = params[:log]
             crawled_title = nil
             links = []
-    
+
             if content.content_type == 'text/html'
                 begin
                     # !!! Arg. some CDATA seems to stuff hpricot, so remove it
@@ -58,34 +59,17 @@ module Poodle
                     end
                     rm_cdata = /\/\*<!\[CDATA\[\*\/(.*?)\/\*\]\]>\*\//im
                     formatted_content = formatted_content.gsub(rm_cdata, '')
-                    
+
                     doc = Hpricot(formatted_content)
+                    
+                    # Search frames
+                    doc.search("frame[@src]").each do |frame|
+                        parse_link(uri, params, links, frame.attributes['src']) if frame.attributes['src']
+                    end
+
+                    # Search single page
                     doc.search("[@href]").each do |page_url|
-                        begin
-                            link = URI.parse(page_url.attributes['href'])
-                            link = uri.merge(link) if link.relative?
-                            if link.scheme == 'http'
-                                if uri.host == link.host # Stay in same site: By design, relax/remove this at your own risk
-                                    if params[:scope_uri]
-                                        root_path = params[:url].path.match(/.*\//)
-                                        link_path = link.path.match(/.*\//)
-                                        if root_path and link_path and link_path[0].include?(root_path[0])
-                                            links << [link, uri] unless links.include? link
-                                        else
-                                            log.warn("Skipping as path outside root scope #{link}") unless params[:quiet]
-                                        end
-                                    else
-                                        links << [link, uri] unless links.include? link
-                                    end
-                                else
-                                    log.warn("Skipping as host differs #{link}") unless params[:quiet]
-                                end
-                            else
-                                log.warn("Skipping as non-http #{link}") unless params[:quiet]
-                            end
-                        rescue URI::InvalidURIError => e
-                            log.warn("Invalid link in page #{uri} : #{e}")
-                        end
+                        parse_link(uri, params, links, page_url.attributes['href'])
                     end
                     crawled_title = find_title(doc, params[:title_strip])
                 #rescue
@@ -95,6 +79,35 @@ module Poodle
                 end
             end
             [crawled_title, links]
+        end
+        
+        def parse_link(uri, params, links, link_text)
+            log = params[:log]
+            begin
+                link = URI.parse(link_text)
+                link = uri.merge(link) if link.relative?
+                if link.scheme == 'http'
+                    if uri.host == link.host # Stay in same site: By design, relax/remove this at your own risk
+                        if params[:scope_uri]
+                            root_path = params[:url].path.match(/.*\//)
+                            link_path = link.path.match(/.*\//)
+                            if root_path and link_path and link_path[0].include?(root_path[0])
+                                links << [link, uri] unless links.include? link
+                            else
+                                log.warn("Skipping as path outside root scope #{link}") unless params[:quiet]
+                            end
+                        else
+                            links << [link, uri] unless links.include? link
+                        end
+                    else
+                        log.warn("Skipping as host differs #{link}") unless params[:quiet]
+                    end
+                else
+                    log.warn("Skipping as non-http #{link}") unless params[:quiet]
+                end
+            rescue URI::InvalidURIError => e
+                log.warn("Invalid link in page #{uri} : #{e}")
+            end
         end
         
         # This is present to augment Solr's parsing of title's - It should be refactored

@@ -75,34 +75,46 @@
 
 <p>Windows:</p>
 
-<pre class="code"><span class='xstring val'>`&gt; gem install rake`</span>
-<span class='xstring val'>`&gt; gem install bundler`</span>
+<pre class="code"><span class='gt op'>&gt;</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rake identifier id'>rake</span>
+<span class='gt op'>&gt;</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='bundler identifier id'>bundler</span>
 </pre>
 
 <p>Ubuntu:</p>
 
-<pre class="code"><span class='xstring val'>`&gt; sudo gem install bundler`</span>
-<span class='xstring val'>`&gt; sudo gem install rake`</span>
+<pre class="code"><span class='gt op'>&gt;</span> <span class='sudo identifier id'>sudo</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='bundler identifier id'>bundler</span>
+<span class='gt op'>&gt;</span> <span class='sudo identifier id'>sudo</span> <span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='rake identifier id'>rake</span>
 </pre>
 
 <p>Now "pull" in all the other required gems:</p>
 
-<pre class="code"><span class='xstring val'>`./Poodle&gt;bundle install`</span>
-<span class='xstring val'>`./Poodle&gt;rake install:all`</span>
+<pre class="code"><span class='dot token'>.</span><span class='div op'>/</span><span class='Poodle constant id'>Poodle</span><span class='gt op'>&gt;</span><span class='bundle identifier id'>bundle</span> <span class='install identifier id'>install</span>
+<span class='dot token'>.</span><span class='div op'>/</span><span class='Poodle constant id'>Poodle</span><span class='gt op'>&gt;</span><span class='rake identifier id'>rake</span> <span class='install identifier id'>install</span><span class='symbol val'>:all</span>
 </pre>
+
+<p>Note: Under ubuntu you may get <a href="http://stackoverflow.com/questions/3458602/sqlite3-ruby-install-error-on-ubuntu">this</a> error</p>
 
 <h4>Create Database</h4>
 
-<pre class="code"><span class='xstring val'>`../Poodle/poodle&gt;rake db:migrate`</span>
+<pre class="code"><span class='dot2 op'>..</span><span class='regexp val'>/Poodle/</span><span class='poodle identifier id'>poodle</span><span class='gt op'>&gt;</span><span class='rake identifier id'>rake</span> <span class='db identifier id'>db</span><span class='symbol val'>:migrate</span>
 </pre>
 
-<p>Using the cmd line change into the directory "poodle", i.e. <code>./Poodle/poodle/</code> and type: <code>rake db:migrate</code> - This will set-up the web-app database. This should succeed!</p>
+<p>Using the cmd line change into the sub-directory "poodle", i.e. <code>./Poodle/poodle/</code> and type:</p>
+
+<pre class="code"><span class='rake identifier id'>rake</span> <span class='db identifier id'>db</span><span class='symbol val'>:migrate</span>
+</pre>
+
+<p>This will set-up the web-app database. This should succeed!</p>
 
 <h4>Run unit tests</h4>
 
 <p>I have tried to add a reasonable level of unit tests (they could do with some re-factoring but they do have fairly good coverage). If <em>any</em> fail then <em>panic</em> and fix/ping-me.</p>
 
-<p>In the root folder (<code>./Poodle/</code>) type <code>rake test</code>. This will run <em>all</em> available tests, as said they should all pass.</p>
+<p>In the root folder (<code>./Poodle/</code>) type:</p>
+
+<pre class="code"><span class='rake identifier id'>rake</span> <span class='test identifier id'>test</span>
+</pre>
+
+<p>This will run <em>all</em> available tests, as said they should all pass.</p>
 
 <h4><a href="http://lucene.apache.org/solr/">Set-up Solr</a></h4>
 
@@ -124,7 +136,7 @@
 </ol></div></div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:44:47 2010 by 
+  Generated on Thu Mar 24 21:17:47 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

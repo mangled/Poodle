@@ -30,30 +30,40 @@ Before using any of poodle you will need to get your development environment set
     
     Windows:
 
-        `> gem install rake`
-        `> gem install bundler`
+        > gem install rake
+        > gem install bundler
 
     Ubuntu:
 
-        `> sudo gem install bundler`
-        `> sudo gem install rake`
+        > sudo gem install bundler
+        > sudo gem install rake
     
     Now "pull" in all the other required gems:
  
-        `./Poodle>bundle install`
-        `./Poodle>rake install:all`
+        ./Poodle>bundle install
+        ./Poodle>rake install:all
+
+    Note: Under ubuntu you may get [this](http://stackoverflow.com/questions/3458602/sqlite3-ruby-install-error-on-ubuntu) error
 
     #### Create Database
 
-        `../Poodle/poodle>rake db:migrate`
+        ../Poodle/poodle>rake db:migrate
 
-    Using the cmd line change into the directory "poodle", i.e. `./Poodle/poodle/` and type: `rake db:migrate` - This will set-up the web-app database. This should succeed!
+    Using the cmd line change into the sub-directory "poodle", i.e. `./Poodle/poodle/` and type:
+
+        rake db:migrate
+
+    This will set-up the web-app database. This should succeed!
 
     #### Run unit tests
 
     I have tried to add a reasonable level of unit tests (they could do with some re-factoring but they do have fairly good coverage). If *any* fail then *panic* and fix/ping-me.
     
-    In the root folder (`./Poodle/`) type `rake test`. This will run *all* available tests, as said they should all pass.
+    In the root folder (`./Poodle/`) type:
+    
+        rake test
+
+    This will run *all* available tests, as said they should all pass.
 
     #### [Set-up Solr](http://lucene.apache.org/solr/)
 

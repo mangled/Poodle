@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -514,6 +514,27 @@ Helpers.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#test_should_index-instance_method" title="#test_should_index (instance method)">- (Object) <strong>test_should_index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#test_skip_fragment-instance_method" title="#test_skip_fragment (instance method)">- (Object) <strong>test_skip_fragment</strong> </a>
     
 
@@ -597,12 +618,12 @@ Helpers.
       <pre class="lines">
 
 
-252
-253
-254</pre>
+264
+265
+266</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 252</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 264</span>
 
 <span class='def def kw'>def</span> <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'Hello world'</span><span class='comma token'>,</span> <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='string val'>&quot;text/html&quot;</span><span class='comma token'>,</span> <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='string val'>&quot;200&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;OK&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='register_uri identifier id'>register_uri</span><span class='lparen token'>(</span><span class='symbol val'>:get</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='status identifier id'>status</span><span class='rparen token'>)</span>
@@ -637,18 +658,6 @@ Silly, bloated test that needs re-factoring!!!
       <pre class="lines">
 
 
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
 275
 276
 277
@@ -679,10 +688,22 @@ Silly, bloated test that needs re-factoring!!!
 302
 303
 304
-305</pre>
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 263</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 275</span>
 
 <span class='def def kw'>def</span> <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph identifier id'>graph</span><span class='comma token'>,</span> <span class='ignore identifier id'>ignore</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='index identifier id'>index</span> <span class='assign token'>=</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
     <span class='comment val'># Not checking logging information so ignore</span>
@@ -746,13 +767,13 @@ Silly, bloated test that needs re-factoring!!!
       <pre class="lines">
 
 
-242
-243
-244
-245</pre>
+254
+255
+256
+257</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 242</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 254</span>
 
 <span class='def def kw'>def</span> <span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='indexer identifier id'>indexer</span> <span class='assign token'>=</span> <span class='FakeIndexer constant id'>FakeIndexer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='comma token'>,</span> <span class='analyzer identifier id'>analyzer</span> <span class='assign token'>=</span> <span class='Poodle constant id'>Poodle</span><span class='colon2 op'>::</span><span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='comma token'>,</span> <span class='queue identifier id'>queue</span> <span class='assign token'>=</span> <span class='Poodle constant id'>Poodle</span><span class='colon2 op'>::</span><span class='WorkQueue constant id'>WorkQueue</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
     <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='indexer identifier id'>indexer</span><span class='comma token'>,</span> <span class='analyzer identifier id'>analyzer</span><span class='comma token'>,</span> <span class='queue identifier id'>queue</span><span class='rparen token'>)</span>
@@ -777,13 +798,13 @@ Silly, bloated test that needs re-factoring!!!
       <pre class="lines">
 
 
-247
-248
-249
-250</pre>
+259
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 247</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 259</span>
 
 <span class='def def kw'>def</span> <span class='crawl_with_params identifier id'>crawl_with_params</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='comma token'>,</span> <span class='indexer identifier id'>indexer</span> <span class='assign token'>=</span> <span class='FakeIndexer constant id'>FakeIndexer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='comma token'>,</span> <span class='analyzer identifier id'>analyzer</span> <span class='assign token'>=</span> <span class='Poodle constant id'>Poodle</span><span class='colon2 op'>::</span><span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='comma token'>,</span> <span class='queue identifier id'>queue</span> <span class='assign token'>=</span> <span class='Poodle constant id'>Poodle</span><span class='colon2 op'>::</span><span class='WorkQueue constant id'>WorkQueue</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
     <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='crawl identifier id'>crawl</span><span class='lparen token'>(</span><span class='params identifier id'>params</span><span class='comma token'>,</span> <span class='indexer identifier id'>indexer</span><span class='comma token'>,</span> <span class='analyzer identifier id'>analyzer</span><span class='comma token'>,</span> <span class='queue identifier id'>queue</span><span class='rparen token'>)</span>
@@ -808,25 +829,25 @@ Silly, bloated test that needs re-factoring!!!
       <pre class="lines">
 
 
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
 319
 320
 321
-322</pre>
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 307</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 319</span>
 
 <span class='def def kw'>def</span> <span class='graph_basic identifier id'>graph_basic</span>
     <span class='lbrack token'>[</span>
@@ -874,18 +895,6 @@ Relative/non-relative test (add later when code is tidier)
       <pre class="lines">
 
 
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
 337
 338
 339
@@ -902,10 +911,22 @@ Relative/non-relative test (add later when code is tidier)
 350
 351
 352
-353</pre>
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 325</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 337</span>
 
 <span class='def def kw'>def</span> <span class='make_web identifier id'>make_web</span><span class='lparen token'>(</span><span class='root identifier id'>root</span><span class='comma token'>,</span> <span class='initial_node identifier id'>initial_node</span><span class='comma token'>,</span> <span class='graph identifier id'>graph</span><span class='rparen token'>)</span>
     <span class='pages identifier id'>pages</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
@@ -966,12 +987,12 @@ Helpers
       <pre class="lines">
 
 
-238
-239
-240</pre>
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 238</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 250</span>
 
 <span class='def def kw'>def</span> <span class='params identifier id'>params</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
     <span class='lbrace token'>{</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:ignore</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:accept</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='symbol val'>:index</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:solr</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@solr ivar id'>@solr</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;me&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;ua&quot;</span> <span class='rbrace token'>}</span>
@@ -1002,7 +1023,7 @@ Helpers
 41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 37</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 37</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
     <span class='@log ivar id'>@log</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
@@ -1028,18 +1049,18 @@ Helpers
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231
-232
-233</pre>
+237
+238
+239
+240
+241
+242
+243
+244
+245</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 225</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 237</span>
 
 <span class='def def kw'>def</span> <span class='test_analyzer_exception identifier id'>test_analyzer_exception</span>
     <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'http://www.foo.com/foo.html'</span><span class='rparen token'>)</span>
@@ -1080,7 +1101,7 @@ Helpers
 72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 64</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 64</span>
 
 <span class='def def kw'>def</span> <span class='test_bad_url identifier id'>test_bad_url</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Invalid link in page http://www.foo.com/foo.html : bad URI(is not URI?): http://www.foo.com/foo\\bar.html'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -1110,18 +1131,6 @@ Helpers
       <pre class="lines">
 
 
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
 203
 204
 205
@@ -1142,10 +1151,22 @@ Helpers
 220
 221
 222
-223</pre>
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 191</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 203</span>
 
 <span class='def def kw'>def</span> <span class='test_checksum_change identifier id'>test_checksum_change</span>
     <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'http://www.foo.com/foo.html'</span><span class='rparen token'>)</span>
@@ -1199,18 +1220,6 @@ Helpers
       <pre class="lines">
 
 
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
 169
 170
 171
@@ -1231,10 +1240,22 @@ Helpers
 186
 187
 188
-189</pre>
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 157</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 169</span>
 
 <span class='def def kw'>def</span> <span class='test_checksum_no_change identifier id'>test_checksum_no_change</span>
     <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>'http://www.foo.com/foo.html'</span><span class='rparen token'>)</span>
@@ -1295,7 +1316,7 @@ Helpers
 47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 43</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 43</span>
 
 <span class='def def kw'>def</span> <span class='test_crawl_all identifier id'>test_crawl_all</span>
     <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
@@ -1326,7 +1347,7 @@ Helpers
 51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 49</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 49</span>
 
 <span class='def def kw'>def</span> <span class='test_crawl_with_ignore identifier id'>test_crawl_with_ignore</span>
     <span class='check_crawler identifier id'>check_crawler</span><span class='lparen token'>(</span><span class='graph_basic identifier id'>graph_basic</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>'g.html'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
@@ -1359,7 +1380,7 @@ Helpers
 90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 84</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 84</span>
 
 <span class='def def kw'>def</span> <span class='test_index_no_follow identifier id'>test_index_no_follow</span>
     <span class='url identifier id'>url</span> <span class='assign token'>=</span> <span class='string val'>'http://www.foo.com/foo.stuff'</span>
@@ -1408,7 +1429,7 @@ Helpers
 121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 103</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 103</span>
 
 <span class='def def kw'>def</span> <span class='test_referrer identifier id'>test_referrer</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span>
@@ -1466,7 +1487,7 @@ Helpers
 138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 123</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 123</span>
 
 <span class='def def kw'>def</span> <span class='test_relative_url_normalized identifier id'>test_relative_url_normalized</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span>
@@ -1515,7 +1536,7 @@ Helpers
 62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 53</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 53</span>
 
 <span class='def def kw'>def</span> <span class='test_same_site identifier id'>test_same_site</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as host differs http://www.bar.com/'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -1564,7 +1585,7 @@ Helpers
 155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 140</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 140</span>
 
 <span class='def def kw'>def</span> <span class='test_should_analyze identifier id'>test_should_analyze</span>
     <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_analyze? fid id'>should_analyze?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;file:/foo.bar&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
@@ -1581,6 +1602,51 @@ Helpers
     <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_analyze? fid id'>should_analyze?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/foo.wiz&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>'.bar'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='assert_equal identifier id'>assert_equal</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_analyze? fid id'>should_analyze?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>'.doc'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_analyze? fid id'>should_analyze?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='lbrack token'>[</span><span class='string val'>'.doc'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_should_index-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_should_index</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 157</span>
+
+<span class='def def kw'>def</span> <span class='test_should_index identifier id'>test_should_index</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;file:/foo.bar&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;file:/foo.bar&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;file:/foo.bar&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;file:/foo.bar&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+    
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
+    <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='Crawler constant id'>Crawler</span><span class='dot token'>.</span><span class='should_index? fid id'>should_index?</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -1612,7 +1678,7 @@ Helpers
 82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 74</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 74</span>
 
 <span class='def def kw'>def</span> <span class='test_skip_fragment identifier id'>test_skip_fragment</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipped http://www.foo.com/bar.html#3'</span><span class='rparen token'>)</span>
@@ -1654,7 +1720,7 @@ Helpers
 101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 92</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 92</span>
 
 <span class='def def kw'>def</span> <span class='test_skip_path identifier id'>test_skip_path</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping indexing http://www.foo.com/'</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='returns identifier id'>returns</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
@@ -1685,12 +1751,12 @@ Helpers
       <pre class="lines">
 
 
-256
-257
-258</pre>
+268
+269
+270</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_web.rb', line 256</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_web.rb', line 268</span>
 
 <span class='def def kw'>def</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
     <span class='string val'>&quot;&lt;a href=\&quot;&quot;</span> <span class='plus op'>+</span> <span class='url identifier id'>url</span> <span class='plus op'>+</span> <span class='string val'>&quot;\&quot;&gt;Bar&lt;/a&gt;&quot;</span>
@@ -1706,7 +1772,7 @@ Helpers
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:05 2010 by 
+  Generated on Thu Mar 24 21:17:45 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

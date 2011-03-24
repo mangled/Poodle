@@ -31,7 +31,7 @@ module Poodle
                     # (on the parent) if these cmd line options change then the database is basically invalid?
                     new_links.each {|link| urls.add(link[0], link[1], nil) }
 
-                    if Crawler.should_index?(uri, (params[:index] and indexer))
+                    if Crawler.should_index?(uri, (params[:index] and indexer), params[:index_dirs])
                         last_checksum = params[:cache_enabled] ? checksum : nil
                         checksum = indexer.index(uri, content, title, last_checksum)
                     else
@@ -55,8 +55,8 @@ module Poodle
             end
         end
 
-        def Crawler.should_index?(uri, indexing_enabled)
-            indexing_enabled and !Crawler.is_directory?(uri)
+        def Crawler.should_index?(uri, indexing_enabled, index_directories)
+            indexing_enabled and (index_directories or !Crawler.is_directory?(uri))
         end
         
         def Crawler.is_directory?(uri)

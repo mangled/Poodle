@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -291,7 +291,7 @@
 18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 14</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 14</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
   <span class='@root ivar id'>@root</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://www.crawl.com/&quot;</span>
@@ -317,8 +317,6 @@
       <pre class="lines">
 
 
-66
-67
 68
 69
 70
@@ -331,10 +329,13 @@
 77
 78
 79
-80</pre>
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 66</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 68</span>
 
 <span class='def def kw'>def</span> <span class='test_defaults identifier id'>test_defaults</span>
   <span class='options identifier id'>options</span> <span class='assign token'>=</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='@opts ivar id'>@opts</span><span class='rparen token'>)</span>
@@ -349,6 +350,7 @@
   <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>1</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:wait</span><span class='rparen token'>)</span>
   <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>1</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:threads</span><span class='rparen token'>)</span>
   <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:cache_enabled</span><span class='rparen token'>)</span>
+  <span class='assert_equal identifier id'>assert_equal</span> <span class='false false kw'>false</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='symbol val'>:index_dirs</span><span class='rparen token'>)</span>
   <span class='assert_equal identifier id'>assert_equal</span> <span class='integer val'>0</span><span class='comma token'>,</span> <span class='options identifier id'>options</span><span class='dot token'>.</span><span class='length identifier id'>length</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -376,7 +378,7 @@
 38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 35</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 35</span>
 
 <span class='def def kw'>def</span> <span class='test_either_accept_or_ignore identifier id'>test_either_accept_or_ignore</span>
   <span class='excecption identifier id'>excecption</span> <span class='assign token'>=</span> <span class='assert_raise identifier id'>assert_raise</span><span class='lparen token'>(</span><span class='RuntimeError constant id'>RuntimeError</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='@opts ivar id'>@opts</span> <span class='plus op'>+</span> <span class='lbrack token'>[</span><span class='string val'>&quot;-i&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;1,2&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;-c&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;4,5&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
@@ -407,7 +409,7 @@
 33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 30</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 30</span>
 
 <span class='def def kw'>def</span> <span class='test_invalid_option identifier id'>test_invalid_option</span>
   <span class='exception identifier id'>exception</span> <span class='assign token'>=</span> <span class='assert_raise identifier id'>assert_raise</span><span class='lparen token'>(</span><span class='OptionParser constant id'>OptionParser</span><span class='colon2 op'>::</span><span class='InvalidOption constant id'>InvalidOption</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>&quot;--space_man&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
@@ -438,7 +440,7 @@
 28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 25</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 25</span>
 
 <span class='def def kw'>def</span> <span class='test_missing_argument identifier id'>test_missing_argument</span>
   <span class='exception identifier id'>exception</span> <span class='assign token'>=</span> <span class='assert_raise identifier id'>assert_raise</span><span class='lparen token'>(</span><span class='OptionParser constant id'>OptionParser</span><span class='colon2 op'>::</span><span class='MissingArgument constant id'>MissingArgument</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='string val'>&quot;-u&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
@@ -469,7 +471,7 @@
 23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 20</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 20</span>
 
 <span class='def def kw'>def</span> <span class='test_no_arguments identifier id'>test_no_arguments</span>
   <span class='exception identifier id'>exception</span> <span class='assign token'>=</span> <span class='assert_raise identifier id'>assert_raise</span><span class='lparen token'>(</span><span class='RuntimeError constant id'>RuntimeError</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='CrawlerOptions constant id'>CrawlerOptions</span><span class='dot token'>.</span><span class='get_options identifier id'>get_options</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
@@ -494,8 +496,6 @@
       <pre class="lines">
 
 
-55
-56
 57
 58
 59
@@ -503,10 +503,12 @@
 61
 62
 63
-64</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 55</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 57</span>
 
 <span class='def def kw'>def</span> <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='short identifier id'>short</span><span class='comma token'>,</span> <span class='long identifier id'>long</span><span class='comma token'>,</span> <span class='value identifier id'>value</span><span class='comma token'>,</span> <span class='option identifier id'>option</span><span class='comma token'>,</span> <span class='converted_value identifier id'>converted_value</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='if if kw'>if</span> <span class='short identifier id'>short</span>
@@ -550,10 +552,12 @@
 50
 51
 52
-53</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_options.rb', line 40</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_options.rb', line 40</span>
 
 <span class='def def kw'>def</span> <span class='test_optional_options identifier id'>test_optional_options</span>
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='string val'>&quot;-t&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;--title&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;1&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:title_strip</span><span class='rparen token'>)</span>
@@ -566,8 +570,10 @@
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='string val'>&quot;-e&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;--index&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:index</span><span class='rparen token'>)</span>
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='string val'>&quot;-q&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;--quiet&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:quiet</span><span class='rparen token'>)</span>
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='string val'>&quot;-h&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;--threads&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;3&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:threads</span><span class='comma token'>,</span> <span class='integer val'>3</span><span class='rparen token'>)</span>
+  <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='string val'>&quot;--index-dirs&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:index_dirs</span><span class='rparen token'>)</span>
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='string val'>&quot;--yuk&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;--yuk&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:yuk</span><span class='rparen token'>)</span>
   <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='string val'>&quot;--local-cache&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:cache_enabled</span><span class='rparen token'>)</span>
+  <span class='test_opt identifier id'>test_opt</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='string val'>&quot;--scope-to-root&quot;</span><span class='comma token'>,</span> <span class='true true kw'>true</span><span class='comma token'>,</span> <span class='symbol val'>:scope_uri</span><span class='rparen token'>)</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -580,7 +586,7 @@
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:00 2010 by 
+  Generated on Thu Mar 24 21:17:45 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

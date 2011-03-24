@@ -76,7 +76,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -138,6 +138,27 @@ Test different sites, poor uri&#8217;s, relative url logic (remove from
 crawler then) Title extraction code, link scheme&#8230;
 </p>
 </div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_analyze_frame-instance_method" title="#test_analyze_frame (instance method)">- (Object) <strong>test_analyze_frame</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -355,6 +376,27 @@ crawler then) Title extraction code, link scheme&#8230;
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#test_stay_in_root_uri_scope-instance_method" title="#test_stay_in_root_uri_scope (instance method)">- (Object) <strong>test_stay_in_root_uri_scope</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#test_with_link-instance_method" title="#test_with_link (instance method)">- (Object) <strong>test_with_link</strong> </a>
     
 
@@ -428,12 +470,12 @@ Helpers
       <pre class="lines">
 
 
-170
-171
-172</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 170</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 205</span>
 
 <span class='def def kw'>def</span> <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'Hello world'</span><span class='comma token'>,</span> <span class='content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='string val'>&quot;text/html&quot;</span><span class='comma token'>,</span> <span class='status identifier id'>status</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='string val'>&quot;200&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;OK&quot;</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
     <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='register_uri identifier id'>register_uri</span><span class='lparen token'>(</span><span class='symbol val'>:get</span><span class='comma token'>,</span> <span class='url identifier id'>url</span><span class='comma token'>,</span> <span class='symbol val'>:body</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='body identifier id'>body</span><span class='comma token'>,</span> <span class='symbol val'>:content_type</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='content_type identifier id'>content_type</span><span class='comma token'>,</span> <span class='symbol val'>:status</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='status identifier id'>status</span><span class='rparen token'>)</span>
@@ -475,11 +517,60 @@ crawler then) Title extraction code, link scheme&#8230;
 22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 19</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 19</span>
 
 <span class='def def kw'>def</span> <span class='setup identifier id'>setup</span>
     <span class='@log ivar id'>@log</span> <span class='assign token'>=</span> <span class='mock identifier id'>mock</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
     <span class='FakeWeb constant id'>FakeWeb</span><span class='dot token'>.</span><span class='allow_net_connect identifier id'>allow_net_connect</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_analyze_frame-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_analyze_frame</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 34</span>
+
+<span class='def def kw'>def</span> <span class='test_analyze_frame identifier id'>test_analyze_frame</span>
+    <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
+    <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'&lt;frameset&gt;&lt;frame src=&quot;frame1.htm&quot;&gt;&lt;/frame&gt;&lt;frame src=&quot;frame2.htm&quot;&gt;&lt;/frame&gt;&lt;/frameset&gt;'</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='comma token'>,</span> <span class='body identifier id'>body</span><span class='rparen token'>)</span>
+    <span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='extract_links identifier id'>extract_links</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;peter pan&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='p identifier id'>p</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='bitor op'>|</span>
+        <span class='assert_equal identifier id'>assert_equal</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='lbrack token'>[</span>
+            <span class='lbrack token'>[</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/frame1.htm&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='lbrack token'>[</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/frame2.htm&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='rbrack token'>]</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='rparen token'>)</span>
+        <span class='assert_equal identifier id'>assert_equal</span> <span class='lbrack token'>[</span><span class='body identifier id'>body</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='readlines identifier id'>readlines</span>
+    <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
     </td>
@@ -511,7 +602,7 @@ crawler then) Title extraction code, link scheme&#8230;
 32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 24</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 24</span>
 
 <span class='def def kw'>def</span> <span class='test_analyze_only_text_html identifier id'>test_analyze_only_text_html</span>
     <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
@@ -541,19 +632,19 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75</pre>
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 66</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 101</span>
 
 <span class='def def kw'>def</span> <span class='test_bad_uri identifier id'>test_bad_uri</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Invalid link in page http://www.foo.com/ : bad URI(is not URI?): :bar:foo'</span><span class='rparen token'>)</span>
@@ -584,23 +675,23 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138</pre>
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 125</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 160</span>
 
 <span class='def def kw'>def</span> <span class='test_blog_title identifier id'>test_blog_title</span>
     <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'&lt;div class=&quot;post-title&quot;&gt;&lt;h1&gt;&lt;a href=&quot;foo&quot;&gt;Womble&lt;/a&gt;&lt;/h1&gt;&lt;/div&gt;'</span>
@@ -635,19 +726,19 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64</pre>
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 55</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 69</span>
 
 <span class='def def kw'>def</span> <span class='test_follow_only_http_links identifier id'>test_follow_only_http_links</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as non-http file://hello.html'</span><span class='rparen token'>)</span>
@@ -678,21 +769,21 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151</pre>
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 140</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 175</span>
 
 <span class='def def kw'>def</span> <span class='test_handles_not_modified_304 identifier id'>test_handles_not_modified_304</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:info</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='twice identifier id'>twice</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Content hasn\'t changed since last crawl http://www.foo.com/bar.html'</span><span class='rparen token'>)</span>
@@ -725,30 +816,30 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107</pre>
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 87</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 122</span>
 
 <span class='def def kw'>def</span> <span class='test_head_title identifier id'>test_head_title</span>
     <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'&lt;html&gt;&lt;head&gt;&lt;title&gt;Fish Head!&lt;/title&gt;&lt;/head&gt;&lt;/html&gt;'</span>
@@ -757,7 +848,7 @@ crawler then) Title extraction code, link scheme&#8230;
     <span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='extract_links identifier id'>extract_links</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;eel man&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='p identifier id'>p</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='bitor op'>|</span>
         <span class='assert_equal identifier id'>assert_equal</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span>
     <span class='end end kw'>end</span>
-    
+
     <span class='comment val'># Only store if the strip worked</span>
     <span class='p identifier id'>p</span><span class='dot token'>.</span><span class='merge! fid id'>merge!</span><span class='lparen token'>(</span><span class='lbrace token'>{</span> <span class='symbol val'>:title_strip</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'Tree!'</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
     <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='comma token'>,</span> <span class='body identifier id'>body</span><span class='rparen token'>)</span>
@@ -790,28 +881,28 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123</pre>
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 109</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 144</span>
 
 <span class='def def kw'>def</span> <span class='test_ideas_title identifier id'>test_ideas_title</span>
     <span class='body identifier id'>body</span> <span class='assign token'>=</span> <span class='string val'>'&lt;div class=&quot;contentheading bh_suggestiontitle&quot;&gt;Womble&lt;/div&gt;'</span>
-    
+
     <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
     <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/&quot;</span><span class='comma token'>,</span> <span class='body identifier id'>body</span><span class='rparen token'>)</span>
 
@@ -843,22 +934,22 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165</pre>
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 153</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 188</span>
 
 <span class='def def kw'>def</span> <span class='test_last_crawled_at identifier id'>test_last_crawled_at</span>
     <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
@@ -892,19 +983,19 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53</pre>
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 44</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 58</span>
 
 <span class='def def kw'>def</span> <span class='test_no_cross_site identifier id'>test_no_cross_site</span>
     <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as host differs http://www.bar.com/hello.html'</span><span class='rparen token'>)</span>
@@ -935,18 +1026,18 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-77
-78
-79
-80
-81
-82
-83
-84
-85</pre>
+112
+113
+114
+115
+116
+117
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 77</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 112</span>
 
 <span class='def def kw'>def</span> <span class='test_no_links identifier id'>test_no_links</span>
     <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
@@ -955,6 +1046,69 @@ crawler then) Title extraction code, link scheme&#8230;
         <span class='assert_equal identifier id'>assert_equal</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span>
         <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='rparen token'>)</span>
         <span class='assert_equal identifier id'>assert_equal</span> <span class='lbrack token'>[</span><span class='string val'>'Hello world'</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='readlines identifier id'>readlines</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="test_stay_in_root_uri_scope-instance_method">
+  
+    - (<tt>Object</tt>) <strong>test_stay_in_root_uri_scope</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 80</span>
+
+<span class='def def kw'>def</span> <span class='test_stay_in_root_uri_scope identifier id'>test_stay_in_root_uri_scope</span>
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as path outside root scope http://www.foo.com/a/c/'</span><span class='rparen token'>)</span>
+    <span class='root identifier id'>root</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://www.foo.com/a/b/index.htm&quot;</span>
+    <span class='uri identifier id'>uri</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://www.foo.com/a/b/foo.txt&quot;</span>
+    <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='root identifier id'>root</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:scope_uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span> <span class='rbrace token'>}</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='string val'>&quot;http://www.foo.com/a/c/&quot;</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='extract_links identifier id'>extract_links</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;peter pan&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='p identifier id'>p</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='bitor op'>|</span>
+        <span class='assert_equal identifier id'>assert_equal</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+    
+    <span class='@log ivar id'>@log</span><span class='dot token'>.</span><span class='expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:warn</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='once identifier id'>once</span><span class='dot token'>.</span><span class='with identifier id'>with</span><span class='lparen token'>(</span><span class='string val'>'Skipping as path outside root scope http://www.foo.com/a/c/bar.txt'</span><span class='rparen token'>)</span>
+    <span class='uri identifier id'>uri</span> <span class='assign token'>=</span> <span class='string val'>&quot;http://www.foo.com/a/b/foo.txt&quot;</span>
+    <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:url</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='root identifier id'>root</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:scope_uri</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span> <span class='rbrace token'>}</span>
+    <span class='add_expect_uri identifier id'>add_expect_uri</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='string val'>&quot;../c/bar.txt&quot;</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='Analyzer constant id'>Analyzer</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='extract_links identifier id'>extract_links</span><span class='lparen token'>(</span><span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>&quot;peter pan&quot;</span><span class='comma token'>,</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='p identifier id'>p</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='bitor op'>|</span>
+        <span class='assert_equal identifier id'>assert_equal</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='crawled_title identifier id'>crawled_title</span>
+        <span class='assert_equal identifier id'>assert_equal</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='rparen token'>)</span>
     <span class='end end kw'>end</span>
 <span class='end end kw'>end</span>
 </pre>
@@ -976,18 +1130,18 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-34
-35
-36
-37
-38
-39
-40
-41
-42</pre>
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 34</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 48</span>
 
 <span class='def def kw'>def</span> <span class='test_with_link identifier id'>test_with_link</span>
     <span class='p identifier id'>p</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span> <span class='symbol val'>:log</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='@log ivar id'>@log</span><span class='comma token'>,</span> <span class='symbol val'>:user_agent</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;007&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:from</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;mars&quot;</span> <span class='rbrace token'>}</span>
@@ -1017,12 +1171,12 @@ crawler then) Title extraction code, link scheme&#8230;
       <pre class="lines">
 
 
-174
-175
-176</pre>
+209
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/test/test_analyzer.rb', line 174</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/test/test_analyzer.rb', line 209</span>
 
 <span class='def def kw'>def</span> <span class='to_href identifier id'>to_href</span><span class='lparen token'>(</span><span class='url identifier id'>url</span><span class='rparen token'>)</span>
     <span class='string val'>&quot;&lt;a href=\&quot;&quot;</span> <span class='plus op'>+</span> <span class='url identifier id'>url</span> <span class='plus op'>+</span> <span class='string val'>&quot;\&quot;&gt;Bar&lt;/a&gt;&quot;</span>
@@ -1038,7 +1192,7 @@ crawler then) Title extraction code, link scheme&#8230;
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:00 2010 by 
+  Generated on Thu Mar 24 21:17:45 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

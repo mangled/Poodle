@@ -154,6 +154,18 @@ module Poodle
             assert_equal false, Crawler.should_analyze?(URI.parse("http://www.foo.com"), [], ['.doc'])
         end
         
+        def test_should_index
+            assert_equal true, Crawler.should_index?(URI.parse("file:/foo.bar"), true, false)
+            assert_equal false, Crawler.should_index?(URI.parse("file:/foo.bar"), false, false)
+            assert_equal true, Crawler.should_index?(URI.parse("file:/foo.bar"), true, true)
+            assert_equal false, Crawler.should_index?(URI.parse("file:/foo.bar"), false, true)
+            
+            assert_equal false, Crawler.should_index?(URI.parse("http://www.foo.com/"), true, false)
+            assert_equal false, Crawler.should_index?(URI.parse("http://www.foo.com/"), false, false)
+            assert_equal true, Crawler.should_index?(URI.parse("http://www.foo.com/"), true, true)
+            assert_equal false, Crawler.should_index?(URI.parse("http://www.foo.com/"), false, true)
+        end
+        
         def test_checksum_no_change
             url = URI.parse('http://www.foo.com/foo.html')
 

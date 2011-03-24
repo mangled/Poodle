@@ -74,7 +74,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/lib/analyzer.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/lib/analyzer.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -158,6 +158,27 @@ detection of title&#8217;s in a word-press blog and a joomla ideas tool.
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_link-instance_method" title="#parse_link (instance method)">- (Object) <strong>parse_link</strong>(uri, params, links, link_text) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -180,7 +201,6 @@ detection of title&#8217;s in a word-press blog and a joomla ideas tool.
       <pre class="lines">
 
 
-46
 47
 48
 49
@@ -216,50 +236,41 @@ detection of title&#8217;s in a word-press blog and a joomla ideas tool.
 79
 80
 81
-82
-83
-84
-85
-86</pre>
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/analyzer.rb', line 46</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/analyzer.rb', line 47</span>
 
 <span class='def def kw'>def</span> <span class='analyze identifier id'>analyze</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
     <span class='log identifier id'>log</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span>
     <span class='crawled_title identifier id'>crawled_title</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
     <span class='links identifier id'>links</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
-    
+
     <span class='if if kw'>if</span> <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='content_type identifier id'>content_type</span> <span class='eq op'>==</span> <span class='string val'>'text/html'</span>
         <span class='begin begin kw'>begin</span>
+            <span class='comment val'># !!! Arg. some CDATA seems to stuff hpricot, so remove it</span>
+            <span class='formatted_content identifier id'>formatted_content</span> <span class='assign token'>=</span> <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='readlines identifier id'>readlines</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>''</span><span class='rparen token'>)</span>
             <span class='comment val'># !!! Arg. one of the sites I'm indexing has badly terminated CDATA, this is horrid!!!</span>
-            <span class='doc identifier id'>doc</span> <span class='assign token'>=</span>
             <span class='if if kw'>if</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:yuk</span><span class='rbrack token'>]</span>
-                <span class='Hpricot constant id'>Hpricot</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='dot token'>.</span><span class='readlines identifier id'>readlines</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='string val'>'/* ]] */'</span><span class='comma token'>,</span> <span class='string val'>'/* ]]&gt; */'</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
-            <span class='else else kw'>else</span>
-                <span class='Hpricot constant id'>Hpricot</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='rparen token'>)</span>
+                <span class='formatted_content identifier id'>formatted_content</span> <span class='assign token'>=</span> <span class='formatted_content identifier id'>formatted_content</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='string val'>'/* ]] */'</span><span class='comma token'>,</span> <span class='string val'>'/* ]]&gt; */'</span><span class='rparen token'>)</span>
             <span class='end end kw'>end</span>
-    
+            <span class='rm_cdata identifier id'>rm_cdata</span> <span class='assign token'>=</span> <span class='regexp val'>/\/\*&lt;!\[CDATA\[\*\/(.*?)\/\*\]\]&gt;\*\//i</span><span class='m identifier id'>m</span>
+            <span class='formatted_content identifier id'>formatted_content</span> <span class='assign token'>=</span> <span class='formatted_content identifier id'>formatted_content</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='rm_cdata identifier id'>rm_cdata</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span>
+
+            <span class='doc identifier id'>doc</span> <span class='assign token'>=</span> <span class='Hpricot constant id'>Hpricot</span><span class='lparen token'>(</span><span class='formatted_content identifier id'>formatted_content</span><span class='rparen token'>)</span>
+            
+            <span class='comment val'># Search frames</span>
+            <span class='doc identifier id'>doc</span><span class='dot token'>.</span><span class='search identifier id'>search</span><span class='lparen token'>(</span><span class='string val'>&quot;frame[@src]&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='frame identifier id'>frame</span><span class='bitor op'>|</span>
+                <span class='parse_link identifier id'>parse_link</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='comma token'>,</span> <span class='frame identifier id'>frame</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='string val'>'src'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='frame identifier id'>frame</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='string val'>'src'</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+
+            <span class='comment val'># Search single page</span>
             <span class='doc identifier id'>doc</span><span class='dot token'>.</span><span class='search identifier id'>search</span><span class='lparen token'>(</span><span class='string val'>&quot;[@href]&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='page_url identifier id'>page_url</span><span class='bitor op'>|</span>
-                <span class='begin begin kw'>begin</span>
-                    <span class='link identifier id'>link</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='page_url identifier id'>page_url</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='string val'>'href'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
-                    <span class='link identifier id'>link</span> <span class='assign token'>=</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='link identifier id'>link</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='relative? fid id'>relative?</span>
-                    <span class='if if kw'>if</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='scheme identifier id'>scheme</span> <span class='eq op'>==</span> <span class='string val'>'http'</span>
-                        <span class='if if kw'>if</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='host identifier id'>host</span> <span class='eq op'>==</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='host identifier id'>host</span> <span class='comment val'># Stay in same site: By design, relax/remove this at your own risk</span>
-                            <span class='links identifier id'>links</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='link identifier id'>link</span><span class='comma token'>,</span> <span class='uri identifier id'>uri</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='link identifier id'>link</span>
-                        <span class='else else kw'>else</span>
-                            <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Skipping as host differs #{link}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:quiet</span><span class='rbrack token'>]</span>
-                        <span class='end end kw'>end</span>
-                    <span class='else else kw'>else</span>
-                        <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Skipping as non-http #{link}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:quiet</span><span class='rbrack token'>]</span>
-                    <span class='end end kw'>end</span>
-                <span class='rescue rescue kw'>rescue</span> <span class='URI constant id'>URI</span><span class='colon2 op'>::</span><span class='InvalidURIError constant id'>InvalidURIError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
-                    <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Invalid link in page #{uri} : #{e}&quot;</span><span class='rparen token'>)</span>
-                <span class='end end kw'>end</span>
+                <span class='parse_link identifier id'>parse_link</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='comma token'>,</span> <span class='page_url identifier id'>page_url</span><span class='dot token'>.</span><span class='attributes identifier id'>attributes</span><span class='lbrack token'>[</span><span class='string val'>'href'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
             <span class='end end kw'>end</span>
             <span class='crawled_title identifier id'>crawled_title</span> <span class='assign token'>=</span> <span class='find_title identifier id'>find_title</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:title_strip</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
-        <span class='rescue rescue kw'>rescue</span>
-            <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Error extracting links for #{uri}&quot;</span><span class='rparen token'>)</span>
+        <span class='comment val'>#rescue</span>
+            <span class='comment val'>#log.warn(&quot;Error extracting links for #{uri}&quot;)</span>
         <span class='ensure ensure kw'>ensure</span>
             <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='rewind identifier id'>rewind</span>
         <span class='end end kw'>end</span>
@@ -302,10 +313,11 @@ detection of title&#8217;s in a word-press blog and a joomla ideas tool.
 41
 42
 43
-44</pre>
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/analyzer.rb', line 27</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/analyzer.rb', line 27</span>
 
 <span class='def def kw'>def</span> <span class='extract_links identifier id'>extract_links</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='referer identifier id'>referer</span><span class='comma token'>,</span> <span class='last_crawled_site_at identifier id'>last_crawled_site_at</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
     <span class='begin begin kw'>begin</span>
@@ -315,6 +327,7 @@ detection of title&#8217;s in a word-press blog and a joomla ideas tool.
             <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='string val'>&quot;User-Agent&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:user_agent</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;From&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:from</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='string val'>&quot;Referer&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='referer identifier id'>referer</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
         <span class='end end kw'>end</span>
         <span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span> <span class='assign token'>=</span> <span class='analyze identifier id'>analyze</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='rparen token'>)</span>
+
         <span class='yield yield kw'>yield</span> <span class='lbrack token'>[</span><span class='crawled_title identifier id'>crawled_title</span><span class='comma token'>,</span> <span class='new_links identifier id'>new_links</span><span class='comma token'>,</span> <span class='content identifier id'>content</span><span class='rbrack token'>]</span>
     <span class='rescue rescue kw'>rescue</span> <span class='OpenURI constant id'>OpenURI</span><span class='colon2 op'>::</span><span class='HTTPError constant id'>HTTPError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
         <span class='if if kw'>if</span> <span class='e identifier id'>e</span><span class='dot token'>.</span><span class='io identifier id'>io</span><span class='dot token'>.</span><span class='status identifier id'>status</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span>  <span class='eq op'>==</span> <span class='string val'>'304'</span>
@@ -365,26 +378,26 @@ per-site specific analyzers&#8230;
       <pre class="lines">
 
 
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114</pre>
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/analyzer.rb', line 98</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/analyzer.rb', line 123</span>
 
 <span class='def def kw'>def</span> <span class='find_title identifier id'>find_title</span><span class='lparen token'>(</span><span class='doc identifier id'>doc</span><span class='comma token'>,</span> <span class='title_strip identifier id'>title_strip</span><span class='rparen token'>)</span>
     <span class='crawled_title identifier id'>crawled_title</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span>
@@ -409,12 +422,91 @@ per-site specific analyzers&#8230;
 </table>
 </div>
     
+      <div class="method_details ">
+  <p class="signature " id="parse_link-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_link</strong>(uri, params, links, link_text) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/analyzer.rb', line 84</span>
+
+<span class='def def kw'>def</span> <span class='parse_link identifier id'>parse_link</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='params identifier id'>params</span><span class='comma token'>,</span> <span class='links identifier id'>links</span><span class='comma token'>,</span> <span class='link_text identifier id'>link_text</span><span class='rparen token'>)</span>
+    <span class='log identifier id'>log</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:log</span><span class='rbrack token'>]</span>
+    <span class='begin begin kw'>begin</span>
+        <span class='link identifier id'>link</span> <span class='assign token'>=</span> <span class='URI constant id'>URI</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='link_text identifier id'>link_text</span><span class='rparen token'>)</span>
+        <span class='link identifier id'>link</span> <span class='assign token'>=</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='merge identifier id'>merge</span><span class='lparen token'>(</span><span class='link identifier id'>link</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='relative? fid id'>relative?</span>
+        <span class='if if kw'>if</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='scheme identifier id'>scheme</span> <span class='eq op'>==</span> <span class='string val'>'http'</span>
+            <span class='if if kw'>if</span> <span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='host identifier id'>host</span> <span class='eq op'>==</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='host identifier id'>host</span> <span class='comment val'># Stay in same site: By design, relax/remove this at your own risk</span>
+                <span class='if if kw'>if</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:scope_uri</span><span class='rbrack token'>]</span>
+                    <span class='root_path identifier id'>root_path</span> <span class='assign token'>=</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:url</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='regexp val'>/.*\//</span><span class='rparen token'>)</span>
+                    <span class='link_path identifier id'>link_path</span> <span class='assign token'>=</span> <span class='link identifier id'>link</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='dot token'>.</span><span class='match identifier id'>match</span><span class='lparen token'>(</span><span class='regexp val'>/.*\//</span><span class='rparen token'>)</span>
+                    <span class='if if kw'>if</span> <span class='root_path identifier id'>root_path</span> <span class='and and kw'>and</span> <span class='link_path identifier id'>link_path</span> <span class='and and kw'>and</span> <span class='link_path identifier id'>link_path</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='include? fid id'>include?</span><span class='lparen token'>(</span><span class='root_path identifier id'>root_path</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+                        <span class='links identifier id'>links</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='link identifier id'>link</span><span class='comma token'>,</span> <span class='uri identifier id'>uri</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='link identifier id'>link</span>
+                    <span class='else else kw'>else</span>
+                        <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Skipping as path outside root scope #{link}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:quiet</span><span class='rbrack token'>]</span>
+                    <span class='end end kw'>end</span>
+                <span class='else else kw'>else</span>
+                    <span class='links identifier id'>links</span> <span class='lshft op'>&lt;&lt;</span> <span class='lbrack token'>[</span><span class='link identifier id'>link</span><span class='comma token'>,</span> <span class='uri identifier id'>uri</span><span class='rbrack token'>]</span> <span class='unless unless_mod kw'>unless</span> <span class='links identifier id'>links</span><span class='dot token'>.</span><span class='include? fid id'>include?</span> <span class='link identifier id'>link</span>
+                <span class='end end kw'>end</span>
+            <span class='else else kw'>else</span>
+                <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Skipping as host differs #{link}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:quiet</span><span class='rbrack token'>]</span>
+            <span class='end end kw'>end</span>
+        <span class='else else kw'>else</span>
+            <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Skipping as non-http #{link}&quot;</span><span class='rparen token'>)</span> <span class='unless unless_mod kw'>unless</span> <span class='params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:quiet</span><span class='rbrack token'>]</span>
+        <span class='end end kw'>end</span>
+    <span class='rescue rescue kw'>rescue</span> <span class='URI constant id'>URI</span><span class='colon2 op'>::</span><span class='InvalidURIError constant id'>InvalidURIError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='e identifier id'>e</span>
+        <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='warn identifier id'>warn</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Invalid link in page #{uri} : #{e}&quot;</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:02 2010 by 
+  Generated on Thu Mar 24 21:17:44 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

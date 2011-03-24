@@ -19,6 +19,7 @@ module Poodle
             options[:threads] = 1
             options[:wait] = 1
             options[:cache_enabled] = false
+            options[:index_dirs] = false
             options
         end
 
@@ -39,6 +40,7 @@ module Poodle
                 opts.on("-w N", "--wait N", Integer, "Wait N seconds between each fetch") {|n| options[:wait] = n }
                 opts.on("-e", "--index", "Crawl AND index the content") { |v| options[:index] = v }
                 opts.on("-q", "--quiet", "Reduce log messages to informational only") { |q| options[:quiet] = q }
+                opts.on("--index-dirs", "Index content of directory uri's e.g. http://foo/bar/ to be indexed") { |d| options[:index_dirs] = d }
                 opts.on("--scope-to-root", "Only index if uri matches, completely, the initial root url path") { |s| options[:scope_uri] = true }
                 opts.on("--local-cache", "Enable local caching of data (off by default)") {|l| options[:cache_enabled] = l }
                 opts.on("-h N", "--threads N", Integer, "Set number of crawler threads to use") {|t| options[:threads] = t}

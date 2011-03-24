@@ -74,7 +74,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb</dd>
+    <dd class="r2 last">/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -317,7 +317,7 @@ A new instance of WorkQueue
 19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 12</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 12</span>
 
 <span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='initial identifier id'>initial</span> <span class='assign token'>=</span> <span class='nil nil kw'>nil</span><span class='rparen token'>)</span>
     <span class='@done ivar id'>@done</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
@@ -370,7 +370,7 @@ Returns the value of attribute last_crawled_site_at
 12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 10</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 10</span>
 
 <span class='def def kw'>def</span> <span class='last_crawled_site_at identifier id'>last_crawled_site_at</span>
   <span class='@last_crawled_site_at ivar id'>@last_crawled_site_at</span>
@@ -423,7 +423,7 @@ Bad name - It only adds new/unseen
 30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 22</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 22</span>
 
 <span class='def def kw'>def</span> <span class='add identifier id'>add</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='comma token'>,</span> <span class='referer identifier id'>referer</span><span class='comma token'>,</span> <span class='checksum identifier id'>checksum</span><span class='rparen token'>)</span>
     <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='synchronize identifier id'>synchronize</span> <span class='do do kw'>do</span>
@@ -479,7 +479,7 @@ Bad name - It only adds new/unseen
 49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 47</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 47</span>
 
 <span class='def def kw'>def</span> <span class='done? fid id'>done?</span>
     <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='synchronize identifier id'>synchronize</span> <span class='lbrace token'>{</span> <span class='@items ivar id'>@items</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='or or kw'>or</span> <span class='@done ivar id'>@done</span> <span class='rbrace token'>}</span>
@@ -509,7 +509,7 @@ Bad name - It only adds new/unseen
 54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 51</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 51</span>
 
 <span class='def def kw'>def</span> <span class='kill identifier id'>kill</span><span class='lparen token'>(</span><span class='with_message identifier id'>with_message</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
     <span class='puts identifier id'>puts</span> <span class='string val'>&quot;Shutting down work queue(s)...&quot;</span> <span class='if if_mod kw'>if</span> <span class='with_message identifier id'>with_message</span>
@@ -539,7 +539,7 @@ Bad name - It only adds new/unseen
 58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 56</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 56</span>
 
 <span class='def def kw'>def</span> <span class='processed identifier id'>processed</span>
     <span class='@processed ivar id'>@processed</span>
@@ -579,7 +579,7 @@ Bad name - It only adds new/unseen
 45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 32</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 32</span>
 
 <span class='def def kw'>def</span> <span class='remove identifier id'>remove</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
     <span class='yielded identifier id'>yielded</span> <span class='assign token'>=</span> <span class='false false kw'>false</span>
@@ -620,7 +620,7 @@ Bad name - It only adds new/unseen
 63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File '/home/matthew/sources/projects/github/Poodle/scripts/lib/synchronization.rb', line 60</span>
+      <pre class="code"><span class="info file"># File '/media/den/matthew/Source/projects/github/Poodle/scripts/lib/synchronization.rb', line 60</span>
 
 <span class='def def kw'>def</span> <span class='unique_id identifier id'>unique_id</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='rparen token'>)</span>
     <span class='digest identifier id'>digest</span> <span class='assign token'>=</span> <span class='Digest constant id'>Digest</span><span class='colon2 op'>::</span><span class='MD5 constant id'>MD5</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='uri identifier id'>uri</span><span class='dot token'>.</span><span class='normalize identifier id'>normalize</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='rparen token'>)</span>
@@ -637,7 +637,7 @@ Bad name - It only adds new/unseen
 </div>
     
     <div id="footer">
-  Generated on Sun Nov 21 18:45:02 2010 by 
+  Generated on Thu Mar 24 21:17:44 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.1 (ruby-1.8.7).
 </div>

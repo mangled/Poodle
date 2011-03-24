@@ -48,6 +48,7 @@ module Poodle
       test_opt("-e", "--index", true, :index)
       test_opt("-q", "--quiet", true, :quiet)
       test_opt("-h", "--threads", "3", :threads, 3)
+      test_opt(nil, "--index-dirs", true, :index_dirs)
       test_opt("--yuk", "--yuk", true, :yuk)
       test_opt(nil, "--local-cache", true, :cache_enabled)
       test_opt(nil, "--scope-to-root", true, :scope_uri)
@@ -77,6 +78,7 @@ module Poodle
       assert_equal 1, options.delete(:wait)
       assert_equal 1, options.delete(:threads)
       assert_equal false, options.delete(:cache_enabled)
+      assert_equal false, options.delete(:index_dirs)
       assert_equal 0, options.length
     end
   end
