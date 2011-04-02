@@ -68,6 +68,10 @@ class SolrPurge
             rescue URI::InvalidURIError => e
                 params[:log].info("URI error for #{id} #{url} #{e}")
                 invalid_urls << [id, url]
+            rescue Net::HTTPRetriableError => e
+                params[:log].info("HTTP error for #{id} #{url} #{e}")
+                params[:log].info("Marking for deletion as crawler will re-index the redirect")
+                invalid_urls << [id, url]
             rescue Net::HTTPServerException => e
                 params[:log].info("HTTP error for #{id} #{url} #{e}")
                 case e.message

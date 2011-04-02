@@ -65,6 +65,17 @@ class TestPurge < Test::Unit::TestCase
     SolrPurge.purge({ :solr => mock_solr, :wait => 0, :user_agent => "me", :from => "foo", :delete => true, :log => @log })
   end
   
+  def test_invalid_url_with_redirection
+    mock_solr = mock()
+    items = [ { "id" => "1", "url" => "http://foo.com/"}, { "id" => "2", "url" => "http://bar.com/"} ]
+    mock_solr.expects(:select).once.with({:q => 'id:*', :start=> 0, :rows=>10, :wt => :ruby, :fl =>'id,url'}).returns(make_item_response(items))
+    mock_solr.expects(:delete_by_id).once.with('2').returns(nil)
+    mock_solr.expects(:commit).once.with().returns(nil)
+    add_expect_uri("http://foo.com/")
+    add_expect_uri("http://bar.com/", ["301", "Moved Permanently"])
+    SolrPurge.purge({ :solr => mock_solr, :wait => 0, :user_agent => "me", :from => "foo", :delete => true, :log => @log })
+  end
+
   def test_invalid_url_with_delete
     mock_solr = mock()
     items = [ { "id" => "1", "url" => "http://foo.com/"}, { "id" => "2", "url" => "http://bar.com/"} ]
