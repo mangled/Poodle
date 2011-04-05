@@ -140,6 +140,16 @@ class TestPurge < Test::Unit::TestCase
     SolrPurge.purge({ :solr => mock_solr, :wait => 0, :user_agent => "me", :from => "foo", :log => @log, :delete => true })
   end
 
+  def test_remove_matching_urls
+    mock_solr = mock()
+    items = [ { "id" => "1", "url" => "http://bart.com/"}, { "id" => "2", "url" => "http://bar.com/"}, { "id" => "3", "url" => "http://bar.com/a.html"} ]
+    mock_solr.expects(:select).once.with({:q => 'id:*', :start=> 0, :rows=>10, :wt => :ruby, :fl =>'id,url'}).returns(make_item_response(items))
+    add_expect_uri("http://bart.com/")
+    SolrPurge.purge({ :solr => mock_solr, :remove => "http://bar.com/", :wait => 0, :user_agent => "me", :from => "foo", :log => @log })
+    assert_equal("me", FakeWeb.last_request["User-Agent"])
+    assert_equal("foo", FakeWeb.last_request["From"])
+  end
+
   # Helpers
   
   def add_expect_uri(url, status = ["200", "OK"], body = '', content_type = '')

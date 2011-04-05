@@ -57,13 +57,18 @@ class SolrPurge
         items.each do |id, url|
             begin
                 sleep(params[:wait])
-                uri = URI.parse(url)
-                params[:log].info("Checking #{uri}")
-                Net::HTTP.start(uri.host, uri.port) do |http|
-                    request = Net::HTTP::Head.new(uri.request_uri)
-                    request.body = ""
-                    request.initialize_http_header({ "User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => "" })
-                    http.request(request).value # value triggers http exception unless 2xx
+                if params[:remove] and url =~ /#{Regexp.quote(params[:remove])}/i
+                    params[:log].info("Automatically removing #{url}")
+                    invalid_urls << [id, url]
+                else
+                    uri = URI.parse(url)
+                    params[:log].info("Checking #{uri}")
+                    Net::HTTP.start(uri.host, uri.port) do |http|
+                        request = Net::HTTP::Head.new(uri.request_uri)
+                        request.body = ""
+                        request.initialize_http_header({ "User-Agent" => params[:user_agent], "From" => params[:from], "Referer" => "" })
+                        http.request(request).value # value triggers http exception unless 2xx
+                    end
                 end
             rescue URI::InvalidURIError => e
                 params[:log].info("URI error for #{id} #{url} #{e}")
@@ -138,7 +143,7 @@ def query_content(url, start = 0)
     response = solr.select({:q => 'id:*', :start=> start, :rows=>10, :wt => :ruby, :fl =>'id,url'})
 
     start_index = response["response"]["start"].to_i
-    end_index = response["response"]["numFound"].to_i
+    end_index = start_index + response["response"]["numFound"].to_i
     rows = response["responseHeader"]["params"]["rows"].to_i
 
     results = {}
@@ -160,6 +165,7 @@ class PurgeOptions
         options[:user_agent] = "Purge/1.0"
         options[:from] = "foo@bar.com"
         options[:wait] = 0.25
+        options[:remove] = nil
     
         opts = OptionParser.new do |opts|
             opts.banner = "Purge tool for cleaning out invalid content from Solr - Paired with crawler. To use a proxy, set http_proxy=http://foo:1234"
@@ -168,8 +174,9 @@ class PurgeOptions
             opts.on("-l NAME", "--log NAME", String, "NAME of log file (else STDOUT)") {|u| options[:logname] = u }
             opts.on("-a NAME", "--useragent NAME", String, "User agent name") {|u| options[:user_agent] = u }
             opts.on("-f FROM", "--from FROM", String, "From details") {|u| options[:from] = u }
-            opts.on("-w N", "--wait N", Integer, "Wait N seconds between each fetch") {|n| options[:wait] = n }
+            opts.on("-w N", "--wait N", Integer, "Wait N seconds between each fetch (defaults to #{options[:wait]} seconds") {|n| options[:wait] = n }
             opts.on("-d", "--delete", "Check AND delete the content") { |v| options[:delete] = v }
+            opts.on("-r URL", "--remove URL", String, "Automatically remove any url's that match the given pattern (not a regexp)") {|s| options[:remove] = s }
             opts.on_tail("-h", "--help", "Show this message") do
               puts opts
               exit(0)
