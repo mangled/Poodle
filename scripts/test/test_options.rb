@@ -38,23 +38,23 @@ module Poodle
     end
 
     def test_optional_options
-      test_opt("-t", "--title", "1", :title_strip)
-      test_opt("-l", "--log", "2", :logname)
-      test_opt("-a", "--useragent", "3", :user_agent)
-      test_opt("-f", "--from", "4", :from)
-      test_opt("-i", "--ignore", "1,2,3", :ignore, ["1","2","3"])
-      test_opt("-c", "--accept", "1,2,3", :accept, ["1","2","3"])
-      test_opt("-w", "--wait", "5", :wait, 5)
-      test_opt("-e", "--index", true, :index)
-      test_opt("-q", "--quiet", true, :quiet)
-      test_opt("-h", "--threads", "3", :threads, 3)
-      test_opt(nil, "--index-dirs", true, :index_dirs)
-      test_opt("--yuk", "--yuk", true, :yuk)
-      test_opt(nil, "--local-cache", true, :cache_enabled)
-      test_opt(nil, "--scope-to-root", true, :scope_uri)
+      do_test_opt("-t", "--title", "1", :title_strip)
+      do_test_opt("-l", "--log", "2", :logname)
+      do_test_opt("-a", "--useragent", "3", :user_agent)
+      do_test_opt("-f", "--from", "4", :from)
+      do_test_opt("-i", "--ignore", "1,2,3", :ignore, ["1","2","3"])
+      do_test_opt("-c", "--accept", "1,2,3", :accept, ["1","2","3"])
+      do_test_opt("-w", "--wait", "5", :wait, 5)
+      do_test_opt("-e", "--index", true, :index)
+      do_test_opt("-q", "--quiet", true, :quiet)
+      do_test_opt("-h", "--threads", "3", :threads, 3)
+      do_test_opt(nil, "--index-dirs", true, :index_dirs)
+      do_test_opt("--yuk", "--yuk", true, :yuk)
+      do_test_opt(nil, "--local-cache", true, :cache_enabled)
+      do_test_opt(nil, "--scope-to-root", true, :scope_uri)
     end
   
-    def test_opt(short, long, value, option, converted_value = nil)
+    def do_test_opt(short, long, value, option, converted_value = nil)
       if short
         options = CrawlerOptions.get_options(@opts + [short, value])
         assert_equal converted_value ? converted_value : value, options[option]

@@ -60,8 +60,8 @@ module Poodle
                     rm_cdata = /\/\*<!\[CDATA\[\*\/(.*?)\/\*\]\]>\*\//im
                     formatted_content = formatted_content.gsub(rm_cdata, '')
 
-                    doc = Hpricot(formatted_content)
-                    
+                    doc = Analyzer.parse(formatted_content)
+
                     # Search frames
                     doc.search("frame[@src]").each do |frame|
                         parse_link(uri, params, links, frame.attributes['src']) if frame.attributes['src']
@@ -72,8 +72,8 @@ module Poodle
                         parse_link(uri, params, links, page_url.attributes['href'])
                     end
                     crawled_title = find_title(doc, params[:title_strip])
-                #rescue
-                    #log.warn("Error extracting links for #{uri}")
+                rescue Exception => e
+                    log.error("Error #{e} extracting links for #{uri}")
                 ensure
                     content.rewind
                 end
@@ -136,6 +136,13 @@ module Poodle
                crawled_title = post_title_elements.text if post_title_elements.length == 1
             end
             crawled_title
+        end
+        
+        # This is here to simplify unit-testing, couldn't be bothered faffing about
+        # to pass in or muck about further to mock Hpricot's module method for
+        # parsing
+        def Analyzer.parse(content)
+            Hpricot(content)
         end
     end
 end

@@ -11,17 +11,18 @@ module Poodle
     class Crawler
 
         def Crawler.crawl(params, indexer = nil, analyzer = Analyzer.new, urls = WorkQueue.new)
-            begin
-                urls.remove do |uri, referer, checksum|
+            ok = true
+            while ok
+                ok = urls.remove do |uri, referer, checksum|
                     if Crawler.should_analyze?(uri, params[:ignore], params[:accept])
-                        sleep(params[:wait]) if params[:wait]
                         checksum = Crawler.analyze_and_index(uri, referer, checksum, params, urls, indexer, analyzer)
                     else
                         params[:log].warn("Skipped #{uri}") unless params[:quiet]
                     end
                     [uri, referer, checksum] # At some point catch here and return nil => drop uri
                 end
-            end while !urls.done?
+                sleep(params[:wait]) if params[:wait]
+            end
         end
 
         def Crawler.analyze_and_index(uri, referer, checksum, params, urls, indexer, analyzer)

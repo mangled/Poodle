@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'set'
 require 'digest/md5'
-require 'monitor'
+require 'thread'
 
 module Poodle
     class WorkQueue
@@ -10,17 +10,21 @@ module Poodle
         attr_accessor :last_crawled_site_at
 
         def initialize(initial = nil)
-            @done = false
+            @user_cancelled = false
             @items = []
             @processed = []
             @crawled = Set.new
-            @items.extend(MonitorMixin)
+            @removing_mutex = Mutex.new
+            @check_removing = ConditionVariable.new
+            @items_mutex = Mutex.new
+            @removing = 0
             add(initial[0], initial[1], initial[2]) if initial
         end
 
         # Bad name - It only adds new/unseen
+        # Should take in a hash or array
         def add(uri, referer, checksum)
-            @items.synchronize do
+            @items_mutex.synchronize do
                 id = unique_id(uri)
                 unless @crawled.include?(id)
                     @items << [uri, referer, checksum]
@@ -30,31 +34,41 @@ module Poodle
         end
 
         def remove()
-            yielded = false
-            item = nil
-            @items.synchronize do
+            @removing_mutex.lock
+            item = @items.shift
+            while (@removing > 0) and item.nil?
+                @check_removing.wait(@removing_mutex)
                 item = @items.shift
-                if @items.empty?
-                    @processed << (yield item) if (block_given? and item)
-                    yielded = true
+            end
+            if item.nil?
+                @check_removing.signal
+                @removing_mutex.unlock
+            else
+                @removing += 1
+                @removing_mutex.unlock
+                begin
+                    @processed << (yield item)
+                ensure
+                    @removing_mutex.lock
+                    @removing -= 1
+                    @check_removing.signal
+                    @removing_mutex.unlock
                 end
             end
-            if (block_given? and not yielded)
-                @processed << (yield item)
-            end
-        end
-
-        def done?
-            @items.synchronize { @items.empty? or @done }
+            return !(@user_cancelled or item.nil?)
         end
 
         def kill(with_message = false)
             puts "Shutting down work queue(s)..." if with_message
-            @done = true
+            @user_cancelled = true
         end
         
         def processed
-            @processed
+            @items_mutex.synchronize { @processed }
+        end
+
+        def remaining
+            @items_mutex.synchronize { @items.length }
         end
 
         def unique_id(uri)

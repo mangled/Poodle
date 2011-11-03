@@ -108,7 +108,21 @@ module Poodle
                 assert_equal [to_href(":bar:foo")], content.readlines
             end
         end
-        
+
+        def test_content_parsing_throws_exception
+            @log.expects(:error).once.with('Error Bang! extracting links for http://www.foo.com/')
+            p = { :log => @log, :user_agent => "007", :from => "mars" }
+            add_expect_uri("http://www.foo.com/", "body text")
+
+            Analyzer.expects(:parse).once.with("body text").raises(Exception, "Bang!")
+            
+            Analyzer.new().extract_links(URI.parse("http://www.foo.com/"), "peter pan", nil, p) do |crawled_title, new_links, content|
+                assert_equal nil, crawled_title
+                assert_equal [], new_links
+                assert_equal ["body text"], content.readlines
+            end
+        end
+
         def test_no_links
             p = { :log => @log, :user_agent => "007", :from => "mars" }
             add_expect_uri("http://www.foo.com/")

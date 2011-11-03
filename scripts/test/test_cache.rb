@@ -61,20 +61,21 @@ module Poodle
         cache.add(expected)
 
         queue = WorkQueue.new
-        assert true, queue.done?
+        assert_equal 0, queue.processed.length
         assert_equal nil, queue.last_crawled_site_at
         cache.populate(queue)
         assert_equal nil, queue.last_crawled_site_at
-        assert_equal false, queue.done?
+        assert_equal 11, queue.remaining
 
         0.upto(10) {|i| queue.remove {|item| assert_equal expected[i], item } }
-        assert_equal true, queue.done?
+        assert_equal 0, queue.remaining
         
         cache = Cache.new(URI.parse("http://www.ear.com"), Time.parse('2010-01-01'), db)
         expected = random_expectations
         cache.add(expected)
         cache.populate(queue)
         assert_equal Time.parse('2010-01-01'), queue.last_crawled_site_at
+        assert_equal 11, queue.remaining
     end
     
     def test_delete
@@ -83,7 +84,7 @@ module Poodle
       cache.delete
       queue = WorkQueue.new
       cache.populate(queue)
-      assert_equal true, queue.done?
+      assert_equal 0, queue.remaining
     end
     
     def random_expectations
